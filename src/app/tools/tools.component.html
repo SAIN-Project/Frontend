@@ -1,0 +1,108 @@
+<div class="container">
+    <div *ngIf="firstloading" class="m-15 pb-15" style="text-align: center;">
+        <app-loading-spinner></app-loading-spinner>
+    </div>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="error">
+        <strong>Error!</strong> {{ error }}
+    </div>
+    <div *ngIf="!firstloading" class="row">
+        <div class="col-md-3">
+            <br>
+            <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+                <div class="border-bottom pb-4 mb-4">
+                    <h4 class="font-size-14 mb-3 font-weight-bold">Category</h4>
+                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="category" value="ArchitectureAnalysis" id="ArchitectureAnalysis"><label for="ArchitectureAnalysis">Architecture Analysis</label></div>
+                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="category" value="ReverseEngineering" id="ReverseEngineering"><label for="ReverseEngineering">Reverse Engineering</label></div>
+                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="category" value="CodeSmell" id="CodeSmell"><label for="CodeSmell">Code Smell</label></div>
+                </div>
+                <div class="border-bottom pb-4 mb-4">
+                    <h4 class="font-size-14 mb-3 font-weight-bold">Type</h4>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="Type" value="Open Source" id="Open Source"><label for="Open Source">Open Source</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="Type" value="Industrial" id="Industrial-1"><label for="Industrial-1">Industrial</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="Type" value="Academia" id="Academia"><label for="Academia">Academia</label></div>
+                </div>
+                <div class="border-bottom pb-4 mb-4">
+                    <h4 class="font-size-14 mb-3 font-weight-bold">Programing Language</h4>
+                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="Java" id="Java"><label for="Java">Java</label></div>
+                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="C++" id="C++"><label for="C++">C++</label></div>
+                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="C#" id="C#"><label for="C#">C#</label></div>
+                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="VisulaBasic" id="VisulaBasic"><label for="VisulaBasic">VisulaBasic</label></div>
+                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="Php" id="Php"><label for="Php">Php</label></div>
+                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="JavaScript" id="JavaScript"><label for="JavaScript">Java Script</label></div>
+                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="Python" id="Python"><label for="Python">Python</label></div>
+                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="SQL" id="SQL"><label for="SQL">SQL</label></div>
+                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="Go" id="Go"><label for="Go">Go</label></div>
+                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="Ruby" id="Ruby"><label for="Ruby">Ruby</label></div>
+                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="Perl" id="Perl"><label for="Perl">Perl</label></div>
+                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="Other" id="Other"><label for="Other">Other</label></div>
+                </div>
+
+                <div class="border-bottom pb-4 mb-4">
+                    <h4 class="font-size-14 mb-3 font-weight-bold">Output Artifacts</h4>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="Requirements" id="Requirements"><label for="Requirements">Requirements</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="Source Code" id="Source Code"><label for="Source Code">Source Code</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="Use Cases" id="Use Cases"><label for="Use Cases">USe Cases</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="Code Classes" id="Code Classes"><label for="Code Classes">Code Classes</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="Diagrams" id="Diagrams"><label for="Diagrams">Diagrams</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="Test Cases" id="Test Cases"><label for="Test Cases">Test Cases</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="Uml Classes" id="Uml Classes"><label for="Uml Classes">Uml Classes</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="Components" id="Components"><label for="Components">Components</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="Test Suite" id="Test Suite"><label for="Test Suite">Test Suite</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="Methods" id="Methods"><label for="Methods">Methods</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="Functional Requirements" id="Functional Requirements"><label for="Functional Requirements">Functional Requiremnts</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="Non Functional Requirements" id="Non Functional Requirements"><label for="Non Functional Requiremnts">Non Functional Requirements</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="High Level Requirements" id="High Level Requirements"><label for="High Level Requiremnts">High Level Requirements</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="Low Level Requirements" id="Low Level Requirements"><label for="Low Level Requiremnts">Low Level Requirements</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="User Level Requirements" id="User Level Requirements"><label for="User Level Requiremnts">User Level Requirements</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="Process" id="Process"><label for="Process">Process</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="Requirement Specification" id="Requirement Specification"><label for="Requiremnt Specification">Requirement Specification</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="Architecture Documents" id="Architecture Document"><label for="Architecture Document">Architecture Document</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="Design Documents" id="Design Document"><label for="Design Document">Design Document</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="User Stories" id="User Stories"><label for="User Stories">User Stories</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="Tasks" id="Tasks"><label for="Tasks">Tasks</label></div>
+                    <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="ArtifactsType" value="Developer Test" id="Developer Test"><label for="Developer Test">Developer Test</label></div>                
+                </div>
+   
+            </form>
+        </div>
+        
+        <div class="col-md-9 mt-1 pl-2">
+            <div class="row row-details" *ngFor="let tool of tools;index as i;"> <!-- row-2 details col-->
+                <div class="col-lg-12"><!-- col-2-->
+                    <div class="row"> <!-- row-3-->
+                        <div class="col-lg-12"><!-- col-3 -->
+                            <label class="row-caption"><span class="secton-label-left">Name</span><span class="secton-label-right">{{tool.name}}</span> </label>
+                            <label class="row-caption row-caption-right"> <span class="secton-label-left">Category</span><span class="secton-label-right">{{tool.category}}</span></label>
+                        </div>
+                    </div>
+            
+                    <div class="row"><!-- row-4 -->
+                        <div class="col-lg-12"><!-- col-4 -->
+                            <div class="file-information p-0"><!-- information-label -->
+                                <label class="snippet-id-label">{{i+1}}</label>
+                                <label class="information-label p-1 m-1 ml-2"><span class="secton-label-left">Programing Language</span><span class="secton-label-right">{{tool.ProgramingLanguage.join("+")}}</span></label>
+                                <button type="button" class="btn btn-sm btn-primary-dark tactics-button p-1" (click)="download(tool.name)"><i class="fa fa-download" aria-hidden="true"></i> Download</button>
+                                <button type="button" class="btn btn-sm btn-primary-dark tactics-button p-1" (click)="docker(tool.name)"><i class="fab fa-docker" aria-hidden="true"></i> Docker</button>
+                                <a  [routerLink]="tool.name"><button type="button" class="btn btn-sm btn-primary-dark tactics-button p-1 px-3" ><i class="fa fa-info-circle" aria-hidden="true"></i> Run {{tool.name}} online</button></a>
+                            </div><!-- information-label -->
+                        </div><!-- /col-4 -->
+                    </div>
+                    <div class="row"><!-- row-5 -->
+                        <div class="col-lg-12"> <!-- col-5 -->
+                            <label class="snippet-caption">Tool Description</label>
+                            <a class="btn btn-default float-right pb-0" href="#">{{tool.name}} Details &raquo;</a>
+                        </div><!-- /col-5 -->
+                    </div><!-- row-5 -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="snippet-codes">
+                                <p class="description text-justify">{{tool.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!--end of col 9-->
+    </div><!--end of first row-->
+</div><!--end of container-->

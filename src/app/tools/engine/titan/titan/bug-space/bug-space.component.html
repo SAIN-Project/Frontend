@@ -1,0 +1,119 @@
+<div class="row p-6 justify-content-center" *ngIf="!results">
+    <div class="col-md-12 p-12"  *ngIf="isLoading">
+        <div style="text-align: center;">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+    </div>
+    <div class="col-md-12 p-4" *ngIf="!isLoading">
+        <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="col form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input name="revisionfile" type="file" class="custom-file-input" id="files2" (change)="onFileSelected1($event)" [ngClass]="{ 'is-invalid': submitted &&  historyRevision=='History Revision File' }">
+                            <label class="custom-file-label" for="files2">{{historyRevision}}</label>
+                            <div *ngIf="submitted && historyRevision=='History Revision File'" class="invalid-feedback">
+                                <div *ngIf="historyRevision=='History Revision File'">History Revision Is Required</div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col form-group">
+                    <label class="form-label">Log Type<span class="text-danger">*</span></label>
+                    <select formControlName="logType" id="inputState" class="form-control"
+                    [ngClass]="{'is-invalid': submitted && f.logType.errors}" >
+                        <option>git</option>
+                        <option>svn</option>
+                    </select>
+                    <div *ngIf="submitted && f.logType.errors" class="invalid-feedback">
+                        <div *ngIf="submitted && f.logType.errors">Log Type is required</div>
+                    </div>
+                </div>
+                <div class="col form-group">
+                    <label class="form-label">Regular Expression key<span class="text-danger">*</span></label>  
+                    <input type="text" formControlName="regExpkey" class="form-control" placeholder="/**/" 
+                    [ngClass]="{'is-invalid': submitted && f.regExpkey.errors}">
+                    <div *ngIf="submitted && f.regExpkey.errors" class="invalid-feedback">
+                        <div *ngIf="submitted && f.regExpkey.errors">Regular Expression key is required</div>
+                    </div> 
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col form-group">      
+                    <label class="form-label">Start Date<span class="text-danger">*</span></label>
+                    <input placeholder="Start Date (dd/mm/yyyy)" type="text" formControlName="startDate"  id="date-picker-example" class="form-control"
+                    [ngClass]="{'is-invalid': submitted && f.startDate.errors}">
+                    <div *ngIf="submitted && f.startDate.errors" class="invalid-feedback">
+                        <div *ngIf="submitted && f.startDate.errors">Start Date is required</div>
+                    </div>          
+                </div>
+                <div class="col form-group">
+                    <label class="form-label">End Date<span class="text-danger">*</span></label>
+                    <input placeholder="End Date (dd/mm/yyyy)" type="text" formControlName="endDate" id="endingDate" class="form-control"
+                    [ngClass]="{'is-invalid': submitted && f.endDate.errors}">
+                    <div *ngIf="submitted && f.endDate.errors" class="invalid-feedback">
+                        <div *ngIf="submitted && f.endDate.errors">End Date is required</div>
+                    </div>        
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col form-group">
+                    <div class="input-group" >
+                        <div class="input-group-prepend"  >
+                            <span class="input-group-text">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input name="dsmfile" type="file" class="custom-file-input" id="dsmfiles" (change)="onFileSelected2($event)" [ngClass]="{ 'is-invalid': submitted &&  structurl_DSM=='DSM File' }">
+                            <label class="custom-file-label" for="dsmfiles">{{structurl_DSM}}</label>
+                            <div *ngIf="submitted && structurl_DSM=='DSM File'" class="invalid-feedback">
+                                <div *ngIf="submitted && structurl_DSM=='DSM File'">Structural DSM File Is Required</div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col form-group">
+                    <div class="input-group" >
+                        <div class="input-group-prepend"  >
+                            <span class="input-group-text">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input name="dsmfile" type="file" class="custom-file-input" id="issuesfiles" (change)="onFileSelected3($event)" [ngClass]="{ 'is-invalid': submitted &&  issues=='Jira Bug Files' }">
+                            <label class="custom-file-label" for="issuesfiles">{{issues}}</label>
+                            <div *ngIf="submitted && issues=='Jira Bug Files'" class="invalid-feedback">
+                                <div *ngIf="submitted && issues=='Jira Bug Files'">Structural DSM File Is Required</div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="form-row py-3">
+                <div class="col-sm-3">
+                    <label ><strong>Threshold</strong> </label>
+                </div>
+                <div class="col form-group">
+                    <input type="range" formControlName="Threshold" class="custom-range" id="customRange1" min="1" max="10" step="1">
+                </div>
+            </div>
+            <hr>
+            <div class="form-group mt-5">
+                <button type="submit" class="btn btn-primary-dark-w min-width-200"> Submit  </button>
+                <button type="button" class="btn btn-primary-dark-w float-right min-width-200"> Cancel  </button>
+            </div> <!-- form-group// --> 
+        </form>
+    </div>
+</div>
+<div class="row py-18 px-0 justify-content-center m-2"  *ngIf="results">
+    <div class="col-md-8 bg-gray-3 py-3"> 
+        <strong>Success! {{ results }}</strong>
+    </div>
+    <div class="col-md-4 "> 
+        <button type="button" class="btn btn-primary-dark-w float-right min-width-200 min-height-40" (click)="downloadResults()"><i class="fa fa-download" aria-hidden="true"></i> Downlod Results </button>
+    </div>
+</div>

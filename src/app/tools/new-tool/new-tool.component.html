@@ -1,0 +1,203 @@
+
+<div class="container py-8">
+    <div class="row justify-content-center border py-3 mx-10">
+        <div class="col-md-12 col-sm-12">
+            <div class="mr-xl-6">
+                <div class="border-bottom border-color-1 mb-5">
+                    <h3 class="section-title mb-0 pb-2 font-size-25">Upload New Tool</h3>
+                </div>
+                <form  [formGroup]="toolForm" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Input -->
+                            <div class="js-form-message mb-4">
+                                <label class="form-label">
+                                   Tool Name
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control" formControlName="name" placeholder="" aria-label="" required="" data-msg="Please enter your frist name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
+                            </div>
+                            <!-- End Input -->
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="js-form-message mb-4">
+                                <label class="form-label">
+                                   Breif Description</label>
+
+                                <div class="input-group">
+                                    <textarea class="form-control p-5" rows="4" formControlName="description" placeholder=""></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+
+                                <div class="col-md-8 col-sm-12 col-xs-12 demo-col">
+                                    <div class="border-bottom border-color-1 mb-3">
+                                        <h1 class="section-title mb-0 pb-2 font-size-18">Tool Category</h1>
+                                    </div>
+                                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="category" value="Architecture Analysis" id="ArchitectureAnalysis"><label for="ArchitectureAnalysis">Architecture Analysis</label></div>
+                                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="category" value="Reverse Engineering" id="ReverseEngineering"><label for="ReverseEngineering">Reverse Engineering</label></div>
+                                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="category" value="Code Smell" id="CodeSmell"><label for="CodeSmell">Code Smell</label></div>
+                                </div>
+                                <div class="col-md-4 col-sm-12 col-xs-12 demo-col">
+                                   
+                                    <div class="border-bottom border-color-1 mb-3">
+                                        <h1 class="section-title mb-0 pb-2 font-size-18">Type</h1>
+                                    </div>
+                                    
+                                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="Type" value="Open Source" id="Open Source"><label for="Open Source">Open Source</label></div>
+                                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="Type" value="Industrial" id="Industrial"><label for="Industrial">Industrial</label></div>
+                                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="Type" value="Academia" id="Academia"><label for="Academia">Academia</label></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <br>
+                            <br>
+                            <div class="border-bottom border-color-1 mb-3">
+                                <h1 class="section-title mb-0 pb-2 font-size-18">Programing Language</h1>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-12 demo-col">
+                                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="Java" id="Java"><label for="Java">Java</label></div>
+                                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="C++" id="C++"><label for="C++">C++</label></div>
+                                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="C#" id="C#"><label for="C#">C#</label></div>
+                                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="VisulaBasic" id="VisulaBasic"><label for="VisulaBasic">VisulaBasic</label></div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12 demo-col">
+                                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="Php" id="Php"><label for="Php">Php</label></div>
+                                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="JavaScript" id="JavaScript"><label for="JavaScript">Java Script</label></div>
+                                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="Python" id="Python"><label for="Python">Python</label></div>
+                                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="SQL" id="SQL"><label for="SQL">SQL</label></div>
+
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12 demo-col">
+                                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="Go" id="Go"><label for="Go">Go</label></div>
+                                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="Ruby" id="Ruby"><label for="Ruby">Ruby</label></div>
+                                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="Perl" id="Perl"><label for="Perl">Perl</label></div>
+                                    <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="Other" id="Other"><label for="Other">Other</label></div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <br>
+                            <br>
+                            <div class="border-bottom border-color-1 mb-3">
+                                <h1 class="section-title mb-0 pb-2 font-size-18">Tool Output Artifacts</h1>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-6 col-xs-12 demo-col">
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Requirements" id="Requirements">
+                                        <label for="Requirements">Requirements</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Source Code" id="Source Code">
+                                        <label for="Source Code">Source Code</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Use Cases" id="Use Cases">
+                                        <label for="Use Cases">Use Cases</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Code Classes" id="Code Classes">
+                                        <label for="Code Classes">Code Classes</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Diagrams" id="Diagrams">
+                                        <label for="Diagrams">Diagrams</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Test Cases" id="Test Cases">
+                                        <label for="Test Cases">Test Cases</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Uml Classes" id="Uml Classes">
+                                        <label for="Uml Classes">Uml Classes</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Components" id="Components">
+                                        <label for="Components">Components</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12 demo-col">
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Test Suite" id="Test Suite">
+                                        <label for="Test Suite">Test Suite</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Methods" id="Methods">
+                                        <label for="Methods">Methods</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Functional Requirements" id="Functional Requirements">
+                                        <label for="Functional Requirements">Functional Requiremnts</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="NonFunctionalRequirements" id="NonFunctionalRequirements">
+                                        <label for="NonFunctionalRequirements">Non Functional Requirements</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="HighLevelRequirements" id="HighLevelRequirements">
+                                        <label for="HighLevelRequirements">High Level Requirements</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="LowLevelRequirements" id="LowLevelRequirements">
+                                        <label for="LowLevelRequirements">Low Level Requirements</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="User Level Requiremnts" id="User Level Requiremnts">
+                                        <label for="User Level Requiremnts">User Level Requirements</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Process" id="Process">
+                                        <label for="Process">Process</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12 demo-col">
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Requiremnt Specification" id="Requiremnt Specification">
+                                        <label for="Requiremnt Specification">Requiremnt Specification</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Architecture Documents" id="Architecture Document">
+                                        <label for="Architecture Document">Architecture Document</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Design Documents" id="Design Document">
+                                        <label for="Design Document">Design Document</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="User Stories" id="User Stories">
+                                        <label for="User Stories">User Stories</label>
+                                    </div>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Tasks" id="Tasks">
+                                        <label for="Tasks">Tasks</label></div>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Developer Test" id="Developer Test">
+                                        <label for="Developer Test">Developer Test</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                            
+                    <hr>
+                    <div class="my-3">
+                        <button type="submit" class="btn btn-primary-dark-w px-5">Submit</button>
+                        <button type="button" class="btn btn-primary-dark-w px-5 float-right" (click)="onCancel()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

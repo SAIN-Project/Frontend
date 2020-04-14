@@ -1,0 +1,279 @@
+<div class="container py-8">
+    <div class="row justify-content-center ">
+        <div class="col-md-10">
+            <div class="card">
+                <header class="card-header py-1 bg-light border-2">
+                    <h3 class="card-title mt-2 font-size-25"> New Dataset</h3>
+                </header>
+                <article class="card-body">
+                    <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label class="form-label">Dataset Name<span class="text-danger">*</span></label>  
+                                <input type="text" formControlName="name" class="form-control" placeholder="" 
+                                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }" autofocus>
+                                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                        <div *ngIf="f.name.errors.required">Dataset Name is required</div>
+                                    </div> 
+                            </div> <!-- form-group end.// -->
+                            <div class="form-group col">
+                                <label class="form-label">Domain<span class="text-danger">*</span></label>
+                                <select formControlName="domain" id="inputState" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.domain.errors }" >
+                                    <option>Office Automation</option>
+                                    <option>Healthcare</option>
+                                    <option>Aerospace</option>
+                                    <option>Entertainment</option>
+                                    <option>Transportation</option>
+                                    <option>Software Engineering Tool</option>
+                                    <option>Industrial</option>
+                                </select>
+                                <div *ngIf="submitted && f.domain.errors" class="invalid-feedback">
+                                    <div *ngIf="f.domain.errors.required">Dataset Description is required</div>
+                                </div>
+                            </div> <!-- form-group end.// -->
+                        </div> <!-- form-row end.// -->				
+                        <div class="form-group">
+                            <label class="form-label">Description<span class="text-danger">*</span></label>
+                            <textarea formControlName="description" class="form-control" id="description" rows="3"
+                            [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
+                        
+                            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                                <div *ngIf="f.description.errors.required">Dataset Description is required</div>
+                            </div> 
+                        </div> <!-- form-group end.// -->
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12 col-xs-12 demo-col">
+                               
+                                <div class="border-bottom border-color-1 mb-3">
+                                    <h1 class="section-title mb-0 pb-2 font-size-18">Type</h1>
+                                </div>
+                                
+                                <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="Type" value="Open Source" id="Open Source"><label for="Open Source">Open Source</label></div>
+                                <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="Type" value="Industrial" id="Industrial"><label for="Industrial">Industrial</label></div>
+                                <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="Type" value="Academia" id="Academia"><label for="Academia">Academia</label></div>
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12 demo-col">
+                                <div class="border-bottom border-color-1 mb-3">
+                                    <h1 class="section-title mb-0 pb-2 font-size-18">Programing Language</h1>
+                                </div>
+                                <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="Java" id="Java"><label for="Java">Java</label></div>
+                                <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="C" id="C"><label for="C">C</label></div>
+                                <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="C#" id="C#"><label for="C#">C#</label></div>
+                                <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ProgramingLanguage" value="Textual" id="Textual"><label for="Textual">Textual</label></div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="border-bottom border-color-1 mb-3">
+                            <h1 class="section-title mb-0 pb-2 font-size-18">Artifact Format</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-12 demo-col">
+                                <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsFormat" value="Xml" id="Xml"><label for="Xml">Xml</label></div>
+                                <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsFormat" value="Csv" id="Csv"><label for="Csv">Csv</label></div>
+                                <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsFormat" value="Html" id="Html"><label for="Html">Html</label></div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12 demo-col">
+                                <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsFormat" value="Osl" id="Osl"><label for="Osl">Osl</label></div>
+                                <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsFormat" value="Text" id="Text"><label for="Text">Text</label></div>
+                                <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsFormat" value="Italian" id="Italian"><label for="Italian">Italian</label></div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="border-bottom border-color-1 mb-3">
+                            <h1 class="section-title mb-0 pb-2 font-size-18">Artifacts Type</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-6 col-xs-12 demo-col">
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Requirements" id="Requirements">
+                                    <label for="Requirements">Requirements</label>
+                                </div>
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Source Code" id="Source Code">
+                                    <label for="Source Code">Source Code</label>
+                                </div>
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Use Cases" id="Use Cases">
+                                    <label for="Use Cases">Use Cases</label>
+                                </div>
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Code Classes" id="Code Classes">
+                                    <label for="Code Classes">Code Classes</label>
+                                </div>
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Diagrams" id="Diagrams">
+                                    <label for="Diagrams">Diagrams</label>
+                                </div>
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Test Cases" id="Test Cases">
+                                    <label for="Test Cases">Test Cases</label>
+                                </div>
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Uml Classes" id="Uml Classes">
+                                    <label for="Uml Classes">Uml Classes</label>
+                                </div>
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Components" id="Components">
+                                    <label for="Components">Components</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12 demo-col">
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Test Suite" id="Test Suite">
+                                    <label for="Test Suite">Test Suite</label>
+                                </div>
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Methods" id="Methods">
+                                    <label for="Methods">Methods</label>
+                                </div>
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Functional Requirements" id="Functional Requirements">
+                                    <label for="Functional Requirements">Functional Requiremnts</label>
+                                </div>
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="NonFunctionalRequirements" id="NonFunctionalRequirements">
+                                    <label for="NonFunctionalRequirements">Non Functional Requirements</label>
+                                </div>
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="HighLevelRequirements" id="HighLevelRequirements">
+                                    <label for="HighLevelRequirements">High Level Requirements</label>
+                                </div>
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="LowLevelRequirements" id="LowLevelRequirements">
+                                    <label for="LowLevelRequirements">Low Level Requirements</label>
+                                </div>
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="User Level Requiremnts" id="User Level Requiremnts">
+                                    <label for="User Level Requiremnts">User Level Requirements</label>
+                                </div>
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Process" id="Process">
+                                    <label for="Process">Process</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12 demo-col">
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Requiremnt Specification" id="Requiremnt Specification">
+                                    <label for="Requiremnt Specification">Requiremnt Specification</label>
+                                </div>
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Architecture Documents" id="Architecture Document">
+                                    <label for="Architecture Document">Architecture Document</label>
+                                </div>
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Design Documents" id="Design Document">
+                                    <label for="Design Document">Design Document</label>
+                                </div>
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="User Stories" id="User Stories">
+                                    <label for="User Stories">User Stories</label>
+                                </div>
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Tasks" id="Tasks">
+                                    <label for="Tasks">Tasks</label></div>
+                                <div class="icheck-primary">
+                                    <input type="checkbox"  (change)="onCheckboxChange($event)" name="ArtifactsType" value="Developer Test" id="Developer Test">
+                                    <label for="Developer Test">Developer Test</label>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-12 col-xs-12 demo-col">
+                                <div class="border-bottom border-color-1 mb-3">
+                                    <h1 class="section-title mb-0 pb-2 font-size-18">Oracle Developer</h1>
+                                </div>
+                                <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="OracleDeveloper" value="Students" id="Students"><label for="Students">Students</label></div>
+                                <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="OracleDeveloper" value="Industry" id="Industry"><label for="Industry">Industry</label></div>
+                                <div class="icheck-primary"><input type="checkbox"  (change)="onCheckboxChange($event)" name="OracleDeveloper" value="Developers" id="Developers"><label for="Developers">Developers</label></div>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12 demo-col">
+                                <div class="border-bottom border-color-1 mb-3">
+                                    <h1 class="section-title mb-0 pb-2 font-size-18">Oracle Collection</h1>
+                                </div>
+                                <div class="icheck-primary"><input type="radio" formControlName="OracleCollections" value="Manually" id="Manually"><label for="Manually">Manually</label></div>
+                                <div class="icheck-primary"><input type="radio" formControlName="OracleCollections" value="Automatic" id="Automatic"><label for="Automatic">Automatic by Tool</label></div>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12 demo-col">
+                                <div class="border-bottom border-color-1 mb-3">
+                                    <h1 class="section-title mb-0 pb-2 font-size-18">Oracle Is Present</h1>
+                                </div>
+                                <div class="icheck-primary"><input type="radio" formControlName="OracleIsPresent" value="Yes" id="Yes1"><label for="Yes1">Yes</label></div>
+                                <div class="icheck-primary"><input type="radio" formControlName="OracleIsPresent" value="No" id="No1"><label for="No1">NO</label></div>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12 demo-col">
+                                <div class="border-bottom border-color-1 mb-3">
+                                    <h1 class="section-title mb-0 pb-2 font-size-18">Oracle Size</h1>
+                                </div>
+                                <br>
+                                <input type="range" formControlName="OracleSize" min="1" max="2000" value="1000" class="slider" id="" style="width:100%;">
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-12 col-xs-12 demo-col">
+                                <div class="border-bottom border-color-1 mb-3">
+                                    <h1 class="section-title mb-0 pb-2 font-size-18">Storage</h1>
+                                </div>
+                                <div class="icheck-primary"><input type="radio" formControlName="Storage" value="Public" id="Public"><label for="Public">Public</label></div>
+                                <div class="icheck-primary"><input type="radio" formControlName="Storage" value="Private Server" id="Private Server"><label for="Private Server">Private Server</label></div>
+                                <div class="icheck-primary"><input type="radio" formControlName="Storage" value="Organizational Server" id="Organizational Server"><label for="Organizational Server">Organizational Server</label></div>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12 demo-col">
+                                <div class="border-bottom border-color-1 mb-3">
+                                    <h1 class="section-title mb-0 pb-2 font-size-18">Licensing</h1>
+                                </div>
+                                <div class="icheck-primary"><input type="radio" formControlName="Licensing" value="Yes" id="Yes2"><label for="Yes2">Yes</label></div>
+                                <div class="icheck-primary"><input type="radio" formControlName="Licensing" value="No" id="No2"><label for="No2">NO</label></div>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12 demo-col">
+                                <div class="border-bottom border-color-1 mb-3">
+                                    <h1 class="section-title mb-0 pb-2 font-size-18">Oracle Is Present</h1>
+                                </div>
+                                <div class="icheck-primary"><input type="radio" formControlName="IndustryRepresntative" value="Yes" id="Yes3"><label for="Yes3">Yes</label></div>
+                                <div class="icheck-primary"><input type="radio" formControlName="IndustryRepresntative" value="No" id="No3"><label for="No3">NO</label></div>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12 demo-col">
+                                <div class="border-bottom border-color-1 mb-3">
+                                    <h1 class="section-title mb-0 pb-2 font-size-18">Multi Versions</h1>
+                                </div>
+                                <div class="icheck-primary"><input type="radio" formControlName="MultiVersion" value="Yes" id="Yes4"><label for="Yes4">Yes</label></div>
+                                <div class="icheck-primary"><input type="radio" formControlName="MultiVersion" value="No" id="No4"><label for="No4">No</label></div>
+                            </div>
+                        </div>
+                        <hr>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 demo-col">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input name="file" type="file" class="custom-file-input" id="files" (change)="onFileSelected($event)" [ngClass]="{ 'is-invalid': submitted && filename=='Choose Dataset File' }">
+                                        <label class="custom-file-label" for="files">{{filename}}</label>
+                                        <div *ngIf="submitted && filename=='Choose Dataset File'" class="invalid-feedback">
+                                            <div *ngIf="filename=='Choose Dataset File'">Dataset File is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div *ngIf="progress"><strong>{{progress}}</strong></div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary-dark-w btn-block" > Create Dataset  </button>
+                        </div> <!-- form-group// -->                                              
+                    </form>
+                </article> <!-- card-body end .// -->
+            </div> <!-- card.// -->
+        </div> <!-- col.//-->
+    </div> <!-- row.//-->   
+</div>
+

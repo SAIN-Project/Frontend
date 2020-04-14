@@ -1,0 +1,44 @@
+<div class="container py-8" >
+    <div class="row justify-content-center ">
+      <div class="col-md-6">
+        <div *ngIf="isLoading" style="text-align: center;">
+          <app-loading-spinner></app-loading-spinner>
+        </div>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="error">
+          <strong>Error!</strong> {{ error }}
+        </div>
+        <div *ngIf="!isLoading" class="card">
+          <header class="card-header">
+            <h4 class="card-title mt-2"><i class="fa fa-fw fa-user"></i> Sign In</h4>
+          </header>
+          <article class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+              <div class="form-row">
+                <div class="col form-group js-form-message mb-4">
+                  <label class="form-label">Email <span class="text-danger">*</span></label> 
+                  <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                      <div *ngIf="f.email.errors.required">Email is required</div>
+                      <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                  </div> 
+                </div> <!-- form-group end.// -->
+                <div class="col form-group">
+                  <label class="form-label">Password<span class="text-danger">*</span></label>
+                  <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                      <div *ngIf="f.password.errors.required">Password is required</div>
+                      <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                  </div>
+                </div> <!-- form-group end.// -->
+              </div> <!-- form-row end.// -->
+                    
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary-dark-w btn-block"> Log In  </button>
+              </div> <!-- form-group// -->                                              
+            </form>
+          </article> <!-- card-body end .// -->
+        </div> <!-- card.// -->
+      </div> <!-- col.//-->
+  
+    </div> <!-- row.//-->   
+</div> 

@@ -1,0 +1,105 @@
+<div class="row p-6 justify-content-center">
+    <div class="col-md-8 p-4">
+        <form >
+            <div class="form-row">
+                <div class="col form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input name="file" type="file" class="custom-file-input" id="files" (change)="onFileSelected1($event)" [ngClass]="{ 'is-invalid': submitted &&  historyRevision=='History Revision File' }">
+                            <label class="custom-file-label" for="files">{{historyRevision}}</label>
+                            <div *ngIf="submitted && historyRevision=='History Revision File'" class="invalid-feedback">
+                                <div *ngIf="historyRevision=='History Revision File'">History Revision Is Required</div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col form-group">
+                    <label class="form-label">Log Type<span class="text-danger">*</span></label>
+                    <select name="domain" id="inputState" class="form-control"
+                    [ngClass]="{'is-invalid': submitted && f.domain.errors}" >
+                        <option>git</option>
+                        <option>svn</option>
+                    </select>
+                    <div *ngIf="submitted " class="invalid-feedback">
+                        <div *ngIf="">Dataset Description is required</div>
+                    </div>
+                </div>
+                <div class="col form-group">
+                    <label class="form-label">Regular Expression key<span class="text-danger">*</span></label>  
+                    <input type="text"name="key" class="form-control" placeholder="" 
+                        [ngClass]="{ 'is-invalid': submitted  }" autofocus>
+                        <div *ngIf="submitted" class="invalid-feedback">
+                            <div *ngIf="key==''">Regular Expression Key is required</div>
+                        </div> 
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col form-group">  
+                        <!--The "from" Date Picker -->
+                   
+                        <div class="md-form">
+                            <label class="form-label">Start<span class="text-danger">*</span></label>
+                            <input placeholder="Selected date" type="text" id="date-picker-example" class="form-control datepicker">
+                        </div>
+                     
+                </div>
+                <div class="col form-group">
+                        <!--The "to" Date Picker -->
+                        <label class="form-label">End<span class="text-danger">*</span></label>
+                        <input placeholder="Selected ending date" type="text" id="endingDate" class="form-control datepicker">
+                        
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input name="dsmfile" type="file" class="custom-file-input" id="dsmfiles" (change)="onFileSelected2($event)" [ngClass]="{ 'is-invalid': submitted &&  structurl_DSM=='DSM File' }">
+                            <label class="custom-file-label" for="dsmfiles">{{historyRevision}}</label>
+                            <div *ngIf="submitted && structurl_DSM=='DSM File'" class="invalid-feedback">
+                                <div *ngIf="structurl_DSM=='DSM File'">History Revision Is Required</div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input name="file" type="file" class="custom-file-input" id="files" (change)="onFileSelected3($event)" [ngClass]="{ 'is-invalid': submitted &&  issue=='Bug Files' }">
+                            <label class="custom-file-label" for="files">{{issues}}</label>
+                            <div *ngIf="submitted && issue=='Bug Files'" class="invalid-feedback">
+                                <div *ngIf="issue=='Bug Files'">Bug Files Are  Required</div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="form-row py-3">
+                <div class="col-sm-3">
+                    <label ><strong>Threshold</strong> </label>
+                </div>
+                <div class="col form-group">
+                    <input type="range" class="custom-range" id="customRange1" min="0" max="1" step="0.01">
+                </div>
+            </div>
+            <hr>
+            <div class="form-group mt-5">
+                <button type="submit" class="btn btn-primary-dark-w min-width-200"> Submit  </button>
+                <button type="button" class="btn btn-primary-dark-w float-right min-width-200"> Cancel  </button>
+            </div> <!-- form-group// --> 
+        </form>
+</div>
+

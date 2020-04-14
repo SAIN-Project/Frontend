@@ -1,0 +1,91 @@
+<div class="row p-6 justify-content-center" *ngIf="!results">
+    <div class="col-md-12 p-12"  *ngIf="isLoading">
+        <div style="text-align: center;">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+    </div>
+    <div class="col-md-12 p-4" *ngIf="!isLoading">
+        <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="col form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input name="revisionfile" type="file" class="custom-file-input" id="files1" (change)="onFileSelected1($event)" [ngClass]="{ 'is-invalid': submitted &&  structurl_DSM=='SDSM File' }">
+                            <label class="custom-file-label" for="files1">{{structurl_DSM}}</label>
+                            <div *ngIf="submitted && structurl_DSM=='SDSM File'" class="invalid-feedback">
+                                <div *ngIf="structurl_DSM=='SDSM File'">History Revision Is Required</div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input name="revisionfile" type="file" class="custom-file-input" id="files2" (change)="onFileSelected2($event)" [ngClass]="{ 'is-invalid': submitted &&  history_HDSM=='HDSM File' }">
+                            <label class="custom-file-label" for="files2">{{history_HDSM}}</label>
+                            <div *ngIf="submitted && history_HDSM=='HDSM File'" class="invalid-feedback">
+                                <div *ngIf="history_HDSM=='HDSM File'">History Revision Is Required</div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input name="revisionfile" type="file" class="custom-file-input" id="files3" (change)="onFileSelected3($event)" [ngClass]="{ 'is-invalid': submitted &&  bugspace=='Bug Space File' }">
+                            <label class="custom-file-label" for="files3">{{bugspace}}</label>
+                            <div *ngIf="submitted && bugspace=='Bug Space File'" class="invalid-feedback">
+                                <div *ngIf="bugspace=='Bug Space File'">History Revision Is Required</div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+            <div class="form-row py-3">
+                <div class="col-sm-3">
+                    <label ><strong>Bug Frequency:({{dataForm.get('bugFreq').value}})</strong> </label>
+                </div>
+                <div class="col form-group">
+                    <input type="range" class="custom-range" id="customRange1" min="1" max="100" step="1" formControlName="bugFreq">
+                </div>
+            </div>
+            <div class="form-row py-3">
+                <div class="col-sm-3">
+                    <label ><strong>Percent:({{dataForm.get('percent').value}})</strong> </label>
+                </div>
+                <div class="col form-group">
+                    <input type="range" class="custom-range" id="customRange2" min="0" max="1" step="0.01" formControlName="percent">
+                </div>
+            </div>
+            <hr>
+            <div class="form-group mt-5">
+                <button type="submit" class="btn btn-primary-dark-w min-width-200"> Submit  </button>
+                <button type="button" class="btn btn-primary-dark-w float-right min-width-200"> Cancel  </button>
+            </div> <!-- form-group// --> 
+        </form>
+    </div>
+</div>
+
+<div class="row py-18 px-0 justify-content-center m-2"  *ngIf="results">
+    <div class="col-md-8 bg-gray-3 py-3"> 
+        <strong>Success! {{ results }}</strong>
+    </div>
+    <div class="col-md-4 "> 
+        <button type="button" class="btn btn-primary-dark-w float-right min-width-200 min-height-40" (click)="downloadResults()"><i class="fa fa-download" aria-hidden="true"></i> Downlod Results </button>
+    </div>
+</div>
+
+
