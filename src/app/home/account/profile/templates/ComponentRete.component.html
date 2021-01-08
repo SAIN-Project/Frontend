@@ -1,0 +1,58 @@
+<app-breadcrumb [items]="['Home','Profile','Tool','Tool Integration Blocks']"></app-breadcrumb>
+
+<div class="container " *ngIf="ToolComponent">
+    <div class="card">
+        <header class="card-header title text-dark py-1">
+            <h5 class="card-tittle d-inline"><i class="fa fa-list-alt"></i> {{ToolComponent.name}} Integration Blocks</h5>
+            <button class="btn download float-right pointer font-weight-normal font-size-18">
+                <a [routerLink]="'/componentbuilder/'+Component_id">
+                    <i class="fa fa-plus fa-lg pr-2"></i>Add new Block
+                </a>
+            </button>
+        </header>
+        <article class="class-body m-0 p-0 py-2">
+            <table datatable [dtTrigger]="Dt.dtTrigger" class="table border-dark border table-bordered table-striped table-sm w-100 p-0 m-0">
+                <thead>
+                    <tr scope="row" class="height-40">
+                        <th class="w-10">#</th>
+                        <th>Block Name</th>
+                        <th class="w-10">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr scope="row"*ngFor ="let item of  ReteComponents;let i=index;">
+                        <td>{{i+1}}</td>
+                        <td class=" font-size-16">{{item.name}}</td>
+                        <td >
+                            <div class="d-flex d-inline-flex justify-content-between w-90">
+                                <button class="btn pointer shadow-on-hover-1" (click)="router.navigateTo('/editcomponentbuilder/'+item._id)">
+                                    <i class="fa fa-edit fa-lg pr-2 text-danger pointer"></i>Edit
+                                </button>
+                                <button class="btn pointer" (click)="SelectedItem=item;modal.open(template,'modal-md')" >
+                                    <i class="fa fa-trash-alt pr-2 fa-lg text-danger pointer"></i> Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </article>
+    </div>
+</div>
+
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Delete <span class="font-italic">{{SelectedItem.name}}</span> </h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body text-center just">
+      <p>Do you really want to delete this Block ?</p>
+      <div class="d-flex d-inline-flex justify-content-between w-100">
+        <button type="button" class="btn btn-primary-dark-w float-left w-40" (click)="modal.hide()">Cancel</button>
+        <button type="button" class="btn btn-danger float-right w-40" (click)="delete(SelectedItem._id)">Delete</button>
+      </div>
+    </div>
+</ng-template>

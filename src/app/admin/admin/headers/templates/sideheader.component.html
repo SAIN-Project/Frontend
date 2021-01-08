@@ -1,0 +1,56 @@
+  <!-- Sidebar Holder -->
+  <nav class="sidebar">
+    <div class="sidebar-header ">
+       <div class="searchbox"></div> <h4>Admin Panel</h4>
+    </div>
+
+    <ul class="list-unstyled components">
+        <li>
+            <a routerLink="/Dashboard"><i class="fas fa-qrcode pr-3"></i>Dashboard</a>
+        </li>
+        <li >
+          <a href="#Datasets" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><i class="fas fa-database pr-3"></i>Datasets</a>
+          <ul class="collapse list-unstyled" id="Datasets">
+              <li>
+                  <a routerLink="DatasetsAdministration" ><i class="fa fa-list pr-2"></i>Dataset List</a>
+              </li>
+              <li>
+                <a routerLink="DatasetsAdministration/datasetfilters" ><i class="fa fa-list pr-2"></i>Dataset Categories</a>
+              </li>
+              <li>
+                <a routerLink="DatasetsAdministration/datasettags" ><i class="fa fa-list pr-2"></i>Dataset Tags</a>
+              </li>
+          </ul>
+        </li>
+        <li>
+            <a href="#Tools" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><i class="fas fa-tools pr-3"></i>Tools</a>
+            <ul class="collapse list-unstyled" id="Tools">
+                <li>
+                    <a routerLink="ToolsAdministration"><i class="fa fa-list pr-2"></i>Tool List</a>
+                </li>
+                <li>
+                  <a routerLink="ToolsAdministration/filters"><i class="fa fa-list pr-2"></i>Categories</a>
+                </li>
+                <li>
+                  <a routerLink="ToolsAdministration/samples"><i class="fa fa-list pr-2"></i>Sample Expeirments</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+          <a href="#Users" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><i class="fas fa-users pr-3"></i>Users</a>
+          <ul class="collapse list-unstyled" id="Users">
+              <li>
+                  <a routerLink="UsersAdministration"><i class="fa fa-list pr-2"></i>Users</a>
+              </li>
+          </ul>
+        </li>
+        <li>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><i class="fas fa-list pr-3"></i>Home Pages</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li>
+                    <a routerLink="Faqs"><i class="fa fa-list pr-2"></i>Faqs</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>

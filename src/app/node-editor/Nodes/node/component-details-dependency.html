@@ -1,0 +1,110 @@
+
+<div *ngIf="input.viewdependency==false bg-light" Class="Sidebar px-0 mx-0">
+    <ul class="list-unstyled">
+        <li>
+            <a href="#description" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                Component Description
+            </a>
+            <div class="collapse show" id="description">
+                <p class="font-size-18 text-justify ">{{Component.description}}</p>
+            </div>
+        </li>
+        <li>
+            <a href="#synopsis" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                Synopsis
+            </a>
+            <div class="collapse show px-2" id="synopsis">
+                <pre><samp>{{Component.synopsis}}</samp></pre>
+            </div>
+        </li>
+        <li>
+            <a href="#parameters" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                Inputs and Outputs
+            </a>
+            <div class="collapse show" id="parameters">
+                <table *ngIf="Component.inputs.Inputs.length">
+                    <thead>
+                        <tr class="bg-light border-top">
+                            <th colspan="2" class="py-0">Input Parameters </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of Component.inputs.Inputs;let i=index;">
+                            <td class="pl-5">{{i+1}}. {{item.name}}</td>
+                            <td>
+                                <p class="text-justify ">{{item.description}}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table *ngIf="Component.output!=''">
+                    <thead>
+                        <tr class="bg-light border-top">
+                            <th colspan="2" class="py-0">Output Parameters </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border-right-0" colspan="2">
+                                <p class="text-justify ">{{Component.output}}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </li>
+        <li *ngIf="Component.dependency">
+            <a href="#dependency" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                Component Dependency
+            </a>
+            <div id="dependency">
+                <ul>
+                    <li class="border-0" *ngFor="let item of Component.dependency">{{item}}</li>
+                </ul>
+            </div>
+
+        </li>
+
+        <li>
+            <a href="#origin" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                Component Origin
+            </a>
+            <div class="collapse show" id="origin">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="2" class="py-0">Authors :</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of Component.authors.Authorlist;let i=index;">
+                            <td class="pl-5"><a class="pointer" (click)="router.openWindow(item.website)"
+                                    target='_blank'>{{i+1}}. <span class="text-blue">{{item.name}}</span></a></td>
+                            <td class="px-2">{{item.organization}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="2" class="py-0">Publications :</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of Component.publications.Publicationlist;let i=index;">
+                            <td class="pl-5 w-60"><a (click)="router.openWindow(item.link)" target='_blank'
+                                    class="pointer">{{i+1}}. <span class="text-blue">{{item.title}}</span></a></td>
+                            <td class="px-2">{{item.organization}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </li>
+    </ul>
+</div>
+<div *ngIf="input.viewdependency==true" >
+   <app-component-dependency [data]="ReteComponent"></app-component-dependency>
+    
+</div>

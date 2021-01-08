@@ -1,0 +1,23 @@
+<div #term  >
+    <div style="position: sticky;top:0;">
+        <div id="terminal-dismiss" class="dismiss">
+            <i class="fas fa-arrow-down fa-lg" ></i>
+        </div>
+        <div class="sidebar-header w-100">
+            <h4 class="d-inline">Backend Terminal Output</h4>
+            <div class="menubar-icon px-5 d-inline  pointer" title="Start Streaming Terminal Output" *ngIf="mode==false" (click)="mode=true">
+                <i class="fas fa-play-circle font-size-25"></i>
+            </div>
+            <div class="menubar-icon px-5 d-inline pointer hover-red" title="Stop Streaming Terminal Output" *ngIf="mode==true" (click)="mode=false">
+                <i class="fas fa-pause-circle font-size-25"></i>
+            </div>
+            <button  (click)="clear()" class="btn clear pr-10 w-auto font-weight-normal font-size-18 pointer float-right mx-auto">
+                <i class="fas fa-eraser px-1 pt-1 fa-lg "></i> Clear
+            </button>
+        </div>
+    </div>
+    <div *ngFor="let item of http.socketoutput ;let i=index;" >
+        <samp [innerHTML]="item.data" [ngClass]="{'text-danger':item.type=='error'}"></samp><br>
+    </div>
+    
+</div>

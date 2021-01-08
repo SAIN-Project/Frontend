@@ -1,0 +1,16 @@
+<div class="node width-250 ">
+        <div class="title-dependency  border-width-2">
+                <span class="w-80 overflow-hidden">{{node.name}}</span>
+        </div>
+        
+        <div class="output" *ngFor="let output of outputs">
+                <div class="output-title" (click)="alert();">{{output.name}}</div>
+                <app-socket rete-socket [io]="output" [socket]="output.socket"></app-socket>
+        </div>
+        
+        <div class="input" *ngFor="let input of inputs">
+                <div *ngIf="socket" class="socket" [ngClass]="[type, socket.name]" [title]="socket.name"></div>
+                <app-socket rete-socket [io]="input" [socket]="input.socket"></app-socket>
+                <div class="input-title py-1">{{input.name}}</div>
+        </div>
+</div>

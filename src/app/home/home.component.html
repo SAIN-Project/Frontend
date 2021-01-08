@@ -1,0 +1,9 @@
+
+<div  >
+    <app-header-one *ngIf="!retehttp.isEditor()"></app-header-one>
+    <app-header-two *ngIf="!retehttp.isEditor()"></app-header-two>
+    <div style="min-height: 70vh;"><router-outlet></router-outlet></div>
+    <app-footer *ngIf="!retehttp.isEditor()" style="position:relative;"></app-footer>
+</div>
+
+

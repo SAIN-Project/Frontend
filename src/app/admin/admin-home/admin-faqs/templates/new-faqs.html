@@ -1,0 +1,22 @@
+
+<div class="py-8 ">
+    <form #frm="ngForm" >
+        <div class="row justify-content-center">
+            <div class="col-md-8 mb-4">
+                <mat-form-field appearance="legacy" class="w-100">
+                    <mat-label>Question</mat-label>
+                    <input matInput  name="question" [(ngModel)]="Faq.title" required />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Answer</mat-label>
+                    <textarea matInput  name="answer" [(ngModel)]="Faq.contents"
+                        rows="5" required></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>

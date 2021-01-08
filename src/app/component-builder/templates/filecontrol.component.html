@@ -1,0 +1,48 @@
+<div class="row mb-10 curser-move">
+    <div class="col-md-12">
+        <div class="card border border-gray-18">
+            <header class="card-header bg-light text-black  py-2">
+                <h5 class="card-tittle">
+                    {{item.type.text}}
+                    <button class="btn  min-width-50 float-right pointer text-danger py-1 shadow-on-hover-1" (click)="delete(item)"><i class="fa fa-trash fa-lg"></i></button>
+                </h5>         
+            </header>
+            <article class="class-body p-4">
+                <form #frm="ngForm" (change)="isValid(frm)">
+                    <div class="d-flex d-inline-flex justify-content-between w-90">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Parameter Name</mat-label>
+                            <input matInput placeholder="Name"  name="Name" [(ngModel)]="item.Name" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Title</mat-label>
+                            <input matInput placeholder="Title"  name="Title" [(ngModel)]="item.Title" required>
+                        </mat-form-field>
+                        <mat-checkbox class="my-5" (change)="isValid(frm)" name="required" [(ngModel)]="item.required">Required</mat-checkbox>
+                        <mat-checkbox class="my-5" (change)="isValid(frm)" name="hasinput" [(ngModel)]="item.hasinput">Has Input?</mat-checkbox>
+                    </div>
+                    <div class="d-flex d-inline-flex justify-content-between w-90" *ngIf="item.hasinput">
+                        <div class="w-40">
+                            <app-mini-tag 
+                            [key]="'Matched Components'" 
+                            [SourceTags]="builder.SourceSockets" 
+                            [TargetTags]="item.Sockets" >
+                        </app-mini-tag>
+
+                        </div>
+                        <div class="w-40">
+                            <app-mini-tag 
+                                [key]="'Tags'" 
+                                [SourceTags]="builder.SourceTags" 
+                                [TargetTags]="item.Tags" >
+                            </app-mini-tag>
+
+                        </div>
+                    </div>
+                
+                </form>
+
+            </article>
+        </div>
+    </div>
+</div>

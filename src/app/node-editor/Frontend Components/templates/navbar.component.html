@@ -1,0 +1,103 @@
+<input style="display: none" type="file" (change)="importFromJson($event)" #fileInput>
+<nav class="navbar navbar-expand-lg  min-height-45  py-0 editor-menubar">
+    
+    <span id="sidebarCollapse" class="menubar-icon"> 
+        <i class="fas fa-times "></i>
+        <i class="fas fa-align-justify hidden"></i>
+    </span> 
+
+    <div  class="d-flex d-inline-flex justify-content-between w-100">
+        <ul class="navbar-nav dropdown-m mx-1">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-file pr-2"></i><span class="nav-link-local ">File</span>
+                </a>
+                <div class="dropdown-menu   py-0 my-0"  aria-labelledby="navbarDropdown">
+                    <div class="dropdown-item " (click)="clear();" ><i class="fas fa-file-import pr-2 "></i>New</div>
+                    <div class="dropdown-item " (click)="fileInput.click();" ><i class="fas fa-file-import pr-2 "></i>Import Expirement</div>
+                    <div class="dropdown-item " (click)="exportToJson()"><i class="fas fa-file-export pr-2"></i>Export Expirement</div>
+                    <div class="dropdown-item " (click)="modal.open(samples)"><i class="fas fa-file-export pr-2"></i>Sample Expirements</div>
+    
+                </div>
+            </li>
+        </ul>
+    
+        <ul class="navbar-nav">
+            <li class="nav-item" *ngIf="!Editor.isProcessing" (click)="start(template)"><div class="menubar-icon px-2"><i class="fas fa-play"></i></div></li>
+            <li class="nav-item text-danger " (click)="stop();" *ngIf="Editor.isProcessing"><div class="menubar-icon px-2 hover-red"><i class="fas fa-pause"></i></div></li>
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item" style="line-height: 45px;">{{Editor.ExecutionTime}}</li>
+        </ul>
+        <ul class="nav navbar-nav">
+            <li class="nav-item" (click)="onZoomChange(-1)" ><div class="menubar-icon px-1" ><i class="fas fa-search-minus"></i></div></li>
+            <li class="nav-item"><input type="range" [value]="CurrentZoomIntensity" class="custom-range pt-3" [(ngModel)]="CurrentZoomIntensity"
+                min="1" max="20"  step="1" (change)="onRangeChange($event.target.value)"  [disabled]="!hasNodes()"/></li>
+            <li class="nav-item"  (click)="onZoomChange(1)"><div class="menubar-icon px-1"><i class="fas fa-search-plus"></i></div></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li id="terminal-collapse" ><div class="menubar-icon px-5"><i class="fas fa-terminal"></i></div></li>
+            <li id="vars-collapse" ><div class="menubar-icon px-2"><i class="fas fa-columns"></i></div></li>
+        </ul>
+
+    </div>
+
+</nav>
+
+<ng-template #template >
+    <div class="modal-header">
+      <h4 class="modal-title pull-left text-danger">Errors!</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+        <span aria-hidden="true" class="hover-red"><i class="fas fa-times fa-lg mt-2"></i></span>
+        
+      </button>
+    </div>
+    <div class="modal-body modal-error p-0">
+        <div *ngFor="let error of http.ValidatorErrors;index as i" class="alert alert-danger alert-dismissible fade show px-0" role="alert">
+            <div  class="alert-heading border-bottom mb-2 border-dark px-2">
+                <strong class="pr-1 text-danger">{{error.node}} :</strong> {{error.control}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="px-2">
+                {{error.message}}
+            </div>
+          </div>
+    </div>
+</ng-template>
+
+<ng-template #samples>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Expirements Samples</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body px-0 m-0">
+        <article class="class-body m-0 px-2">
+            <table datatable class="table border-dark border table-bordered table-striped table-sm w-100 p-0 m-0">
+                <thead>
+                    <tr scope="row " class="height-40">
+                        <th class="w-10">#</th>
+                        <th>Sample Name</th>
+                        <th class="w-20">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr scope="row" *ngFor="let item  of Samples; let j=index;">
+                        <td>{{j+1}}</td>
+                        <td class=" font-size-16">{{item.name}}</td>
+                        <td >
+                            <button class="btn  btn-dark shadow-on-hover w-90 float-right pointer font-single" (click)="loadSample(item)">
+                                <i class="fa fa-file-archive fa-lg text-green pr-3 "></i> Open
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </article>
+
+    </div>
+</ng-template>

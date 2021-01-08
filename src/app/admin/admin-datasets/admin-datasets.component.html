@@ -1,0 +1,149 @@
+<div class="container py-8">
+    <div class="row">
+        <div class="col-md-3">
+            <div  class="card bg-light h-100">
+                <header class="card-header bg-light title py-1">
+                  <h5 class="card-title my-2"><i class="fas fa-search"></i> Search Datasets</h5>
+                </header>
+                <article class="card-body">
+                  <form (change)="onSubmit()">
+                    <div class="w-100">
+                        <mat-form-field appearance="legacy" class="w-100" >
+                            <mat-label>Dataset</mat-label>
+                            <input matInput   name="name" [(ngModel)]="filter.name">
+                        </mat-form-field>
+                    </div>
+                    <div class="w-100">
+                        <mat-form-field appearance="legacy" class="w-100" >
+                            <mat-label>Dataset Uploader</mat-label>
+                            <input matInput   name="email" [(ngModel)]="filter.email">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group  pb-4 my-4">
+                        <h4 class="font-size-18 mb-3 ">Approved </h4>
+                        <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"   name="Approved"  value="Yes" id="Yes"><label for="Yes">Yes</label></div>
+                        <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="Approved" value="No" id="No"><label for="No">No</label></div>
+                    </div>
+                                                                       
+                  </form>
+                </article> <!-- card-body end .// -->
+            </div> <!-- card.// -->
+        </div>
+        <div class="col-md-9">
+            <div class="card border h-100 " [hidden]="Editmode==true">
+                <header class="card-header title text-dark  py-1">
+                    <h5 class="card-tittle d-inline">
+                      <i class="fa fa-database pr-2"></i> Sain Dataset                   
+                    </h5>  
+                    <button class="btn  download float-right pointer font-weight-normal font-size-18">
+                        <a routerLink="/dataset/add"> <i class="fa fa-plus fa-lg  pr-2"></i>Add Dataset </a>
+                    </button>         
+                </header>
+                <article class="class-body m-0 p-0 py-2">
+                    <table id="datasettable"  datatable   [dtOptions]="Dt.dtOptions" [dtTrigger]="Dt.dtTrigger" class="table border-dark border table-bordered  table-striped table-sm w-100 p-0 m-0">
+                        <thead>
+                            <tr scope="row" class="height-40">
+                                <th class="w-10">#</th>
+                                <th>Tool </th>
+                                <th>Approved </th>
+                                <th>Uploader </th>
+                                <th class="w-10">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody  *ngIf="Datasets?.length !=0">
+                            <tr scope="row" *ngFor ="let item of Datasets;let i=index;" style="line-height: 40px;">
+                                <td>{{i+1}}</td>
+                                <td class=" font-size-16">
+                                    <a [routerLink]="'/dataset/details/'+item._id">
+                                        <i class="fa fa-external-link-alt  pr-2  pointer"></i> {{item.name}}
+                                    </a>
+                                </td>
+                                <td>{{item.Approved}}</td>
+                                <td>{{item.uploader}}</td>
+                                <td >
+                                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                    
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item (click)="SelectedDataset=item;Editmode=true">
+                                          <mat-icon>settings</mat-icon>
+                                          <span>Settings</span>
+                                        </button>
+                                        <button mat-menu-item (click)="router.navigateTo('/dataset/edit/'+item._id)">
+                                          <mat-icon class="fa fa-edit"></mat-icon>
+                                          <span>Edit</span>
+                                        </button>
+                                        <button mat-menu-item (click)="SelectedDataset=item;modal.open(template,'modal-md')">
+                                            <mat-icon class="fa fa-trash"></mat-icon>
+                                            <span>Delete</span>
+                                        </button>
+                                    </mat-menu>
+    
+    
+                                </td>
+                            </tr>
+                        </tbody>
+    
+                    </table>
+                </article>
+            </div>
+            <div class="card border h-100 " *ngIf="Editmode==true">
+                <header class="card-header title text-dark  py-1">
+                    <h5 class="card-tittle d-inline">
+                      <i class="fa fa-database pr-2"></i>   {{SelectedDataset.name}}           
+                    </h5>          
+                </header>
+                <article class="card-body   h-100 p-4">
+                    <div class="row justify-content-center  h-100">
+                        <div class="my-auto d-flex d-inline-flex w-80 justify-content-between">
+                            <h5 class=" ">Approved:</h5>
+                            <div class="icheck-primary ml-3 my-1">
+                                <input class="box" type="radio" [checked]="SelectedDataset.Approved=='Yes'"
+                                 name="approved" [(ngModel)]="SelectedDataset.Approved" value="Yes" id="Setting-Yes">
+                                <label for="Setting-Yes">Yes</label>
+                            </div>
+                            <div class="icheck-danger ml-3 my-1">
+                                <input class="box" type="radio" [checked]="SelectedDataset.Approved=='No'"
+                                 name="approved" [(ngModel)]="SelectedDataset.Approved" value="No" id="Setting-No">
+                                <label for="Setting-No">No</label>
+                            </div>
+                        </div>
+                        <div class="my-auto w-80 ">
+                            <mat-form-field appearance="legacy" class="w-100" >
+                                <mat-label>Dataset Uploader</mat-label>
+                                <input matInput placeholder="Tool Uploader"  name="uploader" [(ngModel)]="SelectedDataset.uploader">
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+                    
+
+                </article>
+                <div class="card-footer py-2 bg-light">
+                    <button (click)="edit()" class="btn  download  pointer font-weight-normal font-size-18">
+                        <i class="fa fa-save fa-lg"></i> Save
+                    </button> 
+                    <button (click)="Editmode=false" class="btn  download float-right pointer font-weight-normal font-size-18">
+                       <i class="fa fa-undo"></i> Cancel
+                    </button> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Delete {{SelectedDataset.name}} Dataset</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body text-center">
+      <p>Do you really want to delete this Dataset ?</p>
+      <button type="button" class="btn btn-primary-dark-w float-left w-40" (click)="modal.hide()">Cancel</button>
+      <button type="button" class="btn btn-danger float-right w-40" (click)="delete(SelectedDataset._id)">Delete</button>
+    </div>
+</ng-template>

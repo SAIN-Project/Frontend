@@ -1,0 +1,6 @@
+<ngx-monaco-editor  #editor
+    [options]="editorOptions" 
+    [(ngModel)]="Code.Code" 
+    (init)="editorInit($event)"
+    style="min-height: 500px;" class="border">
+</ngx-monaco-editor>

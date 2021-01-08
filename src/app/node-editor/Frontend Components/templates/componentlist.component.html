@@ -1,0 +1,34 @@
+<nav id="component-list">
+    <div id="dismiss" class="dismiss">
+        <i class="fas fa-arrow-left fa-lg" style="transform:scaleX(1.2)"></i>
+    </div>
+    <div class="sidebar-header ">
+        <h4>Sain Tools</h4>
+    </div>
+    
+    <ul class="list-unstyled">
+        <li>
+            <div class="searchbox">
+                <i class="fa fa-search fa-lg"></i>
+                <input   type="text" class="form-control rounded-0 pl-5" 
+                placeholder="Search for tool" 
+                [(ngModel)]="SearchTerm"  
+                (keyup)="filterComponents()" 
+                style="height:30px;font-size: 16px;">
+                
+            </div>
+        </li>
+
+        <li *ngFor="let item of Categories;let i=index;" [ngClass]="{'border-bottom-0':findComponents(item).length==0}">
+            <div *ngIf="findComponents(item).length">
+                <a href="#item_{{i}}" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle"><i class="fas fa-list pr-3"></i>{{item}} <span class="badge  badge-pill badge-dark count"> {{findComponents(item).length}}</span></a>
+                <ul class="collapse  list-unstyled" id="item_{{i}}" [ngClass]="{'show':SearchTerm!=''}">
+                    <li *ngFor="let component of findComponents(item)" [draggable]="true" (dragstart)="addComponent($event,component.name)" title="Drag and Drop on Canvas">
+                        <i class="fas fa-tools pr-3"></i> <span>{{component.name}}</span>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+    </ul>
+</nav>

@@ -1,0 +1,231 @@
+<input style="display: none" type="file" (change)="importAll($event)" #fileInput>
+
+<div class="container py-8">
+    <div  class="row">
+        <div class="col-md-3">
+            <div  class="card bg-light h-100">
+                <header class="card-header bg-light py-1">
+                  <h4 class="card-title my-2"><i class="fas fa-search"></i> Search Tools</h4>
+                </header>
+                <article class="card-body">
+                  <form (change)="submit()">
+                    <div class="w-100">
+                        <mat-form-field appearance="legacy" class="w-100" >
+                            <mat-label>Tool name</mat-label>
+                            <input matInput placeholder="name"  name="name" [(ngModel)]="filter.name">
+                        </mat-form-field>
+                    </div>
+                    <div class="w-100">
+                        <mat-form-field appearance="legacy" class="w-100" >
+                            <mat-label>Tool Uploader</mat-label>
+                            <input matInput placeholder="Tool Uploader"  name="email" [(ngModel)]="filter.email">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group  pb-4 my-4">
+                        <h4 class="font-size-18 mb-3 ">Approved </h4>
+                        <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"   name="Approved"  value="Yes" id="Yes"><label for="Yes">Yes</label></div>
+                        <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event)"  name="Approved" value="No" id="No"><label for="No">No</label></div>
+                    </div>
+                                                                       
+                  </form>
+                </article> <!-- card-body end .// -->
+            </div> <!-- card.// -->
+        </div>
+        
+        <div [hidden]="view!='components'" class="col-md-9  pl-2" >
+            <div class="card border bg-light h-100" >
+                <header class="card-header title text-dark py-1">
+                    <h5 class="card-tittle d-inline"> <i class="fa fa-list pr-2"></i> Sain Tools</h5>
+                    <button class="btn download float-right pointer font-weight-normal font-size-18">
+                        <a [routerLink]="'/tool/add/'">
+                            <i class="fa fa-plus fa-lg pr-2"></i>Add Tool
+                        </a>
+                    </button>
+                    <button (click)="exportTools()" class="btn download float-right pointer font-weight-normal font-size-18 px-3">
+                        <i class="fa fa-file-export"></i> Export Tools
+                    </button>
+                    <button (click)="fileInput.click();" class="btn download float-right pointer font-weight-normal font-size-18 px-3">
+                       <i class="fa fa-file-import"></i> Import Tools
+                    </button>
+                    <button (click)="modal.open(DeleteAll,'modal-md');" class="btn download float-right pointer font-weight-normal font-size-18 px-3">
+                        <i class="fa fa-trash text-danger"></i> Delete All
+                     </button>
+                </header>
+                <article class="card-body bg-white   m-0 px-0 py-2">
+                    <table datatable   [dtOptions]="dtOptions" [dtTrigger]="Dt.dtTrigger" class="table border-dark border table-bordered  table-striped table-sm w-100 p-0 m-0">
+                        <thead>
+                            <tr scope="row" class="height-40">
+                                <th class="w-10">#</th>
+                                <th>Tool </th>
+                                <th>Approved</th>
+                                <th class="w-10">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr scope="row" *ngFor ="let item of ToolComponents;let i=index;" style="line-height: 40px;">
+                                <td>{{i+1}}</td>
+                                <td class=" font-size-16">
+                                    <a [routerLink]="'/tool/details/'+item._id">
+                                        <i class="fa fa-external-link-alt  pr-2  pointer"></i> {{item.name}}
+                                    </a>
+                                </td>
+                                <td>{{item.Approved}}</td>
+                                <td>
+                                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                    
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item (click)="SelectedComponent=item;view='componentsettings';">
+                                          <mat-icon>settings</mat-icon>
+                                          <span>Settings</span>
+                                        </button>
+                                        <button mat-menu-item (click)="getReteComponents(item);">
+                                            <mat-icon>settings</mat-icon>
+                                            <span>Integration Blocks</span>
+                                          </button>
+                                        <button mat-menu-item (click)="router.navigateTo('tool/edit/'+item._id)">
+                                          <mat-icon class="fa fa-edit"></mat-icon>
+                                          <span>Edit</span>
+                                        </button>
+                                        <button mat-menu-item (click)="SelectedComponent=item;modal.open(Component,'modal-md')">
+                                            <mat-icon class="fa fa-trash"></mat-icon>
+                                            <span>Delete</span>
+                                        </button>
+                                    </mat-menu>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
+            </div>
+
+
+        </div>
+
+        <div *ngIf="view=='componentsettings'" class="col-md-9  pl-2">
+            <div  class="card bg-light h-100 ">
+                <header class="card-header title text-dark py-1">
+                    <i class="fa fa-edit"></i><h5 class="card-tittle d-inline"> Edit {{SelectedComponent.name}} </h5>
+                </header>
+                <article class="card-body   h-100 p-4 bg-white">
+                    <div class="row justify-content-center  h-100">
+                        <div class="my-auto d-flex d-inline-flex w-80 justify-content-between">
+                            <h5 class=" ">Approved:</h5>
+                            <div class="icheck-primary ml-3 my-1">
+                                <input class="box" type="radio" [checked]="SelectedComponent.Approved=='Yes'"
+                                 name="approved" [(ngModel)]="SelectedComponent.Approved" value="Yes" id="Setting-Yes">
+                                <label for="Setting-Yes">Yes</label>
+                            </div>
+                            <div class="icheck-danger ml-3 my-1">
+                                <input class="box" type="radio" [checked]="SelectedComponent.Approved=='No'"
+                                 name="approved" [(ngModel)]="SelectedComponent.Approved" value="No" id="Setting-No">
+                                <label for="Setting-No">No</label>
+                            </div>
+                        </div>
+                        <div class="my-auto w-80 ">
+                            <mat-form-field appearance="legacy" class="w-100" >
+                                <mat-label>Component Uploader</mat-label>
+                                <input matInput placeholder="Component Uploader"  name="uploader" [(ngModel)]="SelectedComponent.uploader">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </article>
+                <div class="card-footer py-2 bg-light">
+                    <button (click)="editComponent()" class="btn  download  pointer font-weight-normal font-size-18">
+                        <i class="fa fa-save fa-lg"></i> Save
+                    </button> 
+                    <button (click)="view='components'" class="btn  download float-right pointer font-weight-normal font-size-18">
+                       <i class="fa fa-undo"></i> Cancel
+                    </button> 
+                </div>
+        
+            </div>  
+        </div>
+
+        <div  [hidden]="view!='retes'" class="col-md-9  pl-2" *ngIf="SelectedComponent">
+            <div class="card h-100">
+                <header class="card-header title text-dark py-1">
+                    <h5 class="card-tittle d-inline"> Component Integration Blocks</h5>
+                    <button class="btn download float-right pointer font-weight-normal font-size-18">
+                        <a [routerLink]="'/componentbuilder/'+Component_id">
+                            <i class="fa fa-plus fa-lg pr-2"></i>Add Block
+                        </a>
+                    </button>
+                    <button (click)="view='components'" class="btn download float-right pointer font-weight-normal font-size-18 pr-5">
+                        <i class="fa fa-backward fa-lg pr-2"></i>Back    
+                    </button>
+                </header>
+                <article class="class-body m-0 p-0 py-2">
+                    <table  datatable   [dtOptions]="dtOptions" [dtTrigger]="Dt.dtTrigger" class="table border-dark border table-bordered table-striped table-sm w-100 p-0 m-0">
+                        <thead>
+                            <tr scope="row" class="height-40">
+                                <th class="w-10">#</th>
+                                <th>Block Name</th>
+                                <th class="w-10">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr scope="row"*ngFor ="let item of  ReteComponents;let i=index;">
+                                <td>{{i+1}}</td>
+                                <td class=" font-size-16">{{item.name}}</td>
+                                <td >
+                                    <div class="d-flex d-inline-flex justify-content-between w-90">
+                                        <button class="btn  pointer shadow-on-hover-1" (click)="router.navigateTo('/editcomponentbuilder/'+item._id)">
+                                            <i class="fa fa-edit fa-lg pr-2 text-danger pointer"></i>Edit
+                                        </button>
+                                        <button class="btn pointer" (click)="SelectedRete=item;modal.open(Rete,'modal-md')" >
+                                            <i class="fa fa-trash-alt pr-2 fa-lg text-danger pointer"></i> Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
+            </div>
+        </div>
+    </div><!--end of first row-->
+</div>
+
+<ng-template #Component>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Delete {{SelectedComponent.name}} </h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body text-center">
+      <p>Do you really want to delete this Tool ?</p>
+      <button type="button" class="btn btn-primary-dark-w float-left min-width-200" (click)="modal.hide()">Cancel</button>
+      <button type="button" class="btn btn-danger float-right min-width-200" (click)="deleteComponent(SelectedComponent._id)">Delete</button>
+    </div>
+</ng-template>
+
+<ng-template #Rete>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Delete {{SelectedRete.name}} </h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body text-center">
+      <p>Do you really want to delete this Component Block ?</p>
+      <button type="button" class="btn btn-primary-dark-w float-left min-width-200" (click)="modal.hide()">Cancel</button>
+      <button type="button" class="btn btn-danger float-right min-width-200" (click)="deleteReteComponent(SelectedRete._id)">Delete</button>
+    </div>
+</ng-template>
+<ng-template #DeleteAll>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Delete Tools </h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body text-center">
+      <p>Do you really want to delete All Tools ?</p>
+      <button type="button" class="btn btn-primary-dark-w float-left min-width-200" (click)="modal.hide()">Cancel</button>
+      <button type="button" class="btn btn-danger float-right min-width-200" (click)="deleteAllTools()">Delete</button>
+    </div>
+</ng-template>

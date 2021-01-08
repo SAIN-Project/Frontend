@@ -1,0 +1,53 @@
+<div  class="output-blackboard">
+    <div dir="ltr">
+        <div id="vars-dismiss" class="right-dismiss">
+            <i class="fas fa-arrow-right fa-lg" style="transform:scaleX(1.2)"></i>
+        </div>
+        <div class="sidebar-header text-right">
+            <h4 > Components Blackboard</h4>
+            </div>
+            <ul class="list-unstyled">
+                <li *ngFor="let node of http.nodes;">
+                <a [href]="'#node'+node.id" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                    <i class="fas fa-list pr-3"></i>{{node.name}}
+                </a>
+                <div [id]="'node'+node.id" class="collapse w-100"> 
+                        <table  >
+                            <thead *ngIf="!http.isEmpty(node.data)">
+                                <tr><th colspan="2" class="py-0">Data </th></tr> 
+                            </thead>
+                            <tbody *ngIf="!http.isEmpty(node.data)">
+                                <tr class="py-0" *ngFor="let item of node.data| keyvalue">
+                                    <td class="py-0"><span>{{item.key}}</span></td>
+                                    <td class="py-0"><span>{{getData(item.value)}}</span></td>
+                                </tr>
+                            </tbody>
+                            <thead *ngIf="!http.isEmpty(node.inputs)">
+                                <tr><th colspan="2" class="py-0">Input </th></tr> 
+                            </thead>
+                            <tbody *ngIf="!http.isEmpty(node.inputs)">
+                                <tr class="py-0" *ngFor="let item of node.inputs| keyvalue">
+                                    <td class="py-0"><span>{{item.key}}</span></td>
+                                    <td class="py-0" ><span>{{getFileName(item.value[0])}}</span></td>
+                                </tr>
+                            </tbody>
+                            <thead *ngIf="!http.isEmpty(node.outputs)">
+                                <tr><th colspan="2" class="py-0">Output </th></tr> 
+                            </thead>
+                            <tbody *ngFor="let item of node.outputs| keyvalue" class="py-0">  
+                                <tr class="py-0 px-0 w-100" >
+                                    <td class="py-0" rowspan="2" style="vertical-align: middle;"><span>{{item.key}}</span></td>
+                                    <td class="py-0 user-select-all pointer hover-on-bold"  (click)="copyFilePath(item.value)" title="Copy File Path"><span>{{getFileName(item.value)}}</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="pr-2">
+                                        <button class="btn download" style="cursor: pointer;" (click)="http.download(item.value)" title="Download Output File">Download Output <i class="fas fa-download  px-1 pt-1 fa-lg "></i></button>
+                                    </td>
+                                </tr>     
+                            </tbody>
+                        </table>
+                </div>
+                </li>
+            </ul>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="bg-light">
+    <div class="container pb-8 ">
+        <div class="tools-header mb-2">
+            <div class="d-flex d-inline-flex justify-content-between w-100">
+                <app-breadcrumb [items]="['Sain','Datasets']" ></app-breadcrumb>
+                <div >
+                    <button    class="btn download w-auto font-weight-normal font-size-18 pointer float-right ">
+                        <a routerLink="/dataset/add">
+                            <i class="fas fa-plus  px-1 pt-1 fa-lg "></i>Add Dataset  
+                        </a> 
+                    </button>
+    
+                </div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="sidebar ">
+                <div class="card mr-2 h-100 bg-light">
+                    <header class="card-header bg-light my-0 py-1">
+                        <h4 class="card-title my-2"><i class="fas fa-search"></i> Search Datasets</h4>
+                    </header>
+                    <article class="card-body">
+                        <form >
+                          <div class="w-100">
+                              <mat-form-field appearance="legacy" class="w-100" >
+                                  <mat-label>Dataset name</mat-label>
+                                  <input matInput placeholder="name" (change)="updateContent($event)" name="name" [(ngModel)]="dataset_name">
+                              </mat-form-field>
+                          </div>
+      
+                          <div>
+                              <app-mini-tag 
+                                  [key]="key" 
+                                  [SourceTags]="this.SourceTags" 
+                                  [TargetTags]="this.TargetTags"
+                                  (contentUpdate)="updateContent($event)" >
+                              </app-mini-tag>
+                          </div>
+                          <div>
+                              <app-categories
+                                  [filters]="'filters'"
+                                  [SourceCategories]="this.dataservice.Categories" 
+                                  [TargetCategories]="Categories"
+                                  (contentUpdate)="updateContent($event)">
+                              </app-categories>
+                          </div>                                             
+                        </form>
+                      </article> <!-- card-body end .// -->
+                </div>
+            </div>
+            <div class="contents bg-white ml-6 px-5 pt-8 border border-width-2">
+                <div *ngFor="let dataset of SlicedDatasets; let i=index;">
+                    <app-dataset-item [Dataset]="dataset" [TargetTags]="TargetTags" [index]="i+1" (contentUpdate)="filterByTag($event)"></app-dataset-item>
+                </div>
+                <mat-paginator #paginator [length]="Paginatorconfigs.length" [ngClass]="{'d-none':Datasets.length<10}" 
+                    [pageSize]="Paginatorconfigs.pageSize"
+                    [pageSizeOptions]="Paginatorconfigs.pageSizeOptions"
+                    showFirstLastButtons="true"
+                    (page)="setPageData($event)">
+                </mat-paginator>
+            </div>
+        </div>
+    
+    </div><!--end of container-->
+
+</div>

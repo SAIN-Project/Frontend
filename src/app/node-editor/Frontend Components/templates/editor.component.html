@@ -1,0 +1,7 @@
+<app-editor-list class="left-sidebar scrolbar" [components]="components"></app-editor-list>
+<div id="rete">
+    <app-editor-navbar [Editor]="EditorFactory"></app-editor-navbar>
+    <app-editor-terminal id="terminal"  class="middle-sidebar d-none scrolbar"></app-editor-terminal>
+    <app-editor-outputblackboard id="vars"  class="right-sidebar d-none scrolbar" dir="rtl"></app-editor-outputblackboard>
+    <div #nodeEditor class="node-editor background" >   </div>
+</div>

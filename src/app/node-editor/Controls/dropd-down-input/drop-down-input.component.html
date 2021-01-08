@@ -1,0 +1,6 @@
+<div>
+    <span class="pr-2 input-font-color" style="position:relative;top:0px"> {{Title}}: </span>
+    <select  class="w-60 float-right" [id]="Title"  (change)="onChange($event.target.value)">
+        <option *ngFor="let item of list;">{{item}}</option>
+    </select>   
+</div>

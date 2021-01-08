@@ -1,0 +1,53 @@
+<div class="row " *ngIf="!filters">
+    <div class="col-md-12">
+        <div class="card border-0">
+            <header class="card-header bg-light text-dark border py-2">
+                <h5 class="card-tittle">
+                   Categories
+                </h5>         
+            </header>
+            <article class="class-body p-4 ">
+                <form #frm="ngForm" (change)="onChange(frm)">
+                    <div *ngFor="let item of SourceCategories;let i=index;" class="pb-1 mb-4 ml-0">
+                        <h4 class="font-size-20 mb-3 ">{{item.key}}</h4>
+                        <div *ngFor="let value of item.values;let j=index;" class="icheck-midnightblue ml-3">
+                            <input class="box" type="checkbox" [checked]="TargetCategories.isChecked(item.key,value)"  (change)="onCheckboxChange(i,$event)"  [name]="item.key" [value]="value" id="value_{{i}}_{{j}}">
+                            <label for="value_{{i}}_{{j}}">{{value}}</label>
+                        </div>                       
+                    </div>
+                </form>
+            </article>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="filters=='filters'">
+   <div class="col-md-12">
+    <form #frm="ngForm" (change)="onChange(frm)">
+        <div *ngFor="let item of SourceCategories;let i=index;" class="pb-1 mb-4 ml-1">
+            <h4 class="font-size-20 mb-3 ">{{item.key}}</h4>
+            <div *ngFor="let value of item.values;let j=index;" class="icheck-midnightblue ml-3">
+                <input class="box" type="checkbox"   (change)="onCheckboxChange(i,$event)"  [name]="item.key" [value]="value" id="item.key_value_{{i}}_{{j}}">
+                <label for="item.key_value_{{i}}_{{j}}">{{value}}</label>
+            </div>                       
+        </div>
+    </form>
+   </div>
+</div>
+
+<div class="row mx-0" *ngIf="filters=='details'">
+    <div class="col-md-12">
+     <form #frm="ngForm" (change)="onChange(frm)">
+         <div *ngFor="let item of SourceCategories;let i=index;" class="pb-1 mb-2 ml-1">
+             <h4 class="font-size-20 mb-1 " *ngIf="item.values.length">{{item.key}}</h4>
+             <div *ngFor="let value of item.values;let j=index;" class="icheck-midnightblue ml-3">
+                 <input class="box" type="checkbox"   
+                    (change)="onCheckboxChange(i,$event)" 
+                    [checked]="true" 
+                    [name]="item.key" [value]="value" 
+                    [id]="id+value+i+j">
+                 <label [for]="id+value+i+j">{{value}}</label>
+             </div>                       
+         </div>
+     </form>
+    </div>
+ </div>

@@ -1,0 +1,24 @@
+<div class="wrapper">
+    <div class="sidebar">
+        <div class="sidebar-header ">
+            <h4>My Profile</h4>
+         </div>
+         <ul class="list-unstyled">
+             <li>
+                 <a routerLink="account" routerLinkActive="active" class="shadow-on-hover-1">
+                    <i class="fa fa-user fa-lg pr-3"></i>Account
+                </a>
+            </li>
+             <li>
+                 <a routerLink="mytools" routerLinkActive="active">
+                     <i class="fa fa-tools fa-lg pr-3"></i>Tools
+                </a>
+            </li>
+             <li routerLink="mydatasets" routerLinkActive="active"><a><i class="fa fa-database fa-lg pr-3"></i>Datasets</a></li>
+             <li><a><i class="fa fa-mail-bulk fa-lg pr-3"></i>Messages</a></li>
+         </ul>
+    </div>
+    <div class="contents border-left border-right">
+        <router-outlet></router-outlet>    
+    </div>
+</div>

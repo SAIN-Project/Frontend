@@ -1,0 +1,100 @@
+<input style="display: none" type="file" (change)="builder.importFromJson($event)" #fileInput>
+<div class="wrapper">
+    <nav class="sidebar">
+        <div style="position: sticky;top:0px;"> 
+            <div class="sidebar-header ">
+                <h4>Controls Box</h4>
+            </div>
+            <div cdkDropList [cdkDropListConnectedTo]="['container']" class="example-list" id="controlsMenue" [cdkDropListData]="types" >
+                <div class="example-box"  *ngFor="let type of types;i as index;"   [cdkDragData]="type" cdkDrag>
+                    
+                    <div class="example-handle position-relative " cdkDragHandle>
+                        <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+                          <path d="M0 0h24v24H0z" fill="none"></path>
+                        </svg>
+                    </div>
+                    <span>{{type.text}}</span>
+                </div>
+            </div>
+            <div class="sidebar-header ">
+                <h4>Output Form</h4>
+            </div>
+            <div cdkDropList cdkDragLockAxis="y" [cdkDropListConnectedTo]="['output']" class="example-list" id="outputMenue" [cdkDropListData]="types" >
+                <div class="example-box height-40"   cdkDrag>
+                    <div class="example-handle position-relative " cdkDragHandle >
+                        <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+                          <path d="M0 0h24v24H0z" fill="none"></path>
+                        </svg>
+                    </div>
+                    <span>Output Field</span>
+                </div>
+            </div>    
+        </div>
+    </nav>
+    <div class="contents bg-light border-left border-width-2">
+        <div class="contents-header d-flex d-inline-flex justify-content-between w-100">
+            <div class="py-2">
+                <h5>{{builder.Component.Name}}</h5>
+            </div>
+            <div >
+                <mat-card-actions>
+                    <button (click)="fileInput.click();"  class="btn w-auto mx-3 download  font-weight-normal font-size-18  pointer py-0"  >
+                        <i class="fas fa-file-import px-1 fa-lg "></i> Import
+                    </button>
+                    <button  (click)="builder.exportToJson();" [disabled]="this.builder.Component.Name==''" class="btn download w-auto font-weight-normal font-size-18 pointer">
+                        <i class="fas fa-file-export  px-1 pt-1 fa-lg "></i> Export
+                    </button>
+                </mat-card-actions>
+            </div>
+        </div>
+        <div class="contents-details mx-4 border border-width-2">
+            <mat-horizontal-stepper linear="true" #stepper  class="border-radius-50">
+                <mat-step [optional]="false" [completed]="builder.Component.isValidInfo()">
+                    <ng-template matStepLabel>Basic Information </ng-template> 
+                    <div class="contents py-5">
+                        <app-basicinfo-form ></app-basicinfo-form>     
+                    </div>         
+                </mat-step>
+                <mat-step  [optional]="false" [completed]="builder.Component.isValidInputs()">
+                    <ng-template matStepLabel>Input Parameters</ng-template>
+                    <div cdkDropList   #first class="contents py-5"  id="container" (cdkDropListDropped)="builder.drop($event)">
+                        <div *ngFor="let item of builder.Component.Inputs" [ngSwitch]="item.type.type" cdkDragLockAxis="y" cdkDrag>
+                            <app-file-control  *ngSwitchCase="'file'"  [item]="item" ></app-file-control>
+                            <app-slider-control *ngSwitchCase="'range'" [item]="item" ></app-slider-control>
+                            <app-dropdown-control *ngSwitchCase="'select'" [item]="item" ></app-dropdown-control>
+                            <app-checkbox-control *ngSwitchCase="'checkbox'" [item]="item" ></app-checkbox-control>
+                            <app-text-control *ngSwitchDefault [item]="item" ></app-text-control>
+                        </div>
+                    </div>
+                </mat-step>
+                <mat-step [optional]="false" [completed]="builder.Component.isValidOutputs()">
+                    <ng-template matStepLabel>Output Parameters</ng-template>
+                    <div cdkDropList   #second class="contents py-5"  id="output" (cdkDropListDropped)="builder.dropoutput($event)">
+                        <div *ngFor="let item of builder.Component.Outputs"  cdkDragLockAxis="y" cdkDrag>
+                            <app-output-field [item]="item"></app-output-field>
+                        </div>
+                    </div>
+                   
+                </mat-step>
+                <mat-step [optional]="false" completed="true">
+                    <ng-template matStepLabel>Command</ng-template>
+                    <app-code-form></app-code-form>
+                </mat-step>
+                <mat-step [stepControl]="forth"  [completed]="builder.Component.isValid()"  >
+                    <ng-template matStepLabel>Review</ng-template>
+                    <app-component-generator  [data]="builder.Component"></app-component-generator>
+                </mat-step>
+                <mat-step [stepControl]="Fifth" [completed]="builder.Component.isValid()" class="border-radius-top-right">
+                    <ng-template matStepLabel >Save & Submit</ng-template>
+                    <div  class="d-flex  align-middle justify-content-around w-100 min-height-170 ">
+                        <button class="btn btn-dark width-134  my-auto pointer font-weight-lighter" mat-button matStepperPrevious>&laquo; Back</button>
+                        <button class="btn btn-dark width-134  my-auto pointer font-weight-lighter" (click)="submit()">Submit</button>
+                    </div>
+                </mat-step>
+                
+            </mat-horizontal-stepper>
+        </div>
+    </div>
+</div>

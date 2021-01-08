@@ -1,0 +1,32 @@
+<div class="card mb-8  border" *ngIf="Dataset">
+    <div class="card-header height-60  bg-light  text-dark">
+        <div class="d-flex  d-inline-flex justify-content-between w-100">
+            <div class="left">
+                <h5 class="p-0 m-0 tool-title">
+                    <label class="item-index text-black-50">
+                        {{index}} .
+                    </label>
+                    <a class="text-blue pb-0 pointer" (click)="datasetSelected(Dataset);">
+                        {{Dataset.name}}
+                    </a>  
+                </h5>
+            </div>
+            <div class="right">
+                <mat-card-actions>
+                    <button mat-button (click)="downloader.DownloadDataset(Dataset._id)"><i class="fa fa-cloud-download-alt fa-lg pr-2" aria-hidden="true"></i>Download</button>
+                </mat-card-actions>
+
+            </div>
+        </div>    
+    </div>
+    <div class="card-body ">
+        <p class="card-text description">
+            {{Dataset.description}}
+        </p>
+    </div>
+    <div class="card-footer py-0">
+        <span class="badge badge-light text-blue mr-3 rounded-pill font-size-14 pointer my-1" 
+            *ngFor="let item of setCategories();" (click)="contentUpdate.emit(item)" [ngClass]="{'bg-primary':TargetTags.indexOf(item)!=-1}">{{item}}
+        </span>
+    </div>
+</div>

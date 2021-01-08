@@ -1,0 +1,18 @@
+<div  class="node width-400">
+    <div class="title  border-width-2">
+        {{node.name}}
+    </div>
+
+    <app-socket rete-socket  [io]="inputs[0]" [socket]="inputs[0].socket"></app-socket>
+    <div class="input-title py-2 " *ngIf="!inputs[0].showControl()||!max">
+        <span class="text-white font-size-18" style="letter-spacing: 1px ;font-family: Georgia, 'Times New Roman', Times, serif;">{{inputs[0].name}}</span>
+    </div>
+    <div [hidden]="!max" class="control ml-3" *ngFor="let control of controls" [rete-control]="control"></div>
+    <app-socket rete-socket  [io]="inputs[1]" [socket]="inputs[1].socket"></app-socket>
+    <div class="input-title py-2 " *ngIf="!inputs[1].showControl()||!max">
+        <span class="text-white font-size-17 " style="letter-spacing: 1px ;font-family: Georgia, 'Times New Roman', Times, serif;">{{inputs[1].name}}</span>
+    </div>
+
+   
+
+</div>

@@ -1,0 +1,143 @@
+<div class="wrapper">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h5 class="py-1">Input Output Tags</h5>
+        </div>
+        <app-parameter-tags [Rete]="Rete" (contentUpdate)="filterDataset($event)"></app-parameter-tags>
+    </div>
+    <div  [ngClass]="{'d-none':view!='details'}" class="contents bg-light border-left border-right border-width-2">
+        <div class="contents-header d-flex d-inline-flex justify-content-between w-100">
+            <div class="py-2">
+                <h5>{{Component.name}}</h5>
+            </div>
+            <div >
+                <mat-card-actions>
+                    <button  class="btn w-auto mx-3 download  font-weight-normal font-size-18  pointer py-0"  >
+                        <i class="fas fa-chart-area px-1 fa-lg "></i> Dependency Graph
+                    </button>
+                    <button  class="btn download w-auto font-weight-normal font-size-18 pointer"  (click)="downloader.DownloadComponent(Component._id)">
+                        <i class="fas fa-download  px-1 pt-1 fa-lg "></i> Download
+                    </button>
+                </mat-card-actions>
+            </div>
+        </div>
+        <div class="contents-details mx-4 border border-width-2">
+            <div class="px-4 py-2  border-bottom   d-flex d-inline-flex justify-content-between w-100" >
+                <div >
+                    <strong class="font-weight-normal"> Uploaded by :</strong><span class="text-info pl-2">{{Component.uploader}}</span>
+                </div>
+                <div >
+                    <strong class="font-weight-normal"> Last Update on :</strong><span class="text-info pl-2">{{Component.getLastUpdate()}}</span>
+                </div>
+            </div>
+            <div>
+                <div #el class="container details py-4 ck-editor5"></div>
+            </div>
+            <div class="tool-footer pt-4  bg-white border-radius-bottom-50">
+                <div >
+                    <div>
+                        <table class="my-0 p-0  border-top " *ngIf="Component.inputs.Inputs.length">
+                            <thead>
+                                <tr class="bg-light border-top"><th colspan="2" class="py-0"><h5>Input Parameters :</h5></th></tr>
+                            </thead>
+                            <tbody>
+                                <tr  *ngFor="let item of Component.inputs.Inputs;let i=index;">
+                                    <td class="pl-5">{{i+1}}. {{item.name}}</td>
+                                    <td><p class="text-justify ">{{item.description}}</p></td>
+                                </tr>
+    
+                            </tbody>
+                        </table>
+                        <table class="my-0 p-0  border-top " *ngIf="Component.output!=''">
+                            <thead>
+                                <tr class="bg-light border-top"><th colspan="2" class="py-0"><h5 >Output Parameters :</h5></th></tr>
+                            </thead>
+                            <tbody>
+                                <tr >  
+                                    <td class="border-right-0" colspan="2"><p class="text-justify ">{{Component.output}}</p></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div  *ngIf="Component.authors.Authorlist.length" class="m-0 p-0">
+                        <table class="my-0 p-0  border-top ">
+                            <thead>
+                                <tr class="bg-light border-top"><th colspan="2" class="py-0"><h5 >Authors :</h5></th></tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of Component.authors.Authorlist;let i=index;">
+                                    <td class="pl-5 w-50">
+                                        <a class="pointer" (click)="router.openWindow(item.website)" target='_blank'>
+                                            <span class="pr-2">{{i+1}}.</span> 
+                                            <span class="text-blue">{{item.name}}</span>
+                                        </a>
+                                    </td>
+                                    <td class="px-2">{{item.organization}}</td>
+                                </tr>
+    
+                            </tbody>
+                        </table>
+                    </div>
+                    <div  *ngIf="Component.publications.Publicationlist.length" class="m-0 p-0 ">
+                        <table class="my-0 p-0  border-top table-sm ">
+                            <thead>
+                                <tr class="bg-light border-top"><th colspan="2" class="py-0"><h5 >References :</h5></th></tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of Component.publications.Publicationlist;let i=index;">
+                                    <td class="pl-5 w-50">
+                                        <div class="d-inline-flex">
+                                            <label class="pr-2">{{i+1}}.</label>
+                                            <a (click)="router.openWindow(item.link)" target='_blank' class="pointer">
+                                                <p class="text-blue text-justify" style="font-weight: 400;">{{item.title}}</p>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td class="px-2">{{item.organization}}</td>
+                                </tr>
+    
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div  *ngIf="view=='list'" class="contents bg-light border-left border-right border-width-2">
+        <div class="contents-header d-flex d-inline-flex justify-content-between w-100">
+            <div class="py-2">
+                <h5>{{ReteComponentName}} :[ <i>{{Field}}</i> ] Matched Datasets ({{Datasets.length}})</h5>
+            </div>
+            <div>
+                <button class="btn download font-weight-normal font-size-18 pointer"  (click)="view='details'">
+                    <i class="fas fa-arrow-left px-1 pt-1 fa-lg "></i> Back
+                </button>
+
+            </div>
+        </div>
+        <div class="contents-details mx-4 border border-width-2">
+            <div class="container px-5 py-8">
+                <div   *ngFor="let dataset of Datasets; let i=index;">
+                    <app-dataset-item [Dataset]="dataset" [TargetTags]="TargetTags" [index]="i+1"></app-dataset-item>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h5 class="py-1">Categories</h5>
+        </div>
+        <div>
+            <app-categories
+                [filters]="'details'"
+                [SourceCategories]="SourceCategories" 
+                [TargetCategories]="Component.Categories"
+                (contentUpdate)="updateContent($event)">
+            </app-categories>
+        </div>
+    </div>
+</div>

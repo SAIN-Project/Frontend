@@ -1,0 +1,12 @@
+
+
+<div class="card border-0 ">
+    <header class="card-header border bg-light  text-black py-2">
+        <h5 class="card-tittle">Tags</h5>
+    </header>
+    <article class="class-body p-4 ">
+        <div class="mb-4 align-content-center w-75 mx-auto " *ngFor="let item of Db_Tags;let i=index;">
+            <app-mini-tag [key]="item.key" [SourceTags]="item.values" [TargetTags]="Dataset.Tags.TagsList[i].values"  ></app-mini-tag>
+        </div>
+    </article>
+</div>

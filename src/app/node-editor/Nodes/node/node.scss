@@ -1,0 +1,187 @@
+$bg-color:  #d3c8c8;
+$header-bg-color:#1b1b1b;
+$blackboard-color: #333e48;
+
+$title-light: #a3d133;
+$title-light-transparent: rgba(0, 255, 0,0.0);
+$fontcolor: darken(#000,10%);
+.width-250{
+    width: 250px;
+}
+.width-400{
+    width: 350px; 
+}
+a{
+    color: inherit;
+    text-decoration: none;
+    transition: all ease 0.1s;
+    &:hover, &:focus{
+        color: inherit;
+        text-decoration: none;
+        transition: all ease 0.1s;
+    }
+    &[data-toggle="collapse"]{
+        position: relative;
+    }
+}
+
+
+.dropdown-toggle::after{
+    content: '\f0d7';
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.scrolbar{
+    &::-webkit-scrollbar{
+        width: 10px;
+        background: darken($bg-color,1%);
+        &:hover{
+            width:12px;
+        }
+    }
+    &::-webkit-scrollbar-track{
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        &:hover{
+            width:12px;
+        }
+    }
+    &::-webkit-scrollbar-thumb{
+        border-radius: 10px;
+        box-shadow: inset 0 0 6px #636260cc;
+        &:hover{
+            width: 12px;
+            box-shadow: inset 0 0 6px #ca1d7ccc;
+        }
+    }
+}
+.Sidebar{
+    margin: 0;
+    z-index: 10;
+    padding: 0px;
+    background: lighten($bg-color,10%);
+    color: $fontcolor;
+    transition: all 0.6s cubic-bezier(0.945, 0.02, 0.27, 0.665);
+    transform-origin: bottom left;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-height: 500px;
+    &.active{
+        margin-right: -352px;
+        transform: rotateY(0deg);
+    }
+    .sidebar-header{
+        padding: 4px 20px;
+        background: $header-bg-color;
+    }
+    ul{
+        li{
+            line-height: 40px;
+            padding-left: 0px;
+            box-sizing: border-box;
+            border-top: 1px solid darken($bg-color, 30%);
+            
+            font-family: 'Open Sans', sans-serif;
+            transition: all .2s ease;
+            p{
+                text-align: justify;
+                color:$fontcolor;
+                padding:10px;
+                font-size: 16px;
+                margin:0;
+            }
+            a{
+                padding-left: 10px;
+                color: $fontcolor;
+                position: relative;
+                display: block;
+                width: 100%;
+                border-left: 3px solid transparent;
+                cursor: pointer;
+                background: linear-gradient(lighten($bg-color,10%) ,lighten($bg-color,15%));
+                line-height: 32px;
+                color: $fontcolor;
+                letter-spacing: 1px;
+                border-top: 1px solid rgba(255,255,255,.1);
+                font-size: 15px;
+                font-weight: 1000;
+            }
+            a,div{
+                border-top: 1px solid darken($bg-color, 10%);
+            }
+            &:last-child{
+                border-bottom: 1px solid rgba(255,255,255,.1);
+            }
+        }
+    }
+    table{
+        padding-left: 10px;
+        margin: 0px; 
+        width: 100%;
+        background: lighten($bg-color, 10%);
+        overflow-x: hidden;
+        thead{
+            background: lighten($bg-color,3%) ;
+            line-height: 32px;
+            color: $fontcolor;
+            letter-spacing: 1px;
+            border-bottom: 1px solid black;
+            border-top: 1px solid rgba(255,255,255,.1);
+            font-size: 15px;
+            font-weight: 1000;
+            tr{
+                border-bottom: 1px solid black;
+                border-top: 1px solid rgba(255,255,255,.1);
+                th{
+                    padding-left: 15px;
+                }
+            }
+        }
+        tbody{
+            tr{
+                line-height: 25px;
+                border:0px;
+                border-bottom: 1px solid black;
+                border-top: 1px solid rgba(255,255,255,.1);
+                font-size: 14px;
+                td{
+                    a{
+                        background: inherit;
+                        border:0;
+                    }
+                    p{
+                        text-align: justify;
+                        color:$fontcolor;
+                        margin:0 5px;
+                        margin-right: 5px;
+                        font-size:15px;
+                    }
+                    &:first-of-type{
+                        font-size:16px;
+                        width: 35%;
+                        padding-left: 12px;
+                        border-right: 0.5px solid black;
+                    }
+
+                }
+            }
+        }
+    }
+}
+pre {
+    border-radius: 1px;
+    text-align: left;
+    direction: ltr;
+    tab-size: 4;
+    font-style: normal;
+    width:100%;
+    code{
+        background: unset;
+        padding: 0;
+        border-radius: 0;
+    }
+}

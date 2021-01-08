@@ -1,0 +1,10 @@
+<div>
+    <span class="pr-1 input-font-color" style="position:relative;top:0px;"><strong> {{Title}}:</strong></span>
+    <span class="pl-0 pr-0 input-font-color" style="top:0px"><strong> [{{value}}]</strong></span>
+    
+    <input id="range1" class="custom-range  w-60 float-right"  type="range"  [value]="value" [min]="min" [max]="max" [step]="step" 
+        (change)="onChange($event.target.value)"  />
+        
+</div>
+      
+

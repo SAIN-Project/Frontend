@@ -1,0 +1,18 @@
+
+<div class="rete" *ngFor="let rete of Rete;let i= index;">
+    <div class="title">
+        {{rete.Name}}
+    </div>
+    <div *ngFor="let input of rete.Inputs;let j=index;" class="border-bottom">
+        
+        <app-categories
+            [filters]="'details'"
+            [SourceCategories]="input.SourceCategories" 
+            [TargetCategories]="input.Categories">
+        </app-categories>
+        <button  class="btn w-auto mx-3 download  font-weight-normal font-size-18  pointer py-0 mt-n3 " (click)="submit(input,i)" >
+            <i class="fas fa-search px-1 fa-lg "></i> Find Similar Datasets
+        </button>
+    </div>
+</div>
+

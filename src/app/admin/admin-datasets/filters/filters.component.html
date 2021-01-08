@@ -1,0 +1,89 @@
+<div class="container py-5">
+
+    <header class="card-header border mb-6  title bg-light py-1">
+        <h5 class="card-tittle d-inline">
+            <i class="fas fa-filter pr-2"></i>  Dataset Categories
+        </h5>
+        <button class="btn  download float-right pointer font-weight-normal font-size-18" (click)="modal.open(template,'modal-sm')">
+            <i class="fa fa-plus fa-lg  pr-2"></i>New Dataset Category
+        </button> 
+    </header>
+    <div class="row mb-10" *ngFor ="let item of Categories;let i=index;">
+        <div class="col-md-12">
+            <div class="card">
+                <header class="card-header title  py-2">
+                    <h5 class="card-tittle">
+                        <i class="fa fa-list pr-2"></i>{{item.key}}
+                        <button class="btn  min-width-50 float-right pointer text-danger py-1 shadow-on-hover-1" (click)="delete(item._id)"><i class="fa fa-trash fa-lg"></i></button>
+                        <button class="btn  min-width-50 float-right pointer py-1  bg-primary-on-hover" (click)="selctedCategory=item;modal.open(property,'modal-sm')"><i class="fa fa-plus fa-lg"></i></button>
+                    </h5>         
+                </header>
+                <article class="class-body m-0 p-0 py-2">
+                    <table datatable class="table border-dark border table-bordered table-striped table-sm w-100 p-0 m-0">
+                        <thead>
+                            <tr scope="row" class="height-40">
+                                <th class="w-10">#</th>
+                                <th>Property</th>
+                                <th>Control</th>
+                                <th class="w-10">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr scope="row" style="line-height: 35px;" *ngFor="let value of item.values; let j=index;">
+                                <td>{{j+1}}</td>
+                                <td class=" font-size-16">{{value}}</td>
+                                <td>{{item.type}}</td>
+                                <td >
+                                    <button class="btn" (click)="deleteCategoryProperty(item,j)">
+                                        <i class="fa fa-trash-alt fa-lg text-danger pointer"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </article>
+            </div>
+        </div>
+    </div>
+
+</div>
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Name</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body text-center">
+      <div class="d-flex py-5">
+          <input type="text" [(ngModel)]="categoryname" class="form-control m-auto" placeholder="Enter Name">
+      </div>
+      <h4 class="font-size-14 mb-3 font-weight-bold border-bottom " style="text-align: left;">Control </h4>
+      <div class="form-row justify-content-between mb-3">                                  
+        <div class="col ">
+            <div class="icheck-primary" style="text-align: left;"><input class="box "  type="radio" [checked]='true'  (change)="onRadioChange($event)"   name="type" value="checkbox" id="checkbox"><label for="checkbox">Checkbox</label></div>
+        </div>
+          <div class="col ">
+            <div class="icheck-primary" style="text-align: left;"><input class="box" type="radio"  (change)="onRadioChange($event)"  name="type" value="radio" id="radio"><label for="radio">Radio Button</label></div>
+        </div>
+      </div> 
+
+      <button type="button" class="btn btn-block btn-primary-dark-w" (click)="addCategory()">Submit</button>
+    </div>
+</ng-template>
+
+<ng-template #property>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{selctedCategory.key}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body text-center">
+      <div class="d-flex py-5">
+          <input type="text" #Value class="form-control m-auto" placeholder="Enter Value">
+      </div>
+      <button type="button" class="btn btn-block btn-primary-dark-w" (click)="addCategoryProperty(Value.value)">Submit</button>
+    </div>
+</ng-template>

@@ -1,0 +1,86 @@
+<div >
+    <app-breadcrumb [items]="['Home','Profile','Tools']"></app-breadcrumb>
+    <div class="container">
+        <div class="card border">
+            <header class="card-header title text-dark py-1">
+                <h5 class="card-tittle d-inline"><i class="fa fa-list pr-2"></i> My Tools</h5>
+                <button class="btn download float-right pointer font-weight-normal font-size-18">
+                    <a [routerLink]="'/tool/add/'">
+                        <i class="fa fa-plus fa-lg pr-2"></i>Add Tool
+                    </a>
+                </button>
+
+            </header>
+            <article class="class-body m-0 p-0 py-2">
+                <table datatable [dtTrigger]="Dt.dtTrigger" class="table border-dark border table-bordered table-striped table-sm w-100 p-0 m-0">
+                    <thead>
+                        <tr scope="row" class="height-40">
+                            <th class="w-10">#</th>
+                            <th>Tools</th>
+                            <th>Approved </th>
+                            <th class="w-10">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr scope="row" *ngFor="let item of MyComponents;let i=index;">
+                            <td>{{i+1}}</td>
+                            <td class=" font-size-16">
+                                <a [routerLink]="'/tool/details/'+item._id">
+                                    <i class="fa fa-external-link-alt  pr-2  pointer"></i> {{item.name}}
+                                </a>
+                            </td>
+                            <td>{{item.Approved}}</td>
+                            <td>
+                                <div class="d-flex d-inline-flex justify-content-between w-90">
+                                    <button mat-icon-button [matMenuTriggerFor]="menu"
+                                        aria-label="Example icon-button with a menu">
+                                        <mat-icon>more_vert</mat-icon>
+
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item
+                                            (click)="router.navigateTo('tool/edit/'+item._id)">
+                                            <mat-icon class="fa fa-edit"></mat-icon>
+                                            <span>Edit</span>
+                                        </button>
+                                        <button mat-menu-item
+                                            (click)="SelectedComponent=item;modal.open(template,'modal-md');">
+                                            <mat-icon class="fa fa-trash text-danger"></mat-icon>
+                                            <span>Delete</span>
+                                        </button>
+                                        <button mat-menu-item
+                                            (click)="this.router.navigateTo('profile/componentruntimeparameters/'+item._id)">
+                                            <mat-icon>settings</mat-icon>
+                                            <span>Integration Blocks</span>
+                                        </button>
+                                        <button mat-menu-item>
+                                            <mat-icon class="fab fa-docker"></mat-icon>
+                                            <span>Push on Docker</span>
+                                        </button>
+                                    </mat-menu>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </div>
+    </div>
+</div>
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Delete {{SelectedComponent.name}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body text-center just">
+        <p>Do you really want to delete this Tool ?</p>
+        <div class="d-flex d-inline-flex justify-content-between w-100">
+            <button type="button" class="btn btn-primary-dark-w float-left w-40" (click)="modal.hide()">Cancel</button>
+            <button type="button" class="btn btn-danger float-right w-40"
+                (click)="delete(SelectedComponent._id)">Delete</button>
+        </div>
+    </div>
+</ng-template>

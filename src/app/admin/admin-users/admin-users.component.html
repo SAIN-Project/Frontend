@@ -1,0 +1,163 @@
+
+<div class="container py-8">
+    <div class="row">
+        <div class="col-md-4">
+            <div  class="card bg-light h-100">
+                <header class="card-header bg-light py-1">
+                    <h4 class="card-title my-2"><i class="fas fa-search"></i> Search Users</h4>
+                </header>
+                <article class="card-body h-100">
+                    <form (change)=" onSubmit()">
+                        <div class="w-100">
+                            <mat-form-field appearance="legacy" class="w-100" >
+                                <mat-label>Username</mat-label>
+                                <input matInput   name="name" [(ngModel)]="filter.username">
+                            </mat-form-field>
+                        </div>
+                        <div class="w-100 d-flex d-inline-flex justify-content-between">
+                            <mat-form-field appearance="legacy" class="w-40" >
+                                <mat-label>First Name</mat-label>
+                                <input matInput   name="firstname" [(ngModel)]="filter.firstname">
+                            </mat-form-field>
+                            <mat-form-field appearance="legacy" class="w-40" >
+                                <mat-label>Last Name</mat-label>
+                                <input matInput   name="lastname" [(ngModel)]="filter.lastname">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="form-group  pb-2 mt-4">
+                            <h4 class="font-size-14 mb-3 font-weight-medium">User Roles </h4>
+                            <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event,filter.role)"  name="Role" value="Admin" id="Admin"><label for="Admin">Admin</label></div>
+                            <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event,filter.role)"  name="Role" value="Uploader" id="Uploader"><label for="Uploader">Uploader</label></div>
+                            <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event,filter.role)"  name="Role" value="Basic" id="Basic"><label for="Basic">Basic</label></div>   
+                        </div>
+    
+                        <div class="form-group  pb-2 mt-4">
+                            <h4 class="font-size-18 mb-3 ">Approved </h4>
+                            <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event,filter.approved)"   name="Approved"  value="Yes" id="Yes"><label for="Yes">Yes</label></div>
+                            <div class="icheck-primary"><input class="box" type="checkbox"  (change)="onCheckboxChange($event,filter.approved)"  name="Approved" value="No" id="No"><label for="No">No</label></div>
+                        </div>
+                                                                           
+                      </form>
+                </article>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card h-100 bg-light" [ngClass]="{'d-none':Editmode==true}">
+                <header class="card-header title bg-light py-1">
+                    <h4 class="card-title my-2"><i class="fas fa-users"></i> Sain Users</h4>
+                </header>
+                <article class="card-body px-0 bg-white" >
+                    <table id="usertable" datatable   [dtOptions]="dtOptions" [dtTrigger]="Dt.dtTrigger" class="table table-responsive-sm table-striped table-hover table-bordered border-dark">
+                        <thead  class="font-weight-bolder">
+                            <tr class=" height-50 border-red">
+                                <th >#</th>
+                                <th>User Name</th> 
+                                <th >Full Name</th>
+                                <th >Role</th>
+                                <th >Action</th> 
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="Users?.length !=0">
+                            <tr *ngFor="let item of Users;let i=index;">
+                                <td class="th-sm">{{i+1}}</td>
+                                <td class="th-sm">{{item.email}}</td>
+                                <td class="th-sm">{{item.firstname +' '+item.lastname}}</td>
+                                <td class="th-sm">{{item.Role}}</td>
+                                <td >
+                                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                    
+                                    </button>
+                                    <mat-menu #menu="matMenu" >
+                                        <button mat-menu-item (click)="SelectedUser=item;Editmode=true;">
+                                          <mat-icon class="fa fa-edit"></mat-icon>
+                                          <span>Edit</span>
+                                        </button>
+                                        <button mat-menu-item  (click)="SelectedUser=item;modal.open(template,'modal-md');" >
+                                            <mat-icon class="fa fa-trash text-danger"></mat-icon>
+                                            <span>Delete</span>
+                                        </button>
+                                    </mat-menu>
+    
+    
+                                </td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </article>
+
+            </div>
+            <div  *ngIf="SelectedUser" class="card  bg-light h-100" [ngClass]="{'d-none':Editmode==false}">
+                <header class="card-header title bg-light py-1">
+                    <h4 class="card-title my-2"><i class="fas fa-user pr-2"></i> {{SelectedUser.firstname +' '+SelectedUser.lastname}}</h4>
+                </header>
+                <article class="card-body bg-white">
+                    <div class="row justify-content-center  h-100">
+                        <div class="my-auto w-80">
+                            <h5 class="border-bottom w-50">Approved:</h5>
+                            <div class="icheck-primary ml-3 my-1">
+                                <input class="box" type="radio" [checked]="SelectedUser.Approved=='Yes'"
+                                 name="approved" [(ngModel)]="SelectedUser.Approved" value="Yes" id="Setting-Yes">
+                                <label for="Setting-Yes">Yes</label>
+                            </div>
+                            <div class="icheck-danger ml-3 my-1">
+                                <input class="box" type="radio" [checked]="SelectedUser.Approved=='No'"
+                                 name="approved" [(ngModel)]="SelectedUser.Approved" value="No" id="Setting-No">
+                                <label for="Setting-No">No</label>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="my-auto  w-80 ">
+                            <h5 class="border-bottom w-50">Role :</h5>
+                            <div class="icheck-primary ml-3 my-1">
+                                <input class="box" type="radio" [checked]="SelectedUser.Role=='Basic'"
+                                 name="role" [(ngModel)]="SelectedUser.Role" value="Basic" id="Setting-Basic">
+                                <label for="Setting-Basic">Basic</label>
+                            </div>
+                            <div class="icheck-primary ml-3 my-1">
+                                <input class="box" type="radio" [checked]="SelectedUser.Role=='Contributer'"
+                                 name="role" [(ngModel)]="SelectedUser.Role" value="Contributer" id="Setting-Contributer">
+                                <label for="Setting-Contributer">Contributer</label>
+                            </div>
+                            <div class="icheck-primary ml-3 my-1">
+                                <input class="box" type="radio" [checked]="SelectedUser.Role=='Admin'"
+                                 name="role" [(ngModel)]="SelectedUser.Role" value="Admin" id="Setting-Admin">
+                                <label for="Setting-Admin">Admin</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </article>
+                <div class="card-footer py-2 bg-light">
+                    <button (click)="edit(SelectedUser._id)" class="btn  download  pointer font-weight-normal font-size-18">
+                        <i class="fa fa-save fa-lg"></i> Save
+                    </button> 
+                    <button (click)="Editmode=false" class="btn  download float-right pointer font-weight-normal font-size-18">
+                       <i class="fa fa-undo"></i> Cancel
+                    </button> 
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Delete {{SelectedUser.email}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body text-center">
+        <p>Do you really want to delete this User ?</p>
+        <button type="button" class="btn btn-primary-dark-w float-left w-40" (click)="modal.hide()">Cancel</button>
+        <button type="button" class="btn btn-danger float-right w-40" (click)="delete(SelectedUser._id)">Delete</button>
+    </div>
+</ng-template>

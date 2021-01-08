@@ -1,0 +1,142 @@
+import { Injectable } from "@angular/core";
+import {
+    HttpClient,
+    HttpEvent,
+    HttpEventType,
+    HttpRequest,
+    HttpResponse,
+} from "@angular/common/http";
+import { Observable, of } from "rxjs";
+import { tap } from "rxjs/operators";
+import { Router } from "@angular/router";
+import { saveAs } from "file-saver";
+import * as io from "socket.io-client";
+import { Subject } from "rxjs";
+import { environment } from "../../environments/environment";
+import { ProcessStatus } from "../node-editor/Classes/Utility";
+@Injectable({
+    providedIn: "root",
+})
+export class ReteHttpService {
+    //url=environment.ApiUrl;
+    url = "http://localhost:8080";
+    socket;
+    socketid;
+    socketoutput = [];
+    public CurrentRuningProcess: ProcessStatus[] = [];
+    CompletedProcess = [];
+    ValidatorErrors = [];
+    nodes = [];
+    Timer: string = "";
+    ToolEnginesServer = "local";
+
+    constructor(private http: HttpClient, private router: Router) {
+        this.setupSocketConnection();
+    }
+    async setupSocketConnection() {
+        this.socket = await io(this.url);
+        this.socket.on("connect", () => {
+            this.socketid = this.socket.id;
+        });
+    }
+    getChildProcessIndex(id: number) {
+        var index = this.CurrentRuningProcess.findIndex(
+            (process) => process.id == id
+        );
+        return index;
+    }
+
+    async runToolOnBackend(route, data: any) {
+        return await this.http
+            .post<any>(this.url + "/engine/" + route, data)
+            .toPromise();
+    }
+    async UploadFileToBackend(
+        route,
+        data: any,
+        onProgress: (p: number) => void
+    ): Promise<any> {
+        const req = new HttpRequest(
+            "POST",
+            this.url + "/engine/" + route,
+            data,
+            {
+                reportProgress: true,
+            }
+        );
+        return await this.http
+            .request(req)
+            .pipe(
+                tap((event: HttpEvent<any>) => {
+                    if (event.type !== HttpEventType.UploadProgress) return;
+                    const progress = Math.round(
+                        (100 * event.loaded) / event.total
+                    );
+                    onProgress(progress);
+                })
+            )
+            .toPromise();
+    }
+    async extract(data: any) {
+        return await this.http
+            .post<any>(this.url + "/engine/extractFile", data)
+            .toPromise();
+    }
+
+    DownloadFile(data: any) {
+        return this.http.post(this.url + "/engine/downloadfile", data, {
+            responseType: "blob",
+        });
+    }
+    isEditor(): boolean {
+        var url = this.router.url;
+        return url == "/editor";
+    }
+
+    setNodesList(node, inputs, outputs) {
+        var obj = {
+            id: node.id,
+            name: node.name,
+            data: node.data,
+            inputs,
+            outputs,
+            innerhtml: "",
+        };
+        var index = this.nodes.findIndex((n) => n.id === node.id);
+        if (index == -1) this.nodes.push(obj);
+        else this.nodes[index] = obj;
+    }
+
+    isEmpty(obj: any) {
+        return Object.keys(obj).length == 0;
+    }
+
+    download(filepath) {
+        var data = new FormData();
+        if (filepath.length) {
+            data.append("File", filepath);
+            this.DownloadFile(data).subscribe(
+                (resData) => {
+                    console.log(resData);
+                    var filename = filepath.replace(/^.*[\\\/]/, "");
+                    saveAs(resData, filename);
+                },
+                (err) => {
+                    console.error(err);
+                    alert("Problem while downloading the file.");
+                }
+            );
+        }
+    }
+
+    async isToolExistLocaly(id: string) {
+        return await this.http
+            .get(this.url + "/engine/isToolExist/" + id)
+            .toPromise();
+    }
+    async downlodToolToDockerContainer(id: string, data) {
+        return await this.http
+            .post(this.url + "/engine/downloadtool/" + id, data)
+            .toPromise();
+    }
+}

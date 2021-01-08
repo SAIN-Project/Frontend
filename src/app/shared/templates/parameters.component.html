@@ -1,0 +1,63 @@
+<div class="card border-0">
+    <header class="card-header border bg-light text-dark  py-2">
+        <h5 class="card-tittle">
+            Command Parameters
+        </h5>
+    </header>
+    <article class="class-body py-4 ">
+        <form #frm="ngForm" (change)="onChange(frm)">
+            <div class="row ">
+                <div class="col-md-12 mb-4">
+                    <mat-form-field appearance="legacy" class="w-50">
+                        <mat-label>Synopsis</mat-label>
+                        <input matInput placeholder="Synopsis" name="synopsis" [(ngModel)]="Input.synopsis" required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-md-12 mb-4">
+                    <mat-form-field appearance="legacy" class="w-100">
+                        <mat-label>Output</mat-label>
+                        <input matInput placeholder="output description" name="output" [(ngModel)]="Input.output"
+                            required>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="py-2 mb-3 border-bottom">
+                <h5 class="d-inline pt-1 font-weight-lighter"> Input parameters</h5>
+                <button class="btn  min-width-40   float-right pointer text-black   shadow-on-hover-1"
+                    (click)="Input.inputs.push();">
+                    <i class="fa fa-plus fa-lg"></i>
+                </button>
+            </div>
+            <ol class="pl-3">
+                <li class="pl-3" *ngFor="let item of Input.inputs.Inputs;let i=index;">
+                    <div class="row">
+                        <div class="col-md-3 pt-1">
+                            <mat-form-field appearance="legacy" class="w-90">
+                                <mat-label>Name</mat-label>
+                                <input matInput placeholder="Name" name="Name_inputs_{{i}}" [(ngModel)]="item.name"
+                                    required>
+                            </mat-form-field>
+
+                        </div>
+                        <div class="col-md-8">
+                            <mat-form-field appearance="legacy" class="w-90 height-50">
+                                <mat-label>Description</mat-label>
+                                <textarea matInput placeholder="Description" name="description_inputs_{{i}}"
+                                    [(ngModel)]="item.description" required rows="1"></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-1">
+                            <button
+                                class="btn  min-width-40 float-right pointer text-danger mt-2  py-1 shadow-on-hover-1"
+                                [disabled]="Input.inputs.Inputs.length==1" (click)="Input.inputs.pop(i);">
+                                <i class="fa fa-times fa-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+        </form>
+    </article>
+</div>

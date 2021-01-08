@@ -1,0 +1,51 @@
+<div class="card border-0">
+    <header class="card-header bg-light border text-dark  py-2">
+        <h5 class="card-tittle">
+            Publications
+            <button class="btn  min-width-50 float-right pointer text-dark  py-1 shadow-on-hover-1"
+                (click)="Publications.push();">
+                <i class="fa fa-plus fa-lg"></i>
+            </button>
+        </h5>
+    </header>
+    <article class="class-body p-4 ">
+        <form #frm="ngForm" (change)="onChange(frm)">
+            <ol>
+                <li *ngFor="let item of Publications.Publicationlist;let i=index;">
+                    <div class="row mt-3">
+
+                        <div class="col-md-4">
+                            <mat-form-field class="w-90" appearance="legacy">
+                                <mat-label>Title</mat-label>
+                                <input matInput placeholder="Title" name="publication_{{i}}" [(ngModel)]="item.title"
+                                    required>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                            <mat-form-field class="w-90" appearance="legacy">
+                                <mat-label>Link</mat-label>
+                                <input matInput placeholder="www.example.com" name="link_{{i}}" [(ngModel)]="item.link"
+                                    required>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="w-90" appearance="legacy">
+                                <mat-label>Organization</mat-label>
+                                <input matInput placeholder="ex..IEEE" name="organization_{{i}}"
+                                    [(ngModel)]="item.organization" required>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn  min-width-40  pointer text-danger mt-2  py-1 shadow-on-hover-1"
+                                [disabled]="Publications.Publicationlist.length==1" (click)="Publications.pop(i);">
+                                <i class="fa fa-times fa-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+
+
+                </li>
+            </ol>
+        </form>
+    </article>
+</div>

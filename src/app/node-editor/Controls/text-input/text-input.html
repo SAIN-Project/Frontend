@@ -1,0 +1,12 @@
+
+<div class="row">
+    <div class="col-md-12">
+        <span class="pr-2 input-font-color" style="position:relative;top:0px;"> {{Title}}:</span>
+        <span *ngIf="required" class="text-danger">*</span>
+        <input class="float-right w-60 form-control py-0 rounded-0" style="height: 26px;" [type]="type" [value]="value"
+         [required]="required"  (change)="change($event.target.value)"
+        [ngClass]="{'is-invalid': required&&value==''}">
+    </div>
+</div>
+
+

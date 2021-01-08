@@ -1,0 +1,85 @@
+$bg-color: #f8f9fa;
+$header-bg-color: #1b1b1b;
+$fontcolor: black;
+$title-light: #d9e0d5;
+$title-red: #eb131e;
+$title-light-transparent: rgba(0, 255, 0, 0);
+a{
+    color: inherit;
+    text-decoration: none;
+    transition: all ease 0.1s;
+    &:hover, &:focus{
+        color: inherit;
+        text-decoration: none;
+        transition: all ease 0.1s;
+
+    }
+}
+article {
+    min-height: 150px;
+}
+.radius-50{
+    border-radius: 0px;
+}
+
+.download {
+    letter-spacing: 0.5px;
+    text-align: left;
+    font-size: 0.9rem !important;
+    border-radius: 5px;
+    color: $fontcolor;
+    font-weight: 500;
+    width: 100%;
+    height: 30px;
+    padding: 2px 2px;
+    cursor: pointer;
+
+    &:hover {
+        color: darken($title-light, 2%);
+    }
+}
+:host ::ng-deep .ck-editor__editable_inline {
+    min-height: 400px;
+}
+.header{
+    min-width:100%;
+    font-size: 20px;
+    font-weight: 2000;
+    height: 50px;
+    line-height: 50px;
+}
+
+.tools-header{
+    background: $bg-color;
+    color:$header-bg-color;
+    height: 50px;
+    line-height: 30px;
+}
+.wrapper{
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    perspective: 1500px;
+    min-height: 100%;
+}
+.sidebar{
+    min-width: 290px;
+    max-width: 290px;
+    background: $bg-color;
+    transition: all 0.3s cubic-bezier(0.945, 0.02, 0.27, 0.665);
+    transform-origin: bottom left;
+}
+.contents{
+    width: 100%;
+    min-height: 70vh;
+    transition: all 0.1s;
+    position: relative;
+    border-radius: 30px;
+
+    .contents-details{
+      background: white;
+      border-radius: 50px;
+      margin-bottom:50px;
+    }
+    
+}

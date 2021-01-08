@@ -1,0 +1,35 @@
+<div class="card  mb-8  border" *ngIf="Tool">
+    <div class="card-header height-60   text-blue">
+        <div class="d-flex  d-inline-flex justify-content-between w-100">
+
+            <div class="left">
+                <h5 class="p-0 m-0 tool-title">
+                    <label class="item-index text-black-50">
+                        {{index}} .
+                    </label>
+                    <a class="text-blue pb-0" [routerLink]="['/tool/details',Tool._id]">
+                        {{Tool.name}}
+                    </a>
+                </h5>
+            </div>
+            <div class="right">
+                <mat-card-actions>
+                    <button mat-button (click)="downloader.DownloadComponent(Tool._id)"><i
+                            class="fa fa-cloud-download-alt fa-lg pr-2"
+                            aria-hidden="true"></i>Download</button>
+                </mat-card-actions>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-body ">
+        <p class="card-text description">
+            {{Tool.description}}
+        </p>
+    </div>
+    <div class="card-footer py-0">
+        <span class="badge bg-light px-2 text-blue mr-2 rounded-pill font-size-14 pointer my-1" 
+            *ngFor="let item of setCategories();" (click)="contentUpdate.emit(item)">{{item}}
+        </span>
+    </div>
+</div>

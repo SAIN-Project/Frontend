@@ -1,0 +1,50 @@
+<div class="card border-0">
+    <header class="card-header border bg-light text-black  py-2">
+        <h5 class="card-tittle">
+            Basic Information
+        </h5>
+    </header>
+    <article class="class-body p-4 ">
+        <form #frm="ngForm" (change)="onChange(frm)">
+
+            <div class="d-flex d-inline-flex justify-content-between w-100 mb-6">
+                <mat-form-field appearance="legacy" class="w-40">
+                    <mat-label>Component Name</mat-label>
+                    <input matInput placeholder="Component Name" name="Name" [(ngModel)]="builder.Component.Name"
+                        required>
+                </mat-form-field>
+                <mat-form-field appearance="legacy" class="w-40">
+                    <mat-label>Select Language</mat-label>
+                    <mat-select [(value)]="builder.Component.Language"  (selectionChange)="onLanguageChange($event.value);">
+                        <mat-option *ngFor="let language of ProgramingLanguages" [value]="language">{{language}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="d-flex d-inline-flex justify-content-between w-100 mb-6">
+                <button class=" btn btn-outline-dark font-weight-normal pointer  py-0 mt-3 w-auto" (click)="modal.open(template,'modal-lg');">
+                   <i class="fa fa-folder fa-lg pr-1"></i> Choose ToolFilePath
+                </button>
+                <mat-form-field appearance="legacy" class="w-75">
+                    <mat-label>Tool File Path</mat-label>
+                    <input matInput placeholder="ToolFilePath" name="ToolFilePath" [(ngModel)]="builder.Component.ToolFilePath"
+                        required>
+                </mat-form-field>
+
+            </div>
+
+        </form>
+    </article>
+</div>
+<ng-template #template>
+    <div class="modal-header bg-light">
+        <h4 class="modal-title pull-left d-inline"><i class="fa fa-folder-open fa-lg pr-2"></i>Choose Tool File</h4>
+
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="min-height-380 bg-light">
+        <app-directory-browser [Files]="builder.ComponentFiles"  (contentUpdate)="onPathChange($event);"></app-directory-browser>
+      </div>
+      
+</ng-template>
