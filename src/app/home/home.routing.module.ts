@@ -16,6 +16,9 @@ import { ContactUsComponent } from "./contact-us/contact-us.component";
 import { AboutSainComponent } from "./about-sain/about-sain.component";
 import { AuthGuardService as AuthGuard } from "../services/auth-guard.service";
 
+import { ArticlesDetailComponent} from "./articles/articles-detail/articles-detail.component"
+import { ArticlesListComponent} from "./articles/articles-list/articles-list.component"
+
 const routes: Routes = [
     {
         path: "profile",
@@ -49,6 +52,14 @@ const routes: Routes = [
         path: "aboutsain",
         component: AboutSainComponent,
         canActivate: [AuthGuard],
+    },
+    {
+        path:"toturials",
+        component:ArticlesListComponent
+    },
+    {
+        path:"toturials/:name",
+        component:ArticlesDetailComponent
     },
     { path: "login", component: LoginComponent },
     { path: "register", component: RegisterComponent },

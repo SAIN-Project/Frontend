@@ -19,6 +19,8 @@ import {
     HeaderThreeComponent,
     FooterComponent,
 } from "./header/header";
+import { ArticlesDetailComponent} from "./articles/articles-detail/articles-detail.component"
+import { ArticlesListComponent} from "./articles/articles-list/articles-list.component"
 import { MaterialModule } from "../material";
 import { LoginComponent } from "./account/login/login.component";
 import { RegisterComponent } from "./account/register/register.component";
@@ -43,6 +45,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
         HeaderTwoComponent,
         HeaderThreeComponent,
         FooterComponent,
+
+        ArticlesDetailComponent,ArticlesListComponent
     ],
     imports: [
         CommonModule,

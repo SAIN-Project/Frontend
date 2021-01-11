@@ -33,7 +33,7 @@ a{
 }
 .wrapper{
     display: flex;
-    width: 100%;
+    width: 100% !important;
     align-items: stretch;
     perspective: 1500px;
 }
@@ -109,8 +109,10 @@ a{
     right: 20px;
     transform: translateY(-50%);
 }
-#content{
+.content{
+    box-sizing: border-box;
     width: 100%;
+    max-width: 98% !important;
     min-height: 100vh;
     transition: all 0.1s;
 }

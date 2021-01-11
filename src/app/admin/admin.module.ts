@@ -6,6 +6,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {SharedModule} from '../shared/shared.module'
 import {AdminRoutingModule} from './admin-routing.module'
 import {MaterialModule} from '../material'
+import {CkEditorModule} from '../ckEditor/ck-editor.module'
 import { DataTablesModule } from 'angular-datatables';
 import { AdminDatasetsComponent } from './admin-datasets/admin-datasets.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
@@ -18,6 +19,7 @@ import { TagsComponent } from './admin-datasets/tags/tags.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminSideHeader,AdminTopHeader } from './admin/headers/headers';
 import { AdminFaqsComponent ,AdminNewFaqsComponent} from './admin-home/admin-faqs/admin-faqs.component';
+import { ArticlesComponent,AdminNewArticlesComponent } from './admin-home/articles/articles.component';
 
 
 @NgModule({
@@ -31,14 +33,16 @@ import { AdminFaqsComponent ,AdminNewFaqsComponent} from './admin-home/admin-faq
     SamplesExperimentsComponent,
     TagsComponent,
     DashboardComponent,
-    AdminSideHeader,AdminTopHeader, AdminFaqsComponent,AdminNewFaqsComponent
+    AdminSideHeader,AdminTopHeader, AdminFaqsComponent,AdminNewFaqsComponent,
+    ArticlesComponent,AdminNewArticlesComponent
   ],
   imports: [
     CommonModule,FormsModule, FormsModule,ReactiveFormsModule,BrowserModule, 
     SharedModule,
     AdminRoutingModule,
     MaterialModule,
-    DataTablesModule
+    DataTablesModule,
+    CkEditorModule
   ],
   exports:[
     AdminComponent,

@@ -9,6 +9,7 @@ import * as Components  from '../Classes/components'
 import {ModalService} from '../../services/modal.service'
 import {Editor} from '../Classes/Editor'
 import{saveAs} from'file-saver'
+import {RoutingService} from '../../services/routing.service'
 declare var $:any
 
 @Component({
@@ -132,19 +133,7 @@ export class TerminalComponent implements AfterViewInit ,OnInit {
 
     }
     async ngAfterViewInit(){
-       
-        this.http.socket.on('data', (data: string) => {
-            if(data.length>1000) data=data.substring(0,1000)+' ...  '
-            if((data!='') && this.mode==true) this.http.socketoutput.push({type:'data',data});
-            var element = document.getElementById("terminal");
-            element.scrollTop = element.scrollHeight;
-        });
-        this.http.socket.on('error', (data: string) => {
-            if(data!='') this.http.socketoutput.push({type:'error',data})
-            var element = document.getElementById("terminal");
-            element.scrollTop = element.scrollHeight;
-        });
-        
+              
     }   
     clear(){
         this.http.socketoutput=[];
@@ -220,6 +209,7 @@ export class NavbarComponent implements AfterViewInit ,OnInit {
 
     }
     async start(template){
+        await this.http.setupSocketConnection()
         this.http.CompletedProcess=[];
         this.http.socketoutput=[];
         if(this.Editor.Editor.nodes.length>0){
@@ -233,6 +223,20 @@ export class NavbarComponent implements AfterViewInit ,OnInit {
                 this.modal.open(template)
             }
             else{
+                this.http.socket.on('data', (data: string) => {
+                    if(data.length>1000) 
+                        data=data.substring(0,1000)+' ...  '
+                    if((data!='') && this.http.TerminalStreamingMode==true)
+                        this.http.socketoutput.push({type:'data',data});
+                    var element = document.getElementById("terminal");
+                    element.scrollTop = element.scrollHeight;
+                });
+                this.http.socket.on('error', (data: string) => {
+                    if(data!='') 
+                        this.http.socketoutput.push({type:'error',data})
+                    var element = document.getElementById("terminal");
+                    element.scrollTop = element.scrollHeight;
+                });
                 this.Editor.isProcessing=true;
                 await this.Editor.Editor.trigger('process')
             }
@@ -288,5 +292,46 @@ export class NavbarComponent implements AfterViewInit ,OnInit {
         const json=JSON.parse(<string>item.contents)        
         this.Editor.Editor.fromJSON(json)
         
+    }
+    setLocalServerConnection(template:any){
+        if(this.http.ToolEnginesServer!='Local')
+            this.modal.open(template)
+
+    }
+}
+
+@Component({
+    selector: 'app-docker-connector',
+    templateUrl: './templates/dockerconnector.component.html',
+    styleUrls: ['../node.scss']
+})
+export class DockerConnecter implements OnInit {
+    isLoading=false;
+    error=null;
+
+    constructor(
+        private http:ReteHttpService,
+        private modal:ModalService,
+        private router:RoutingService
+    ){
+
+    }
+    ngOnInit(){
+
+    }
+    setLocalServer(){
+        this.isLoading=true;
+        this.error=null;
+        this.http.isLocalServerAlive().subscribe((response)=>{
+            this.http.ToolEnginesServer="Local";
+            this.http.url=this.http.getLocalUrl();
+            this.http.setupSocketConnection();
+            this.isLoading=false;
+            this.modal.hide();
+        },(error)=>{
+            this.isLoading=false;
+            this.error=error;
+
+        })
     }
 }

@@ -11,6 +11,7 @@ import { DatasetFiltersComponent } from "./admin-datasets/filters/filters.compon
 import { SamplesExperimentsComponent } from "./admin-tools/samples-experiments/samples-experiments.component";
 import { TagsComponent } from "./admin-datasets/tags/tags.component";
 import { AdminFaqsComponent } from "./admin-home/admin-faqs/admin-faqs.component";
+import { ArticlesComponent } from './admin-home/articles/articles.component';
 const routes: Routes = [
     {
         path: "admin",
@@ -46,6 +47,7 @@ const routes: Routes = [
                 component: SamplesExperimentsComponent,
             },
             { path: "Faqs", component: AdminFaqsComponent },
+            { path: "Tutorials", component: ArticlesComponent },
         ],
     },
 ];

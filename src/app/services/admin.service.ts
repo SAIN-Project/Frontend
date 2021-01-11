@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, of } from "rxjs";
-import { map } from "rxjs/operators";
-import { Router } from "@angular/router";
 import { environment } from "../../environments/environment";
 @Injectable({
     providedIn: "root",
@@ -130,5 +128,17 @@ export class AdminService {
     }
     deleteFaq(id: any): Observable<any> {
         return this.http.delete(this.url + "/home/faqs/delete/" + id);
+    }
+    getArticles(): Observable<any> {
+        return this.http.get(this.url + "/home/articles/");
+    }
+    addArticles(data: any): Observable<any> {
+        return this.http.post(this.url + "/home/articles/", data);
+    }
+    updateArticles(id: string, data: any): Observable<any> {
+        return this.http.post(this.url + "/home/articles/update/" + id, data);
+    }
+    deleteArticles(id: any): Observable<any> {
+        return this.http.delete(this.url + "/home/articles/delete/" + id);
     }
 }

@@ -1,0 +1,104 @@
+<div class="container py-8 ">
+    <div class="card bg-light" [hidden]="view!='Articles'">
+        <header class="card-header title text-dark  py-1">
+            <h5 class="card-tittle d-inline">
+                <i class="fa fa-list pr-2"></i> Sain Tutorials
+            </h5>
+            <button (click)="view='new'" class="btn download float-right pointer font-weight-normal font-size-18">
+                    <i class="fa fa-plus fa-lg pr-2"></i>New Article
+            </button>
+
+        </header>
+        <article class="card-body m-0 p-0 py-2 bg-white" >
+            <table datatable  class="table border-dark border table-bordered  table-striped table-sm w-100 p-0 m-0">
+                <thead>
+                    <tr>
+                        <th class="w-10">#</th>
+                        <th>Tittle</th>
+                        <th class="w-20">Action</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of Articles;let i=index;">
+                        <th class="w-10">{{i+1}}</th>
+                        <td >
+                            <a [routerLink]="'/toturials/'+item.title">
+                                <i class="fa fa-external-link-alt  pr-2  pointer"></i> {{item.title}}
+                            </a>
+                        </td>
+                        <td class="w-20">
+                            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                <mat-icon>more_vert</mat-icon>
+                            
+                            </button>
+                            <mat-menu #menu="matMenu" >
+                                <button mat-menu-item (click)="SelectedArticle=item;view='edit';">
+                                  <mat-icon class="fa fa-edit"></mat-icon>
+                                  <span>Edit</span>
+                                </button>
+                                <button mat-menu-item  (click)="SelectedArticle=item;modal.open(template,'modal-md');" >
+                                    <mat-icon class="fa fa-trash text-danger"></mat-icon>
+                                    <span>Delete</span>
+                                </button>
+                            </mat-menu>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+        </article>
+    </div>
+    <div class="card bg-light  " *ngIf="view=='new'" >
+        <header class="card-header title text-dark  py-1">
+            <h5 class="card-tittle d-inline">
+                <i class="fa fa-edit fa-lg pr-2"></i> Post New Article
+            </h5>
+
+        </header>
+        <article class="card-body m-0 p-0  bg-white">
+            <app-new-Articles [Article]="Article"></app-new-Articles>
+        </article>
+        <div class="card-footer py-2 bg-light">
+            <button (click)="submit();" class="btn  download  pointer font-weight-normal font-size-18">
+                <i class="fa fa-upload"></i> Save and Submit
+            </button> 
+            <button (click)="view='Articles'" class="btn  download float-right pointer font-weight-normal font-size-18">
+               <i class="fa fa-backward"></i> back
+            </button> 
+        </div>
+    </div>
+    <div class="card bg-light" *ngIf="view=='edit'">
+        <header class="card-header title text-dark  py-1">
+            <h5 class="card-tittle d-inline">
+                <i class="fa fa-edit fa-lg pr-2"></i> Edit Article
+            </h5>
+
+        </header>
+        <article class="card-body m-0 p-0  bg-white">
+            <app-new-Articles [Article]="SelectedArticle"></app-new-Articles>
+        </article>
+        <div class="card-footer py-2 bg-light">
+            <button (click)="edit();" class="btn  download  pointer font-weight-normal font-size-18">
+                <i class="fa fa-save"></i> Save
+            </button> 
+            <button (click)="view='Articles'" class="btn  download float-right pointer font-weight-normal font-size-18">
+               <i class="fa fa-undo"></i> Cancel
+            </button> 
+        </div>
+    </div>
+</div>
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Delete Article</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body text-center">
+        <p>Do you really want to delete this Article ?</p>
+        <button type="button" class="btn btn-primary-dark-w float-left w-40" (click)="modal.hide()">Cancel</button>
+        <button type="button" class="btn btn-danger float-right w-40" (click)="delete(SelectedArticle._id)">Delete</button>
+    </div>
+</ng-template>

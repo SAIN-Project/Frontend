@@ -1,0 +1,45 @@
+<div class="modal-header bg-light">
+    <h4 class="modal-title pull-left">
+        <i class="fab fa-docker pr-2"></i>Set Sain Docker Container
+    </h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+        <span aria-hidden="true" class="hover-red"><i class="fas fa-times fa-lg mt-2"></i></span>
+    </button>
+</div>
+<div class="modal-body px-3 py-3 m-0 bg-light">
+    <div class="d-flex d-inline-flex justify-content-between w-100 my-5">
+        <mat-form-field appearance="legacy" class="w-40">
+            <mat-label>Local Url</mat-label>
+            <input matInput disabled name="url" [(ngModel)]="this.http.LocalServer.url" required />
+        </mat-form-field>
+        <mat-form-field appearance="legacy" class="w-20">
+            <mat-label>Port</mat-label>
+            <input matInput name="port" [(ngModel)]="this.http.LocalServer.port" required />
+        </mat-form-field>
+    </div>
+    <div *ngIf="isLoading" class="mt-3 mb-6 docker w-100" style="text-align: center">
+        <div class="fa-4x mb-2">
+            <i class="fas fa-spinner fa-pulse text-primary"></i>
+        </div>
+        <div>
+            <span>Connecting to local server</span>
+        </div>
+    </div>
+    <div class="mb-5 docker" *ngIf="error">
+        <p>
+            It seems that your Sain Docker container is not running on your
+            local machine. please make sure that your container is runing and
+            try to re-connect again.click
+            <a routerLink="/toturials/Sain Docker Container" target="_blank">here</a>
+            if your need more help about how to run sain docker container.
+        </p>
+    </div>
+    <div *ngIf="!isLoading" class="d-flex d-inline-flex justify-content-between w-100 my-5">
+        <button (click)="setLocalServer()" class="btn btn-outline-dark font-weight-normal pointer py-0 w-20">
+            <span>Connect</span>
+        </button>
+        <button (click)="modal.hide()" class="btn btn-outline-dark font-weight-normal pointer py-0 w-20">
+            <span> Dissmis</span>
+        </button>
+    </div>
+</div>

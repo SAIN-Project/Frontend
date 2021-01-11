@@ -1,0 +1,25 @@
+$bg-color: #f8f9fa;
+$header-bg-color:#1b1b1b;
+$fontcolor: black;
+$title-light: #a3d133;
+
+.contents{
+    width: 100%;
+    min-height: 70vh;
+    transition: all 0.1s;
+    position: relative;
+    .contents-header{
+      padding: 0px 2px;
+      background: $bg-color;
+      //border-bottom: 2px solid lavender;
+      color:$header-bg-color;
+      height: 60px;
+      line-height: 40px;
+    }
+    .contents-details{
+      background: white;
+      border-radius: 30px;
+      margin-bottom:50px;
+      z-index: 100;
+    } 
+}

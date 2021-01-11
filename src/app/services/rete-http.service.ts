@@ -6,6 +6,7 @@ import {
     HttpRequest,
     HttpResponse,
 } from "@angular/common/http";
+import {RoutingService} from './routing.service'
 import { Observable, of } from "rxjs";
 import { tap } from "rxjs/operators";
 import { Router } from "@angular/router";
@@ -14,12 +15,19 @@ import * as io from "socket.io-client";
 import { Subject } from "rxjs";
 import { environment } from "../../environments/environment";
 import { ProcessStatus } from "../node-editor/Classes/Utility";
+import { IO } from "rete";
+import { SocketDirective } from "rete-angular-render-plugin/socket.directive";
 @Injectable({
     providedIn: "root",
 })
 export class ReteHttpService {
     //url=environment.ApiUrl;
-    url = "http://localhost:8080";
+
+    LocalServer={
+        url:"http://localhost:",
+        port:3000,
+    }
+    url:string = environment.ApiUrl;
     socket;
     socketid;
     socketoutput = [];
@@ -28,16 +36,25 @@ export class ReteHttpService {
     ValidatorErrors = [];
     nodes = [];
     Timer: string = "";
-    ToolEnginesServer = "local";
+    ToolEnginesServer = "Remote";
+    TerminalStreamingMode:boolean=true;
 
-    constructor(private http: HttpClient, private router: Router) {
+    constructor(
+        private http: HttpClient,
+        private router: Router,
+        private routerservice:RoutingService
+    ) {
         this.setupSocketConnection();
     }
     async setupSocketConnection() {
+        await this.socketDisconnect()
         this.socket = await io(this.url);
         this.socket.on("connect", () => {
             this.socketid = this.socket.id;
         });
+    }
+    async socketDisconnect(){
+        if(this.socket) await this.socket.disconnect()
     }
     getChildProcessIndex(id: number) {
         var index = this.CurrentRuningProcess.findIndex(
@@ -138,5 +155,16 @@ export class ReteHttpService {
         return await this.http
             .post(this.url + "/engine/downloadtool/" + id, data)
             .toPromise();
+    }
+    setRemoteServer(){
+        this.ToolEnginesServer="Remote";
+        this.url=environment.ApiUrl;
+        this.setupSocketConnection();
+    }
+    getLocalUrl(){
+        return this.LocalServer.url+this.LocalServer.port;
+    }
+    isLocalServerAlive():Observable<any>{
+        return this.http.get(this.getLocalUrl()+"/")
     }
 }

@@ -32,6 +32,9 @@ input[type="text"],input[type="password"]{
     padding-left: 2rem;
     /*text-align: center;*/
 }
+strong{
+	font-weight: 600;
+}
 .dropdown-border{
     border:2px solid var(--primary);
     border-top: 0px;

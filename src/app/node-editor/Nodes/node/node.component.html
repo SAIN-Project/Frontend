@@ -2,9 +2,16 @@
     <div class="title  border-width-2" [ngClass]="{'title-red':isNodeRunning()}">
         <span (click)="viewDetails();modal.open(template,'modal-xl');" class="float-left"><i class="fa fa-info-circle"
                 aria-hidden="true"></i></span>
-        <div class="d-inline-block">
-            <div *ngIf="isNodeRunning()" class="text-primary spinner-border mx-2"></div>
-            <span class="w-80 overflow-hidden">{{node.name}}</span>
+        <div class="d-inline " style="line-height: 40px;">
+            <div class="font-size-30 d-inline p-0">
+               
+            </div>
+            <div class="ml-1  d-inline">
+                <i *ngIf="isNodeRunning();"  class="fas fa-spinner fa-pulse text-primary font-size-30" aria-hidden="true" style="position: relative;top:-5px;"></i>
+                <span class="w-80 overflow-hidden ml-1" style="position: relative;top:-10px;">{{node.name}}</span>
+            </div>
+            
+           
             <div *ngIf="isCompleted()" class="icheck-greensea  d-inline mx-1">
                 <input class="box" type="checkbox"  checked disabled    [name]="node.name" [id]="node.name+node.id" >
                 <label [for]="node.name+node.id"></label>

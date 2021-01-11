@@ -47,7 +47,7 @@
               "src/assets/css/font-awesome/css/font-electro.css",
               "src/assets/css/bootstrap/icheck-bootstrap.css",
               "node_modules/datatables.net-dt/css/jquery.dataTables.css",
-              "src/styles.css"
+              "src/style.scss"
             ],
             "scripts": [
               "src/assets/js/jquery/jquery.js",

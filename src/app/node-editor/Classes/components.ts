@@ -309,7 +309,6 @@ export class GeneratedComponent extends Component implements AngularComponent {
         this.component = component;
         this.path = component.Categories;
         this.owner=component.owner;
-        console.log(this.name+":"+this.owner)
     }
     async builder(node) {
         this.createInputItems(node);
@@ -319,7 +318,7 @@ export class GeneratedComponent extends Component implements AngularComponent {
     async worker(node, inputs, outputs) {
         var util = new Util(this.http, this.engine, node, inputs, outputs);
         util.Formdata=new FormData();
-        if(this.http.ToolEnginesServer=="local"){
+        if(this.http.ToolEnginesServer=="Local"){
             await util.isToolExistLocaly(this.owner)
         }
         util.Formdata.set("ToolFilePath", this.component.ToolFilePath);

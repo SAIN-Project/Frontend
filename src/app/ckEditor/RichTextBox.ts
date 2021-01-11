@@ -33,6 +33,7 @@ export const config = {
             "exportPdf",
         ],
     },
+    codeSnippet_theme:'pojoaque',
 
     language: "en",
     image: {

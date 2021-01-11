@@ -6,6 +6,8 @@ $title-light: #a3d133;
 $title-light-transparent: rgba(0, 255, 0, 0);
 $color-green: #a3d133;
 $color-danger: #de4437;
+$menu-width:450px;
+$item-width:200px;
 
 #rete {
     width: 100%;
@@ -89,7 +91,7 @@ a {
     display: block;
     position: absolute;
     top: 50%;
-    right: 20px;
+    right: 5px;
     transform: translateY(-50%);
 }
 
@@ -175,27 +177,26 @@ a {
 
     ul {
         &.dropdown-m {
-            width: 200px;
-            border-left: 2px solid rgba(255, 255, 255, 0.1);
+            width: 400px;
             border-right: 2px solid rgba(255, 255, 255, 0.1);
 
             li {
                 left: -2px;
-                width: 100%;
+                width: 50%;
                 padding-left: 0px;
+                border-left: 2px solid rgba(255, 255, 255, 0.1);
                 box-sizing: border-box;
                 font-family: 'Open Sans', sans-serif;
                 transition: all .2s ease;
 
                 a {
-                    padding-left: 20px;
+                    padding-left: 10px;
                     position: relative;
                     text-decoration: none;
                     font-size: 18px;
                     font-weight: 500;
                     display: block;
                     width: 100%;
-                    border-left: 3px solid transparent;
                     cursor: pointer;
                 }
 
@@ -204,10 +205,14 @@ a {
                 }
 
                 .dropdown-menu {
+                    box-sizing: content-box;
+                    position: absolute;
+                    left:-2px;
+                    top:45px;
                     background: lighten($bg-color, 8%);
                     border-top: 0px;
                     border-radius: 0px 0px 5px 5px;
-                    min-width: 200px;
+                    width: 198px !important;
                     color: darken(#fff, 10%);
                     box-shadow: 4px 5px 9px rgba(0, 0, 0, 0.5);
                     border: 2px solid rgba(255, 255, 255, 0.1);
@@ -503,4 +508,15 @@ a {
     &:hover {
         color: darken(red, 2%);
     }
+}
+
+.docker{
+    p{
+        text-align:justify ;
+        font-size: 18px;
+        a{
+            color:blue !important;
+        }  
+    }
+
 }

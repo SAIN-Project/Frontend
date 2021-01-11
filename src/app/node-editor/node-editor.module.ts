@@ -15,6 +15,7 @@ import {
     ListComponent,
     OutputBlackboardComponent,
     NavbarComponent,
+    DockerConnecter
 } from "./Frontend Components/NodeEditorComponents";
 import {
     MyNodeComponent,
@@ -50,6 +51,7 @@ import { ComponentDependency } from "./component-generator/component-dependency"
         ListComponent,
         OutputBlackboardComponent,
         NavbarComponent,
+        DockerConnecter,
         ComponentDependency,
     ],
     imports: [
