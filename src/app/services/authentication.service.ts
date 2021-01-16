@@ -72,7 +72,6 @@ export class AuthenticationService {
 
     public login(user: any): Observable<any> {
         const base = this.http.post("/account/login", user);
-
         const request = base.pipe(
             map((data: TokenResponse) => {
                 if (data.token) {
@@ -81,13 +80,36 @@ export class AuthenticationService {
                 return data;
             })
         );
-
+        return request;
+    }
+    public resetPassword(data:any):Observable<any>{
+        return this.http.post("/account/resetpassword",data)
+    }
+    public validatePasswordChange(data:any):Observable<any>{
+        return this.http.post("/account/validatepasswordreset",data)
+    }
+    public changePassword(data:any):Observable<any>{
+        return this.http.post("/account/changepassword",data)
+    }
+    public resendConfirmationEmail(data:any):Observable<any>{
+        return this.http.post("/account/resendConfirmationemail",data)
+    }
+    public AccounVerification(data:any):Observable<any>{
+        const base= this.http.post("/account/accountverification",data)
+        const request = base.pipe(
+            map((data: TokenResponse) => {
+                if (data.token) {
+                    this.saveToken(data.token);
+                }
+                return data;
+            })
+        );
         return request;
     }
 
     public profile(): Observable<any> {
         return this.http.get(`/account/profile`, {
-            headers: { Authorization: ` ${this.getToken()}` },
+            headers: { Authorization: `${this.getToken()}` },
         });
     }
 

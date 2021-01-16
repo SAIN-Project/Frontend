@@ -23,16 +23,16 @@ import { ArticlesDetailComponent} from "./articles/articles-detail/articles-deta
 import { ArticlesListComponent} from "./articles/articles-list/articles-list.component"
 import { MaterialModule } from "../material";
 import { LoginComponent } from "./account/login/login.component";
-import { RegisterComponent } from "./account/register/register.component";
-
+import { RegisterComponent,AcountVerificationComponent } from "./account/register/register.component";
+import { ResetPasswordComponent,NewPasswordComponent} from "./account/login/reset-password.component"
 import { ContactUsComponent } from "./contact-us/contact-us.component";
 import { AboutSainComponent } from "./about-sain/about-sain.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
     declarations: [
-        LoginComponent,
-        RegisterComponent,
+        LoginComponent,ResetPasswordComponent,NewPasswordComponent,
+        RegisterComponent,AcountVerificationComponent,
         ContactUsComponent,
         AboutSainComponent,
         ProfileComponent,
@@ -40,12 +40,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
         MyDatasetsComponent,
         ComponentRete,
         AccountInfo,
-
         HeaderOneComponent,
         HeaderTwoComponent,
         HeaderThreeComponent,
         FooterComponent,
-
         ArticlesDetailComponent,ArticlesListComponent
     ],
     imports: [

@@ -1,13 +1,39 @@
 <div class="container pt-8">
     <div class="row justify-content-center ">
         <div class="col-md-6">
-            <div *ngIf="isLoading" style="text-align: center;">
-                <app-loading-spinner></app-loading-spinner>
-              </div>
+            <article class="card-body p-10" style="text-align: center;" *ngIf="isLoading">
+                <div class="fa-4x">
+                    <i class="fas fa-spinner fa-pulse text-primary"></i>
+                </div>
+            </article>
             <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="error">
-                <strong>Error!</strong> {{ error }}
-              </div>
-            <div *ngIf="!isLoading" class="card">
+                <p><strong>Error!</strong> {{ error }}</p>
+            </div>
+            <div  class="border px-4 pt-2 mb-4" role="alert" *ngIf="success">
+                <p>
+                    <i class="fa fa-check fa-2x text-primary pr-2"></i> <string>Successfull Sign up!. </string>A verification email has been sent to <span class="text-primary">{{this.registerForm.get('email').value}}</span>. 
+                    It will be expire after one day. If you did not get verification Email click on 
+                    <a class="text-blue pointer" (click)="resendConfirmationEmail();">here </a> veification email.
+                </p>
+            </div>
+            <div class="border px-4 pt-2 mb-4" role="alert" *ngIf="ConfirmationSuccess">
+                <p>
+                    <i class="fa fa-check fa-2x text-primary pr-2"></i>A verification email has been sent to <span class="text-primary">{{this.registerForm.get('email').value}}</span>. 
+                    It will be expire after one day. If you did not get it click  
+                    <a (click)="resendConfirmationEmail();" class="text-blue pointer">here </a> to resend a veification email.
+                </p>
+            </div>
+            <div  class="alert alert-warning alert-dismissible fade show px-4" role="alert" *ngIf="ConfirmationError">
+                <p >
+                    <strong>Error!</strong>{{ConfirmationError}}. Make sure that your username and password are correct and  click  
+                    <a (click)="resendConfirmationEmail();" class="text-blue pointer">here </a> to resend a veification email. If you forgot your password click 
+                    <a class="text-blue" routerLink="/resetpassword">here</a> to reset your password.
+                </p>
+            </div>
+
+
+
+            <div *ngIf="!isLoading" class="card mb-8" [ngClass]="{'d-none':success||ConfirmationSuccess}">
                 <header class="card-header">
                     <h4 class="card-title mt-2"><span class="glyphicon glypghicon-user"><i class="fa fa-fw fa-user"></i> Sign up</span></h4>
                 </header>

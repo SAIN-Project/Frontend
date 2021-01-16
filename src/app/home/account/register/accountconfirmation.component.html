@@ -1,0 +1,22 @@
+<div class="container pt-8">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <article class="card-body p-10" style="text-align: center;" *ngIf="isLoading">
+                <div class="fa-4x">
+                    <i class="fas fa-spinner fa-pulse text-primary"></i>
+                </div>
+            </article>
+            <div class="font-size-18 login mt-5" *ngIf="success">
+                <p class="text-center"> <i class="fa fa-check fa-2x text-primary pr-1"> </i> Your account has been Verified and you loged in succefully! .you will be redirected to 
+                    <a class="text-blue" routerLink="/aboutsain">
+                        Home Page 
+                    </a>
+                    in {{RoutingTime}} Seconds.
+                </p> 
+            </div>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="error">
+                <p><strong>Error!</strong> {{ error }}. Please try again</p>
+            </div>
+        </div>
+    </div>
+</div>
