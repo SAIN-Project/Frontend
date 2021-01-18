@@ -1,0 +1,25 @@
+.form-control-label {
+  width: 100%;
+  border: 2px double var(--primary);
+  padding-left: 20px;
+  vertical-align: middle;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.download {
+  letter-spacing: 0.5px;
+  text-align: left;
+  font-size: 0.9rem !important;
+  border-radius: 5px;
+  color: black;
+  font-weight: 500;
+  height: 30px;
+  padding: 2px 2px;
+  cursor: pointer;
+}
+
+.download:hover {
+  color: #d4dccf;
+}
+/*# sourceMappingURL=new-dataset.component.css.map */

@@ -19,13 +19,16 @@ import { config } from "../RichTextBox";
 export class EditorComponent implements OnInit {
     @ViewChild("el", { static: true }) el: ElementRef;
     @Input() contents: string;
+    @Input() isVisible:boolean;
     Editmode = true;
     @Output() contentUpdate = new EventEmitter();
     public Editor = ClassicEditor;
     public configurations = config;
     constructor(private renderer: Renderer2) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        
+    }
     onChange(frm: NgForm) {
         this.contentUpdate.emit(this.contents);
         this.renderer.setProperty(

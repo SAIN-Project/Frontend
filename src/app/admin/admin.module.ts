@@ -19,7 +19,7 @@ import { TagsComponent } from './admin-datasets/tags/tags.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminSideHeader,AdminTopHeader } from './admin/headers/headers';
 import { AdminFaqsComponent ,AdminNewFaqsComponent} from './admin-home/admin-faqs/admin-faqs.component';
-import { ArticlesComponent,AdminNewArticlesComponent } from './admin-home/articles/articles.component';
+import { ArticlesComponent } from './admin-home/articles/articles.component';
 
 
 @NgModule({
@@ -34,7 +34,7 @@ import { ArticlesComponent,AdminNewArticlesComponent } from './admin-home/articl
     TagsComponent,
     DashboardComponent,
     AdminSideHeader,AdminTopHeader, AdminFaqsComponent,AdminNewFaqsComponent,
-    ArticlesComponent,AdminNewArticlesComponent
+    ArticlesComponent
   ],
   imports: [
     CommonModule,FormsModule, FormsModule,ReactiveFormsModule,BrowserModule, 

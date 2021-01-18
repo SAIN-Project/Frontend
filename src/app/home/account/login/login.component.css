@@ -1,0 +1,16 @@
+.login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+p {
+  text-align: justify;
+  font-size: 16px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+/*# sourceMappingURL=login.component.css.map */

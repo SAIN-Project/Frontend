@@ -23,4 +23,19 @@ export class HomeService {
     getArticleByName(title:string):Observable<any>{
         return this.http.get(this.url + "/home/articles/"+title);
     }
+    getArticleById(id:string):Observable<any>{
+        return this.http.get(this.url + "/home/articlesById/"+id);
+    }
+    searchArticlesByTitle(data:any):Observable<any>{
+        return this.http.post(this.url + "/home/articles/filter",data)
+    }
+    getFaqs(): Observable<any> {
+        return this.http.get(this.url + "/home/faqs/");
+    }
+    addArticles(data: any): Observable<any> {
+        return this.http.post(this.url + "/home/articles/", data);
+    }
+    updateArticles(id: string, data: any): Observable<any> {
+        return this.http.post(this.url + "/home/articles/update/" + id, data);
+    }
 }

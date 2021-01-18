@@ -1,0 +1,29 @@
+<div class="bg-light ">
+    <div class="container py-8">
+        <mat-horizontal-stepper [linear]=true #stepper class="min-height-420 borders-radius-20 border" >
+            <mat-step  [optional]="false" [completed]=true >
+                <ng-template matStepLabel>Basic Information</ng-template>
+                <app-basicinfo [Input]="Article" [isHeaderHidden]=true ></app-basicinfo>
+                <div>
+                    <button mat-button matStepperNext class="float-right">Next &raquo;</button>
+                </div>
+            </mat-step>
+            <mat-step  [optional]="false" [completed]=true>
+                <ng-template matStepLabel>Article Contents</ng-template>
+                <app-editor [contents]="Article.contents" (contentUpdate)="updateContent($event)" ></app-editor>
+                <div class="my-2">
+                    <button mat-button matStepperPrevious>&laquo; Back</button>
+                    <button mat-button matStepperNext class="float-right">Next &raquo;</button>
+                </div>
+            </mat-step>
+            <mat-step  [optional]="false" [completed]="false" >
+                <ng-template matStepLabel>Review and Submit</ng-template>
+                <div  class="d-flex  align-middle justify-content-around w-100 min-height-300 ">
+                    <button class="btn btn-dark width-134  my-auto pointer font-weight-lighter" mat-button matStepperPrevious>&laquo; Back</button>
+                    <button class="btn btn-dark width-134  my-auto pointer font-weight-lighter" (click)="submit()">Submit</button>
+                </div>
+            </mat-step>
+    
+        </mat-horizontal-stepper>
+    </div>
+</div>

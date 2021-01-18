@@ -1,13 +1,12 @@
 <div class="container py-8 ">
-    <div class="card bg-light" [hidden]="view!='Articles'">
+    <div class="card bg-light">
         <header class="card-header title text-dark  py-1">
             <h5 class="card-tittle d-inline">
                 <i class="fa fa-list pr-2"></i> Sain Tutorials
             </h5>
-            <button (click)="view='new'" class="btn download float-right pointer font-weight-normal font-size-18">
+            <button (click)="this.router.navigateTo('/articles/new')" class="btn download float-right pointer font-weight-normal font-size-18">
                     <i class="fa fa-plus fa-lg pr-2"></i>New Article
             </button>
-
         </header>
         <article class="card-body m-0 p-0 py-2 bg-white" >
             <table datatable  class="table border-dark border table-bordered  table-striped table-sm w-100 p-0 m-0">
@@ -17,14 +16,13 @@
                         <th>Tittle</th>
                         <th class="w-20">Action</th>
                     </tr>
-
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of Articles;let i=index;">
                         <th class="w-10">{{i+1}}</th>
                         <td >
-                            <a [routerLink]="'/toturials/'+item.title">
-                                <i class="fa fa-external-link-alt  pr-2  pointer"></i> {{item.title}}
+                            <a [routerLink]="'/tutorials/'+item.name">
+                                <i class="fa fa-external-link-alt  pr-2  pointer"></i> {{item.name}}
                             </a>
                         </td>
                         <td class="w-20">
@@ -33,7 +31,7 @@
                             
                             </button>
                             <mat-menu #menu="matMenu" >
-                                <button mat-menu-item (click)="SelectedArticle=item;view='edit';">
+                                <button mat-menu-item (click)="router.navigateTo('articles/edit/'+item._id)">
                                   <mat-icon class="fa fa-edit"></mat-icon>
                                   <span>Edit</span>
                                 </button>
@@ -50,44 +48,6 @@
 
         </article>
     </div>
-    <div class="card bg-light  " *ngIf="view=='new'" >
-        <header class="card-header title text-dark  py-1">
-            <h5 class="card-tittle d-inline">
-                <i class="fa fa-edit fa-lg pr-2"></i> Post New Article
-            </h5>
-
-        </header>
-        <article class="card-body m-0 p-0  bg-white">
-            <app-new-Articles [Article]="Article"></app-new-Articles>
-        </article>
-        <div class="card-footer py-2 bg-light">
-            <button (click)="submit();" class="btn  download  pointer font-weight-normal font-size-18">
-                <i class="fa fa-upload"></i> Save and Submit
-            </button> 
-            <button (click)="view='Articles'" class="btn  download float-right pointer font-weight-normal font-size-18">
-               <i class="fa fa-backward"></i> back
-            </button> 
-        </div>
-    </div>
-    <div class="card bg-light" *ngIf="view=='edit'">
-        <header class="card-header title text-dark  py-1">
-            <h5 class="card-tittle d-inline">
-                <i class="fa fa-edit fa-lg pr-2"></i> Edit Article
-            </h5>
-
-        </header>
-        <article class="card-body m-0 p-0  bg-white">
-            <app-new-Articles [Article]="SelectedArticle"></app-new-Articles>
-        </article>
-        <div class="card-footer py-2 bg-light">
-            <button (click)="edit();" class="btn  download  pointer font-weight-normal font-size-18">
-                <i class="fa fa-save"></i> Save
-            </button> 
-            <button (click)="view='Articles'" class="btn  download float-right pointer font-weight-normal font-size-18">
-               <i class="fa fa-undo"></i> Cancel
-            </button> 
-        </div>
-    </div>
 </div>
 <ng-template #template>
     <div class="modal-header">
@@ -102,3 +62,4 @@
         <button type="button" class="btn btn-danger float-right w-40" (click)="delete(SelectedArticle._id)">Delete</button>
     </div>
 </ng-template>
+

@@ -1,0 +1,20 @@
+:host {
+  background: #1d1d1d;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: -250;
+  width: 100vw;
+  height: 100vh;
+}
+
+.background {
+  z-index: -5;
+  background-size: 140px 140px;
+  background-image: linear-gradient(to right, transparent 66.64px, #1d1d1d 66.64px, #1d1d1d 73.36px, transparent 73.36px), linear-gradient(to bottom, transparent 66.64px, #1d1d1d 66.64px, #1d1d1d 73.36px, transparent 73.36px), linear-gradient(to right, transparent 67.76px, #363636 67.76px, #363636 72.24px, transparent 72.24px), linear-gradient(to right, transparent 33.88px, #363636 33.88px, #363636 36.12px, transparent 36.12px), linear-gradient(to right, transparent 103.88px, #363636 103.88px, #363636 106.12px, transparent 106.12px), linear-gradient(to right, transparent 137.76px, #363636 137.76px, #363636 142.24px, transparent 142.24px), linear-gradient(to bottom, transparent 67.76px, #363636 67.76px, #363636 72.24px, transparent 72.24px), linear-gradient(to bottom, transparent 33.88px, #363636 33.88px, #363636 36.12px, transparent 36.12px), linear-gradient(to bottom, transparent 103.88px, #363636 103.88px, #363636 106.12px, transparent 106.12px), linear-gradient(to bottom, transparent 137.76px, #363636 137.76px, #363636 142.24px, transparent 142.24px);
+  background-color: #272727;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+/*# sourceMappingURL=node-editor.css.map */

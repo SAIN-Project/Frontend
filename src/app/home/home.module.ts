@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { DataTablesModule } from "angular-datatables";
 import { BrowserModule } from "@angular/platform-browser";
 import { SharedModule } from "../shared/shared.module";
+import { CkEditorModule} from "../ckEditor/ck-editor.module"
 import { HomeRoutingModule } from "./home.routing.module";
 import {
     ProfileComponent,
@@ -21,6 +22,7 @@ import {
 } from "./header/header";
 import { ArticlesDetailComponent} from "./articles/articles-detail/articles-detail.component"
 import { ArticlesListComponent} from "./articles/articles-list/articles-list.component"
+import {EditArticleComponent, NewArticleComponent} from "./articles/new-article/new-article.component"
 import { MaterialModule } from "../material";
 import { LoginComponent } from "./account/login/login.component";
 import { RegisterComponent,AcountVerificationComponent } from "./account/register/register.component";
@@ -28,6 +30,7 @@ import { ResetPasswordComponent,NewPasswordComponent} from "./account/login/rese
 import { ContactUsComponent } from "./contact-us/contact-us.component";
 import { AboutSainComponent } from "./about-sain/about-sain.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {FrequentlyAskedQuestionsComponent} from "./frequently-asked-questions/frequently-asked-questions.component"
 
 @NgModule({
     declarations: [
@@ -44,7 +47,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
         HeaderTwoComponent,
         HeaderThreeComponent,
         FooterComponent,
-        ArticlesDetailComponent,ArticlesListComponent
+        ArticlesDetailComponent,ArticlesListComponent,NewArticleComponent,EditArticleComponent,
+        FrequentlyAskedQuestionsComponent
     ],
     imports: [
         CommonModule,
@@ -56,6 +60,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
         MaterialModule,
         SharedModule,
         DataTablesModule,
+        CkEditorModule
     ],
     exports: [
         HomeRoutingModule,

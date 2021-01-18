@@ -1,0 +1,31 @@
+.contents {
+  width: 100%;
+  min-height: 70vh;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  position: relative;
+}
+
+.contents .contents-header {
+  padding: 0px 2px;
+  background: #f8f9fa;
+  color: #1b1b1b;
+  height: 60px;
+  line-height: 40px;
+}
+
+.contents .contents-details {
+  background: white;
+  border-radius: 30px;
+  margin-bottom: 50px;
+  z-index: 100;
+}
+
+.description {
+  font-size: 17px;
+  padding: 10px 0px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: justify;
+  letter-spacing: 0.55px;
+}
+/*# sourceMappingURL=style.css.map */

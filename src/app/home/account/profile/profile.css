@@ -1,0 +1,145 @@
+.title {
+  line-height: 50px;
+  background: #f8f9fa;
+}
+
+.download {
+  letter-spacing: 0.5px;
+  text-align: left;
+  font-size: 0.9rem !important;
+  border-radius: 5px;
+  color: black;
+  font-weight: 500;
+  height: 30px;
+  padding: 2px 2px;
+  cursor: pointer;
+}
+
+.download:hover {
+  color: #6edf2c;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  -webkit-transition: all ease 0.1s;
+  transition: all ease 0.1s;
+}
+
+a:hover, a:focus {
+  color: inherit;
+  text-decoration: none;
+  -webkit-transition: all ease 0.1s;
+  transition: all ease 0.1s;
+}
+
+.btn {
+  border-radius: 2px;
+  height: 30px;
+  padding: 1px 10px;
+  margin: 0px;
+}
+
+.wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-perspective: 1500px;
+          perspective: 1500px;
+}
+
+.sidebar {
+  min-width: 292px;
+  max-width: 292px;
+  background: #1e1e1e;
+  color: #fff;
+  -webkit-transition: all 0.3s cubic-bezier(0.945, 0.02, 0.27, 0.665);
+  transition: all 0.3s cubic-bezier(0.945, 0.02, 0.27, 0.665);
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+}
+
+.sidebar .sidebar-header {
+  padding: 4px 20px;
+  background: #1b1b1b;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar ul li {
+  line-height: 45px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 16px;
+  font-weight: 500;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.sidebar ul li a {
+  position: relative;
+  width: 100%;
+  text-decoration: none;
+  padding-left: 20px;
+  display: block;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.sidebar ul li a:hover {
+  padding-left: 40px;
+}
+
+.contents {
+  width: 100%;
+  min-height: 80vh;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  background-color: #f8f9fa;
+  padding-bottom: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.active {
+  background: #2b2b2b;
+}
+
+.contents-inner {
+  background: white;
+  padding-bottom: 20px;
+}
+
+.contents-footer {
+  background: white;
+  height: 50px;
+  border-radius: 0 0 50px 50px;
+}
+
+table tbody tr {
+  line-height: 35px;
+}
+
+table tbody tr td {
+  max-height: 35px;
+  padding: 2px 10px;
+}
+
+table tbody tr td:first-of-type {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.components-number {
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  border-radius: 15px;
+  font-size: 14px;
+  vertical-align: middle;
+}
+/*# sourceMappingURL=profile.css.map */

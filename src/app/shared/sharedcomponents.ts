@@ -19,6 +19,7 @@ import {
 })
 export class BasicInformation implements OnInit {
     @Input() Input: any;
+    @Input() isHeaderHidden:boolean;
     constructor() {}
     ngOnInit() {}
     onChange(form: NgForm) {}

@@ -8,3 +8,12 @@
     font-size: 18px;
     font-weight: 400;
 }
+.dropdown-toggle::after {
+    content: '\f0d7';
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 25px;
+}

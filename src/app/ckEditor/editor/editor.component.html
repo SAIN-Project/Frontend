@@ -1,5 +1,5 @@
 <div class="card border-0 ">
-    <header class="card-header border bg-light text-dark  py-2">
+    <header class="card-header border bg-light text-dark  py-2" *ngIf="isVisible">
         <h5 class="card-tittle">
             Contents
             <button class="btn  min-width-50 float-right pointer text-dark  py-1 shadow-on-hover-1"
@@ -15,7 +15,8 @@
     <article class="class-body p-0 " style="min-height: 400px;">
         <form #frm="ngForm" (change)="onChange(frm)">
             <ckeditor [editor]="Editor" [ngClass]="{'d-none':!Editmode}" [config]="configurations" name="contents"
-                [(ngModel)]="contents" required (change)="onChange(frm)"></ckeditor>
+                [(ngModel)]="contents" required (change)="onChange(frm)">
+            </ckeditor>
             <div #el class="p-4 ck-editor5" [ngClass]="{'d-none':Editmode}"></div>
         </form>
     </article>

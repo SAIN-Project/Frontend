@@ -15,6 +15,8 @@ import { AboutSainComponent } from "./about-sain/about-sain.component";
 import { AuthGuardService as AuthGuard } from "../services/auth-guard.service";
 import { ArticlesDetailComponent} from "./articles/articles-detail/articles-detail.component"
 import { ArticlesListComponent} from "./articles/articles-list/articles-list.component"
+import {FrequentlyAskedQuestionsComponent} from "./frequently-asked-questions/frequently-asked-questions.component"
+import {NewArticleComponent,EditArticleComponent} from "./articles/new-article/new-article.component"
 
 const routes: Routes = [
     {
@@ -51,11 +53,11 @@ const routes: Routes = [
         canActivate: [AuthGuard],
     },
     {
-        path:"toturials",
+        path:"tutorials",
         component:ArticlesListComponent
     },
     {
-        path:"toturials/:name",
+        path:"tutorials/:name",
         component:ArticlesDetailComponent
     },
     { path: "login", component: LoginComponent },
@@ -65,6 +67,9 @@ const routes: Routes = [
     { path: "register", component: RegisterComponent },
     { path: "contactus", component: ContactUsComponent },
     { path: "contactus", component: ContactUsComponent },
+    { path: "faqs", component: FrequentlyAskedQuestionsComponent },
+    { path: "articles/new", component: NewArticleComponent},
+    { path: "articles/edit/:id", component: EditArticleComponent},
 ];
 
 @NgModule({

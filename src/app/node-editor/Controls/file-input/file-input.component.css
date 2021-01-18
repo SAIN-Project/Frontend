@@ -1,0 +1,64 @@
+.wrapper {
+  width: 100% !important;
+  border-radius: 20px;
+  height: 35px !important;
+  line-height: 35px;
+  background-color: white;
+  border: 2px solid #d9e0d5;
+}
+
+input {
+  width: 100%;
+  height: 28px !important;
+  padding: 3px 5px;
+  border: 0px;
+  font-size: 14px !important;
+  background: none;
+}
+
+.fa-button {
+  letter-spacing: 0.5px;
+  text-align: center;
+  font-size: 0.9rem !important;
+  font-weight: 500;
+  color: black;
+  height: 25px !important;
+  width: 100%;
+  padding: 0px 0px;
+  margin: 0px 0px;
+  cursor: pointer;
+}
+
+.fa-button:hover {
+  color: #3ce42c;
+}
+
+.file-item {
+  height: 33px;
+  line-height: 33px;
+}
+
+.file-item.item-left {
+  border-right: 2px solid #d9e0d5;
+}
+
+.file-item.item-right {
+  border-left: 2px solid #d9e0d5;
+}
+
+.is-invalid {
+  border: 1px solid #eb131e !important;
+}
+
+.is-invalid .item-right {
+  border-left: 1px solid #eb131e;
+}
+
+.is-invalid .item-left {
+  border-right: 1px solid #eb131e;
+}
+
+.is-invalid input {
+  color: #eb131e !important;
+}
+/*# sourceMappingURL=file-input.component.css.map */

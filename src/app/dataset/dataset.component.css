@@ -1,0 +1,96 @@
+a {
+  color: inherit;
+  text-decoration: none;
+  -webkit-transition: all ease 0.1s;
+  transition: all ease 0.1s;
+}
+
+a:hover, a:focus {
+  color: inherit;
+  text-decoration: none;
+  -webkit-transition: all ease 0.1s;
+  transition: all ease 0.1s;
+}
+
+article {
+  min-height: 150px;
+}
+
+.radius-50 {
+  border-radius: 0px;
+}
+
+.download {
+  letter-spacing: 0.5px;
+  text-align: left;
+  font-size: 0.9rem !important;
+  border-radius: 5px;
+  color: black;
+  font-weight: 500;
+  width: 100%;
+  height: 30px;
+  padding: 2px 2px;
+  cursor: pointer;
+}
+
+.download:hover {
+  color: #d4dccf;
+}
+
+:host ::ng-deep .ck-editor__editable_inline {
+  min-height: 400px;
+}
+
+.header {
+  min-width: 100%;
+  font-size: 20px;
+  font-weight: 2000;
+  height: 50px;
+  line-height: 50px;
+}
+
+.tools-header {
+  background: #f8f9fa;
+  color: #1b1b1b;
+  height: 50px;
+  line-height: 30px;
+}
+
+.wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-perspective: 1500px;
+          perspective: 1500px;
+  min-height: 100%;
+}
+
+.sidebar {
+  min-width: 290px;
+  max-width: 290px;
+  background: #f8f9fa;
+  -webkit-transition: all 0.3s cubic-bezier(0.945, 0.02, 0.27, 0.665);
+  transition: all 0.3s cubic-bezier(0.945, 0.02, 0.27, 0.665);
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+}
+
+.contents {
+  width: 100%;
+  min-height: 70vh;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  position: relative;
+  border-radius: 30px;
+}
+
+.contents .contents-details {
+  background: white;
+  border-radius: 50px;
+  margin-bottom: 50px;
+}
+/*# sourceMappingURL=dataset.component.css.map */

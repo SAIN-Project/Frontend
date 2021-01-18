@@ -1,0 +1,229 @@
+.width-250 {
+  width: 250px;
+}
+
+.width-400 {
+  width: 350px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  -webkit-transition: all ease 0.1s;
+  transition: all ease 0.1s;
+}
+
+a:hover, a:focus {
+  color: inherit;
+  text-decoration: none;
+  -webkit-transition: all ease 0.1s;
+  transition: all ease 0.1s;
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  content: '\f0d7';
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.scrolbar::-webkit-scrollbar {
+  width: 10px;
+  background: #d1c5c5;
+}
+
+.scrolbar::-webkit-scrollbar:hover {
+  width: 12px;
+}
+
+.scrolbar::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.scrolbar::-webkit-scrollbar-track:hover {
+  width: 12px;
+}
+
+.scrolbar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px #636260cc;
+          box-shadow: inset 0 0 6px #636260cc;
+}
+
+.scrolbar::-webkit-scrollbar-thumb:hover {
+  width: 12px;
+  -webkit-box-shadow: inset 0 0 6px #ca1d7ccc;
+          box-shadow: inset 0 0 6px #ca1d7ccc;
+}
+
+.Sidebar {
+  margin: 0;
+  z-index: 10;
+  padding: 0px;
+  background: #eae4e4;
+  color: black;
+  -webkit-transition: all 0.6s cubic-bezier(0.945, 0.02, 0.27, 0.665);
+  transition: all 0.6s cubic-bezier(0.945, 0.02, 0.27, 0.665);
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: 500px;
+}
+
+.Sidebar.active {
+  margin-right: -352px;
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+}
+
+.Sidebar .sidebar-header {
+  padding: 4px 20px;
+  background: #1b1b1b;
+}
+
+.Sidebar ul li {
+  line-height: 40px;
+  padding-left: 0px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-top: 1px solid #8f7373;
+  font-family: 'Open Sans', sans-serif;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+}
+
+.Sidebar ul li p {
+  text-align: justify;
+  color: black;
+  padding: 10px;
+  font-size: 16px;
+  margin: 0;
+}
+
+.Sidebar ul li a {
+  padding-left: 10px;
+  color: black;
+  position: relative;
+  display: block;
+  width: 100%;
+  border-left: 3px solid transparent;
+  cursor: pointer;
+  background: -webkit-gradient(linear, left top, left bottom, from(#eae4e4), to(#f5f3f3));
+  background: linear-gradient(#eae4e4, #f5f3f3);
+  line-height: 32px;
+  color: black;
+  letter-spacing: 1px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 15px;
+  font-weight: 1000;
+}
+
+.Sidebar ul li a, .Sidebar ul li div {
+  border-top: 1px solid #bcacac;
+}
+
+.Sidebar ul li:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.Sidebar table {
+  padding-left: 10px;
+  margin: 0px;
+  width: 100%;
+  background: #eae4e4;
+  overflow-x: hidden;
+}
+
+.Sidebar table thead {
+  background: #dad1d1;
+  line-height: 32px;
+  color: black;
+  letter-spacing: 1px;
+  border-bottom: 1px solid black;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 15px;
+  font-weight: 1000;
+}
+
+.Sidebar table thead tr {
+  border-bottom: 1px solid black;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.Sidebar table thead tr th {
+  padding-left: 15px;
+}
+
+.Sidebar table tbody tr {
+  line-height: 25px;
+  border: 0px;
+  border-bottom: 1px solid black;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+}
+
+.Sidebar table tbody tr td a {
+  background: inherit;
+  border: 0;
+}
+
+.Sidebar table tbody tr td p {
+  text-align: justify;
+  color: black;
+  margin: 0 5px;
+  margin-right: 5px;
+  font-size: 15px;
+}
+
+.Sidebar table tbody tr td:first-of-type {
+  font-size: 16px;
+  width: 35%;
+  padding-left: 12px;
+  border-right: 0.5px solid black;
+}
+
+pre {
+  border-radius: 1px;
+  text-align: left;
+  direction: ltr;
+  -moz-tab-size: 4;
+    -o-tab-size: 4;
+       tab-size: 4;
+  font-style: normal;
+  width: 100%;
+}
+
+pre code {
+  background: unset;
+  padding: 0;
+  border-radius: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  -webkit-transition: all ease 0.1s;
+  transition: all ease 0.1s;
+}
+
+a:hover, a:focus {
+  color: inherit;
+  text-decoration: none;
+  -webkit-transition: all ease 0.1s;
+  transition: all ease 0.1s;
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+/*# sourceMappingURL=node.css.map */

@@ -6,12 +6,7 @@ $title-red: #eb131e ;
 $title-light-transparent: rgba(0, 255, 0,0.0);
 
 :host ::ng-deep .ck-editor__editable_inline {
-    min-height: 400px;
-}
-.container{
-    max-width: 99% !important;
-    overflow-x: hidden;
-
+    min-height: 400px !important;
 }
 a{
     color: inherit;

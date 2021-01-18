@@ -17,7 +17,11 @@ export class ArticlesComponent implements OnInit {
     Article: Article = new Article();
     SelectedArticle = null;
     view = "Articles";
-    constructor(private admin: AdminService, private modal: ModalService) {}
+    constructor(
+        private admin: AdminService, 
+        private modal: ModalService,
+        private router:RoutingService
+    ) {}
 
     ngOnInit() {
         this.getArticles();
@@ -32,40 +36,12 @@ export class ArticlesComponent implements OnInit {
             }
         );
     }
-    submit() {
-        this.admin.addArticles(this.Article).subscribe((response) => {
-            this.Articles = response;
-            this.view = "Articles";
-            this.Article = new Article();
-        });
-    }
+
     delete(id: string) {
         this.admin.deleteArticles(id).subscribe((response) => {
             this.Articles = response;
             this.modal.hide();
         });
     }
-    edit() {
-        this.Articles = [];
-        this.admin
-            .updateArticles(this.SelectedArticle._id, this.SelectedArticle)
-            .subscribe((response) => {
-                this.Articles = response;
-                this.view = "Articles";
-            });
-    }
 }
-@Component({
-    selector: "app-new-Articles",
-    templateUrl: "./templates/new-articles.html",
-    styleUrls: ["../../style.scss"],
-})
-export class AdminNewArticlesComponent implements OnInit {
-    @Input() Article: Article;
-    constructor(private admin: AdminService, private router: RoutingService) {}
 
-    ngOnInit() {}
-    updateContent($event) {
-        this.Article.contents = $event;
-    }
-}

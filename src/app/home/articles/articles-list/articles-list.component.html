@@ -1,8 +1,33 @@
-<div class="bg-light h-100">
-    <div class="container py-5 ">
-        <h1>Article header</h1>
-        <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam officiis, veniam quidem cupiditate esse nisi ratione sapiente voluptas, non ex asperiores explicabo facere ea. Nobis recusandae saepe maxime tempora praesentium, culpa ab excepturi? Neque doloribus consectetur magnam. Aut explicabo quasi et quia sed cupiditate odio eum id. Eos, voluptatem nam. 
-        </p>
+<div class="bg-light ">
+    <div class="container py-3 pb-5">
+        <div class="contents">
+            <div class="d-flex d-inline-flex w-100 justify-content-between" >
+                <h4 class=" mb-4 mt-3 ml-2">
+                    Sain Tutorials 
+                 </h4>
+                 <div>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Search</mat-label>
+                        <mat-icon matPrefix
+                            style="position:relative;top:5px;margin-right: 10px;font-size:25px;">search
+                        </mat-icon>
+                        <input matInput type="search" (change)="filterArticles($event)" name="title">
+                        
+                    </mat-form-field>
+                    <a routerLink="/articles/new" class="ml-5  position-relative top-8 font-size-16" >
+                        <i class="fa fa-lg fa-plus-circle pr-2 "></i>Post Article
+                    </a>
+
+                 </div>
+
+            </div>
+
+            <ul class="list-unstyled mx-1 border-bottom">
+                <li *ngFor="let item of Articles;let i=index;" class="font-size-20  py-3 px-3 border border-bottom-0 ">
+                    <i  class="fa fa-circle font-size-17 mr-4"></i> <a [routerLink]="'/tutorials/'+item.name">{{item.name}}</a>
+                </li>
+            </ul>
+
+        </div>
     </div>
 </div>
