@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
+import { environment } from "../../environments/environment";
 
 export interface UserDetails {
     _id: string;
@@ -20,11 +21,11 @@ interface TokenResponse {
 @Injectable({
     providedIn: "root",
 })
-export class AuthenticationService {
+export class AuthenticationService {    
     private token: string;
 
     constructor(private http: HttpClient, private router: Router) {}
-
+    
     private saveToken(token: string): void {
         localStorage.setItem("usertoken", token);
         this.token = token;
@@ -91,8 +92,8 @@ export class AuthenticationService {
     public changePassword(data:any):Observable<any>{
         return this.http.post("/account/changepassword",data)
     }
-    public resendConfirmationEmail(data:any):Observable<any>{
-        return this.http.post("/account/resendConfirmationemail",data)
+    public resendConfirmationEmail(data:any):Observable<any>{        
+        return this.http.post("/account/resendConfirmationemail",data);
     }
     public AccounVerification(data:any):Observable<any>{
         const base= this.http.post("/account/accountverification",data)
