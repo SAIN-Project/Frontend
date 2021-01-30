@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
+import { environment } from "../../environments/environment";
 
 export interface UserDetails {
     _id: string;
@@ -21,6 +22,7 @@ interface TokenResponse {
     providedIn: "root",
 })
 export class AuthenticationService {
+    url=environment.ApiUrl;
     private token: string;
 
     constructor(private http: HttpClient, private router: Router) {}
@@ -67,11 +69,11 @@ export class AuthenticationService {
     }
 
     public register(user: any): Observable<any> {
-        return this.http.post("/account/register", user);
+        return this.http.post(this.url+"/account/register", user);
     }
 
     public login(user: any): Observable<any> {
-        const base = this.http.post("/account/login", user);
+        const base = this.http.post(this.url+"/account/login", user);
         const request = base.pipe(
             map((data: TokenResponse) => {
                 if (data.token) {
@@ -83,19 +85,19 @@ export class AuthenticationService {
         return request;
     }
     public resetPassword(data:any):Observable<any>{
-        return this.http.post("/account/resetpassword",data)
+        return this.http.post(this.url+"/account/resetpassword",data)
     }
     public validatePasswordChange(data:any):Observable<any>{
-        return this.http.post("/account/validatepasswordreset",data)
+        return this.http.post(this.url+"/account/validatepasswordreset",data)
     }
     public changePassword(data:any):Observable<any>{
-        return this.http.post("/account/changepassword",data)
+        return this.http.post(this.url+"/account/changepassword",data)
     }
     public resendConfirmationEmail(data:any):Observable<any>{
-        return this.http.post("/account/resendConfirmationemail",data)
+        return this.http.post(this.url+"/account/resendConfirmationemail",data)
     }
     public AccounVerification(data:any):Observable<any>{
-        const base= this.http.post("/account/accountverification",data)
+        const base= this.http.post(this.url+"/account/accountverification",data)
         const request = base.pipe(
             map((data: TokenResponse) => {
                 if (data.token) {
@@ -108,7 +110,7 @@ export class AuthenticationService {
     }
 
     public profile(): Observable<any> {
-        return this.http.get(`/account/profile`, {
+        return this.http.get(this.url+`/account/profile`, {
             headers: { Authorization: `${this.getToken()}` },
         });
     }
