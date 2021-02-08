@@ -34,3 +34,19 @@ $title-light: #a3d133;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     text-align: justify;
 }
+
+.article-list{
+    background-color: white;
+    border-radius: 25px;
+    padding: 10px 0px;
+    .author{
+        position: relative;
+        right: 100px;
+    }
+    .description{
+        font-size: 17px;
+        padding: 15px;
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        text-align: justify;
+    }
+}

@@ -1,8 +1,14 @@
 <div class="bg-light">
     <div class="container">
         <div  class="contents py-3 bg-light ">
-            <div class="contents-header">
-                <h4 class="font-weight-medium">{{title}}</h4>
+            <div  *ngIf="Article">
+                <div class="d-flex d-inline-flex w-100 justify-content-between mb-1">
+                    <app-breadcrumb [items]="['Sain','Tutorials',title]" class="mb-2" ></app-breadcrumb>
+                    <div class="float-right font-size-17 mt-2">
+                       <span class="text-info pl-2">@ {{Article.author}}</span>
+                    </div>
+                </div>
+
             </div>
             <div class="contents-details border border-width-2">
                 <div class="py-4 px-4 min-height-300">

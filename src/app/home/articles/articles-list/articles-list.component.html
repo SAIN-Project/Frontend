@@ -2,9 +2,7 @@
     <div class="container py-3 pb-5">
         <div class="contents">
             <div class="d-flex d-inline-flex w-100 justify-content-between" >
-                <h4 class=" mb-4 mt-3 ml-2">
-                    Sain Tutorials 
-                 </h4>
+                <app-breadcrumb [items]="['Sain','Tutorials']" ></app-breadcrumb>
                  <div>
                     <mat-form-field appearance="legacy">
                         <mat-label>Search</mat-label>
@@ -22,9 +20,20 @@
 
             </div>
 
-            <ul class="list-unstyled mx-1 border-bottom">
-                <li *ngFor="let item of Articles;let i=index;" class="font-size-20  py-3 px-3 border border-bottom-0 ">
-                    <i  class="fa fa-circle font-size-17 mr-4"></i> <a [routerLink]="'/tutorials/'+item.name">{{item.name}}</a>
+            <ul class="list-unstyled ">
+                <li *ngFor="let item of Articles;let i=index;" class="font-size-20  py-3 px-1">
+                    <div class="article-list border">
+                        <div class="px-3">
+                            <a class="text-blue" [routerLink]="'/tutorials/'+item.name">{{item.name}}</a>
+                            <div class="float-right">
+                                <strong class="font-weight-normal"> @author :</strong><span class="text-info pl-2">{{item.author}}</span>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <p class="description">{{item.description}}</p>
+                    </div>
+                    
                 </li>
             </ul>
 
