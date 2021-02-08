@@ -21,12 +21,13 @@ interface TokenResponse {
 @Injectable({
     providedIn: "root",
 })
+    
 export class AuthenticationService {
     url=environment.ApiUrl;
     private token: string;
 
     constructor(private http: HttpClient, private router: Router) {}
-
+    
     private saveToken(token: string): void {
         localStorage.setItem("usertoken", token);
         this.token = token;
@@ -93,6 +94,8 @@ export class AuthenticationService {
     public changePassword(data:any):Observable<any>{
         return this.http.post(this.url+"/account/changepassword",data)
     }
+
+
     public resendConfirmationEmail(data:any):Observable<any>{
         return this.http.post(this.url+"/account/resendConfirmationemail",data)
     }
