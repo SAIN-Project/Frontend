@@ -55,8 +55,12 @@ export class ToolsComponentsList implements OnInit {
     getMyTools() {
         this.toolservice.getMyTools().subscribe((response) => {
             this.MyComponents = response;
-            this.Dt.setDtElement(this.dtElement);
-            this.Dt.triggerNext();
+
+            if(this.MyComponents.length){
+                this.Dt.setDtElement(this.dtElement);
+                this.Dt.triggerNext();
+            }
+
         });
     }
     delete(id: string) {
@@ -128,7 +132,7 @@ export class MyDatasetsComponent implements OnInit {
     Dt: DatatableUtil = new DatatableUtil();
     @ViewChild(DataTableDirective, { static: false })
     dtElement: DataTableDirective;
-    MyDatasets: any[] = null;
+    MyDatasets: any[] = [];
     SelectedDataset = null;
     constructor(
         private dataservice: DatasetService,
@@ -137,10 +141,14 @@ export class MyDatasetsComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.dataservice.getDatasets().subscribe(
+        this.dataservice.getMyDatasets().subscribe(
             (response) => {
                 this.MyDatasets = response;
-                this.Dt.triggerNext();
+                console.log(response)
+                if(this.MyDatasets.length){
+                    this.Dt.setDtElement(this.dtElement);
+                    this.Dt.triggerNext();
+                }
             },
             (error) => {
                 console.log(error);

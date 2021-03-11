@@ -48,7 +48,7 @@
                     <button (click)="fileInput.click();" class="btn download float-right pointer font-weight-normal font-size-18 px-3">
                        <i class="fa fa-file-import"></i> Import Tools
                     </button>
-                    <button (click)="modal.open(DeleteAll,'modal-md');" class="btn download float-right pointer font-weight-normal font-size-18 px-3">
+                    <button hidden (click)="modal.open(DeleteAll,'modal-md');" class="btn download float-right pointer font-weight-normal font-size-18 px-3">
                         <i class="fa fa-trash text-danger"></i> Delete All
                      </button>
                 </header>

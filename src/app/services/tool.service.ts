@@ -21,7 +21,7 @@ export class ToolService {
         return this.http.get(this.url + "/tool/components");
     }
     getMyTools(): Observable<any> {
-        return this.http.get(this.url + "/tool/components");
+        return this.http.get(this.url + "/tool/mycomponents");
     }
 
     getFilteredTools(filter: any): Observable<any> {

@@ -24,6 +24,9 @@ export class DatasetService {
     getDatasets(): Observable<any> {
         return this.http.get(this.url + "/dataset");
     }
+    getMyDatasets(): Observable<any> {
+        return this.http.get(this.url + "/dataset/mydatasets");
+    }
     addDataset(data: any): Observable<HttpEvent<any>> {
         const req = new HttpRequest("POST", this.url + "/dataset/add", data, {
             reportProgress: true,

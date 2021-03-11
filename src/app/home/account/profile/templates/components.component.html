@@ -11,8 +11,8 @@
                 </button>
 
             </header>
-            <article class="class-body m-0 p-0 py-2">
-                <table datatable [dtTrigger]="Dt.dtTrigger" class="table border-dark border table-bordered table-striped table-sm w-100 p-0 m-0">
+            <article class="class-body m-0 p-0 py-2" *ngIf="MyComponents.length!=0">
+                <table datatable  class="table border-dark border table-bordered table-striped table-sm w-100 p-0 m-0">
                     <thead>
                         <tr scope="row" class="height-40">
                             <th class="w-10">#</th>
@@ -63,6 +63,13 @@
                         </tr>
                     </tbody>
                 </table>
+            </article>
+            <article class="class-body m-0 p-0 py-2 m-auto" *ngIf="MyComponents.length==0">
+                <p class="font-size-20 text-justify w-100 justify-content-center"> You dont have any uploaded tool in sain. To add new tool please click on                   
+                <a class="text-blue" [routerLink]="'/tool/add/'">
+                    Add Tool
+                </a> .  </p>
+
             </article>
         </div>
     </div>
