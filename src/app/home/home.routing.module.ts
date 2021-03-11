@@ -68,8 +68,8 @@ const routes: Routes = [
     { path: "contactus", component: ContactUsComponent },
     { path: "contactus", component: ContactUsComponent },
     { path: "faqs", component: FrequentlyAskedQuestionsComponent },
-    { path: "articles/new", component: NewArticleComponent},
-    { path: "articles/edit/:id", component: EditArticleComponent},
+    { path: "articles/new", component: NewArticleComponent,canActivate: [AuthGuard]},
+    { path: "articles/edit/:id", component: EditArticleComponent,canActivate: [AuthGuard]},
 ];
 
 @NgModule({
