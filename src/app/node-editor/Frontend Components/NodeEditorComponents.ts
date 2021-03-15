@@ -196,6 +196,7 @@ export class NavbarComponent implements AfterViewInit ,OnInit {
         private toolservice:ToolService,
         private http:ReteHttpService,
         private modal :ModalService,
+        private router:RoutingService
     ){}
     
     ngOnInit(){
@@ -297,6 +298,18 @@ export class NavbarComponent implements AfterViewInit ,OnInit {
         if(this.http.ToolEnginesServer!='Local')
             this.modal.open(template)
 
+    }
+    ExitEditor(exit){
+        if(this.http.CurrentRuningProcess.length==0){
+            this.modal.open(exit,'modal-md')
+        }
+        else{
+            this.router.navigateTo('/tool/tools')
+        }
+    }
+    confirmExit(){
+        this.router.navigateTo('/tool/tools')
+        this.modal.hide();
     }
 }
 

@@ -14,9 +14,10 @@
                 </a>
                 <div class="dropdown-menu   py-0 my-0"  aria-labelledby="navbarDropdown">
                     <div class="dropdown-item " (click)="clear();" ><i class="fas fa-file-import pr-2 "></i>New</div>
-                    <div class="dropdown-item " (click)="fileInput.click();" ><i class="fas fa-file-import pr-2 "></i>Import Expirement</div>
-                    <div class="dropdown-item " (click)="exportToJson()"><i class="fas fa-file-export pr-2"></i>Export Expirement</div>
-                    <div class="dropdown-item " (click)="modal.open(samples)"><i class="fas fa-file-export pr-2"></i>Sample Expirements</div>
+                    <div class="dropdown-item " (click)="ExitEditor(Exit);" ><i class="fas fa-file-import pr-2 "></i>Exit</div>
+                    <div class="dropdown-item " (click)="fileInput.click();" ><i class="fas fa-file-import pr-2 "></i>Import Experiment</div>
+                    <div class="dropdown-item " (click)="exportToJson()"><i class="fas fa-file-export pr-2"></i>Export Experiment</div>
+                    <div class="dropdown-item " (click)="modal.open(samples)"><i class="fas fa-file-export pr-2"></i>Sample Experiments</div>
     
                 </div>
             </li>
@@ -46,7 +47,7 @@
         <ul class="nav navbar-nav">
             <li class="nav-item" (click)="onZoomChange(-1)" ><div class="menubar-icon px-1" ><i class="fas fa-search-minus"></i></div></li>
             <li class="nav-item"><input type="range" [value]="CurrentZoomIntensity" class="custom-range pt-3" [(ngModel)]="CurrentZoomIntensity"
-                min="1" max="20"  step="1" (change)="onRangeChange($event.target.value)"  [disabled]="!hasNodes()"/></li>
+                min="1" max="20"  step="1" (change)="Editor.onRangeChange($event.target.value)"  [disabled]="!hasNodes()"/></li>
             <li class="nav-item"  (click)="onZoomChange(1)"><div class="menubar-icon px-1"><i class="fas fa-search-plus"></i></div></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -63,7 +64,6 @@
       <h4 class="modal-title pull-left text-danger">Errors!</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
         <span aria-hidden="true" class="hover-red"><i class="fas fa-times fa-lg mt-2"></i></span>
-        
       </button>
     </div>
     <div class="modal-body modal-error p-0">
@@ -83,7 +83,7 @@
 
 <ng-template #samples>
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Expirements Samples</h4>
+      <h4 class="modal-title pull-left">Sample Experiments</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -117,4 +117,18 @@
 </ng-template>
 <ng-template #docker>
     <app-docker-connector></app-docker-connector>
+</ng-template>
+
+<ng-template #Exit>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Exit</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body text-center">
+      <p>Do you really want to exit from the editor ?</p>
+      <button type="button" class="btn btn-primary-dark-w float-left w-40" (click)="modal.hide()">Cancel</button>
+      <button type="button" class="btn btn-danger float-right w-40" (click)="confirmExit()">Exit</button>
+    </div>
 </ng-template>
