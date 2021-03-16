@@ -300,7 +300,7 @@ export class NavbarComponent implements AfterViewInit ,OnInit {
 
     }
     ExitEditor(exit){
-        if(this.http.CurrentRuningProcess.length==0){
+        if(this.Editor.Editor.nodes.length>0){
             this.modal.open(exit,'modal-md')
         }
         else{
