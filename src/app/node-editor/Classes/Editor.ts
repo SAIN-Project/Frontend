@@ -15,7 +15,7 @@ export class Editor{
     isProcessing:boolean=false;
     StartTime:any;
     ExecutionTime:string="00:00:00";
-    DefaultZoom=10;
+    DefaultZoom=8;
 
     constructor(private http:ReteHttpService){
 

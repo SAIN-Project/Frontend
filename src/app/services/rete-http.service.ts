@@ -3,6 +3,7 @@ import {
     HttpClient,
     HttpEvent,
     HttpEventType,
+    HttpHeaders,
     HttpRequest,
     HttpResponse,
 } from "@angular/common/http";
@@ -64,8 +65,15 @@ export class ReteHttpService {
     }
 
     async runToolOnBackend(route, data: any) {
+        const httpOptions = {
+            headers: new HttpHeaders({ 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Access-Control-Allow-Origin':'*'
+            })
+          };
         return await this.http
-            .post<any>(this.url + "/engine/" + route, data)
+            .post<any>(this.url + "/engine/" + route, data,httpOptions)
             .toPromise();
     }
     async UploadFileToBackend(

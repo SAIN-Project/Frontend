@@ -25,8 +25,10 @@ export class AppInterceptorService implements HttpInterceptor {
                 setHeaders: {
                     Authorization: currentUser.email,
                 },
+            
                 headers: req.headers.append("userid", currentUser._id),
             });
+            console.log(req.headers.getAll)
         }
         return next.handle(newReq).pipe(catchError(this.errorHandler));
     }

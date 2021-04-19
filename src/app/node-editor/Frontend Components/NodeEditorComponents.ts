@@ -190,8 +190,8 @@ export class NavbarComponent implements AfterViewInit ,OnInit {
     @Input() Editor:Editor
     
     private Samples:any=[]
-    CurrentZoomIntensity=10;
-    defaultzoom=10;
+    CurrentZoomIntensity=8;
+
     constructor(
         private toolservice:ToolService,
         private http:ReteHttpService,
@@ -258,8 +258,9 @@ export class NavbarComponent implements AfterViewInit ,OnInit {
     }
 
     onZoomChange(value){
+   
         if(!this.hasNodes()) return;
-        if((this.CurrentZoomIntensity==1 && value==-1)||(this.CurrentZoomIntensity==20 && value==1)) return;
+        if((this.CurrentZoomIntensity==1 && value==-1)||(this.CurrentZoomIntensity==16 && value==1)) return;
         this.CurrentZoomIntensity+=value;
         this.Editor.onRangeChange(this.CurrentZoomIntensity)
     }
