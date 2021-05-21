@@ -1,4 +1,171 @@
-<app-breadcrumb [items]="['Home','Profile','Account','User Details']"></app-breadcrumb>
-<div class="container align-items-center">
-    <h4 class="justify-content-center mx-auto ">The Account Page Under Development.. Coming Soon</h4>
+<div class="container px-2"  *ngIf="editmode==false">
+    <div class="d-flex d-inline-flex w-100 justify-content-between">
+        <app-breadcrumb [items]="['Home','Profile','Account','User Details']"></app-breadcrumb>
+        <div>
+            <button class="btn download w-auto font-weight-normal font-size-18 pointer float-right " 
+            (click)="editmode=true">
+                <i class="fas fa-edit  px-1 pt-1 fa-lg "></i>Edit Profile
+            </button>
+        </div>
+    </div>
+    <div class="row gutters-sm" *ngIf="user">
+        <div class="col-md-4 mb-3">
+    
+            <div class="card-body">
+                <div class="d-flex flex-column align-items-center text-center">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle"
+                        width="150">
+                    <div class="mt-3">
+                        <h4>{{this.user.firstname+' '+this.user.lastname}}</h4>
+                        <p class="text-secondary mb-3">{{this.user.title}}</p>
+                        <button class="btn btn-primary btn-block pointer">contact</button>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-md-8 mt-9">
+            <div class="card py-0">
+                <div class="card-body py-0">
+                    <div class="row border-bottom py-2">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Full Name</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            : {{this.user.firstname+ ' '+this.user.lastname}}
+                        </div>
+                    </div>
+                    <div class="row border-bottom py-2">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Email</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            : {{this.user.email}}
+                        </div>
+                    </div>
+    
+                    <div class="row border-bottom py-2">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Phone</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            : {{this.user.phone}}
+                        </div>
+                    </div>
+                    <div class="row border-bottom py-2">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">University</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            : {{this.user.university}}
+                        </div>
+                    </div>
+                    <div class="row border-bottom py-2">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Job Title</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            : {{this.user.title}}
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Website</h6>
+                        </div>
+                        <div class="col-sm-9 text-blue ">
+                            : {{this.user.website}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mt-5 ">
+        <header class="card-header  py-2 ">
+            <h4 class="card-title my-2">Bibliography</h4>
+        </header>
+    
+        <article class="cardbody">
+            <p class="p-3 font-size-15 "> {{this.user.bio}}</p>
+        </article>
+    </div>
+
 </div>
+
+<div class="container px-2 "  *ngIf="editmode==true">
+    <div class="d-flex d-inline-flex w-100 justify-content-between mb-3">
+        <app-breadcrumb [items]="['Home','Profile','Account','Edit User Details']"></app-breadcrumb>
+        <div>
+            <button class="btn download w-auto font-weight-normal font-size-18 pointer float-right " 
+            (click)="editmode=false">
+                <i class="fas fa-arrow-circle-left  px-1 pt-1 fa-lg "></i>Back
+            </button>
+        </div>
+    </div>
+    <div class="px-2" *ngIf="user">
+        <form #frm="ngForm" >
+            <div class="d-flex d-inline-flex justify-content-between w-100">
+                <mat-form-field appearance="legacy" class="w-40">
+                    <mat-label>First Name</mat-label>
+                    <input matInput placeholder="First name" name="firstname" [(ngModel)]="this.user.firstname"
+                        required>
+                </mat-form-field>
+                <mat-form-field appearance="legacy" class="w-40">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput placeholder="Last name" name="lastname" [(ngModel)]="this.user.lastname"
+                        required>
+                </mat-form-field>
+
+            </div>
+            <div>
+                <mat-form-field appearance="legacy" class="w-40">
+                    <mat-label>Phone</mat-label>
+                    <input matInput placeholder="888-888-8888" name="phone" [(ngModel)]="this.user.phone"
+                        required>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="legacy" class="w-40">
+                    <mat-label>Univesity or Organization</mat-label>
+                    <input matInput placeholder="" name="university" [(ngModel)]="this.user.university"
+                        required>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="legacy" class="w-40">
+                    <mat-label>Job Title</mat-label>
+                    <input matInput placeholder="" name="title" [(ngModel)]="this.user.title">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="legacy" class="w-40">
+                    <mat-label>Website</mat-label>
+                    <input matInput placeholder="" name="website" [(ngModel)]="this.user.website">
+                </mat-form-field>
+            </div>
+            <div class="mt-5">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Bibliography</mat-label>
+                    <textarea matInput placeholder="write something about yourself" name="bio" [(ngModel)]="this.user.bio"
+                        rows="5" required></textarea>
+                </mat-form-field>
+            </div>
+            <div class="d-flex d-inline-flex justify-content-between w-100">
+                <button class="btn download w-auto font-weight-normal font-size-18 pointer float-right " 
+                    (click)="edit()">
+                    <i class="fas fa-save  pr-1 pt-1 fa-lg "></i>Save
+                </button>
+                <button class="btn download w-auto font-weight-normal font-size-18 pointer float-right " 
+                    (click)="editmode=false">
+                    <i class="fas fa-arrow-left  pr-1 pt-1 fa-lg "></i>Cancel
+                </button>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+

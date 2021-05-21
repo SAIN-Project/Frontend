@@ -141,4 +141,17 @@ export class AdminService {
     deleteArticles(id: any): Observable<any> {
         return this.http.delete(this.url + "/home/articles/delete/" + id);
     }
+
+    getToolslog(): Observable<any> {
+        return this.http.get(this.url + "/admin/toollogs/");
+    }
+    getDatasetslog(): Observable<any> {
+        return this.http.get(this.url + "/admin/datasetlogs/");
+    }
+    getExperimentslog(): Observable<any> {
+        return this.http.get(this.url + "/admin/expeimentlogs/");
+    }
+    getExperimentslogMessage(id:any): Observable<any> {
+        return this.http.get(this.url + "/admin/expeimentlogmessage/"+id);
+    }
 }

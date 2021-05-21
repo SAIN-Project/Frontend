@@ -1,0 +1,42 @@
+<div class="container py-8">
+
+    <div class="card bg-light h-100">
+        <header class="card-header  title bg-light py-1">
+            <h5 class="card-tittle">
+                    <i class="fa fa-list pr-2"></i>Tools Log History
+            </h5>
+        </header>
+        <article class="class-body m-0 p-0 py-2 bg-white">
+            <table  datatable   [dtOptions]="dtOptions" [dtTrigger]="Dt.dtTrigger" class="table border-dark border table-bordered table-striped table-sm w-100 p-0 m-0">
+                <thead>
+                    <tr scope="row" >
+                        <th class="w-10">#</th>
+                        <th>User</th>
+                        <th >Date</th>
+                        <th>Tool</th>   
+                        <th>Result</th>
+                        <th>Output Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr scope="row" *ngFor="let item  of logs; let j=index;" >
+                        <td>{{j+1}}</td>
+                        <td class=" font-size-16">{{item.user}}</td>
+                        <td class=" font-size-16">{{item.date}}</td>
+                        <td class=" font-size-16">{{item.tool}}</td>
+                        <td class=" font-size-16">{{item.output}}</td>
+                        <td class=" font-size-16 p-0">
+                            <button class="btn btn-primary btn-block pointer m-0 p-0 underline-on-hover" 
+                                *ngIf="item.output=='success'" (click)="showMessage(item._id)">View Message
+                            </button>
+                            <button class="btn btn-red btn-block pointer m-0 p-0 underline-on-hover" 
+                                *ngIf="item.output=='fail'" (click)="showMessage(item._id)">View Message
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+    </div>
+
+</div>

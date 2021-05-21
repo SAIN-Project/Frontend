@@ -13,6 +13,9 @@ import { TagsComponent } from "./admin-datasets/tags/tags.component";
 import { AdminFaqsComponent } from "./admin-home/admin-faqs/admin-faqs.component";
 import { ArticlesComponent } from './admin-home/articles/articles.component';
 import { AuthGuardService as AuthGuard } from "../services/admin-guard.service";
+import { ToolsLogComponent } from './Logs/tools-log/tools-log.component';
+import { DatasetsLogsComponent } from './Logs/datasets-logs/datasets-logs.component';
+import { ExperimentLogComponent } from './Logs/experiment-log/experiment-log.component';
 const routes: Routes = [
     {
         path: "admin",
@@ -55,6 +58,22 @@ const routes: Routes = [
             },
             { path: "Faqs", component: AdminFaqsComponent,canActivate: [AuthGuard] },
             { path: "Tutorials", component: ArticlesComponent ,canActivate: [AuthGuard]},
+
+            {
+                path: "Toollog",
+                component: ToolsLogComponent,
+                canActivate: [AuthGuard],
+            },
+            {
+                path: "Datasetlog",
+                component: DatasetsLogsComponent,
+                canActivate: [AuthGuard],
+            },
+            {
+                path: "Experimentlog",
+                component: ExperimentLogComponent,
+                canActivate: [AuthGuard],
+            },
         ],
     },
 ];

@@ -65,15 +65,8 @@ export class ReteHttpService {
     }
 
     async runToolOnBackend(route, data: any) {
-        const httpOptions = {
-            headers: new HttpHeaders({ 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Access-Control-Allow-Origin':'*'
-            })
-          };
         return await this.http
-            .post<any>(this.url + "/engine/" + route, data,httpOptions)
+            .post<any>(this.url + "/engine/" + route, data)
             .toPromise();
     }
     async UploadFileToBackend(

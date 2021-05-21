@@ -20,6 +20,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminSideHeader,AdminTopHeader } from './admin/headers/headers';
 import { AdminFaqsComponent ,AdminNewFaqsComponent} from './admin-home/admin-faqs/admin-faqs.component';
 import { ArticlesComponent } from './admin-home/articles/articles.component';
+import { ToolsLogComponent } from './Logs/tools-log/tools-log.component';
+import { DatasetsLogsComponent } from './Logs/datasets-logs/datasets-logs.component';
+import { ExperimentLogComponent } from './Logs/experiment-log/experiment-log.component';
 
 
 @NgModule({
@@ -34,7 +37,10 @@ import { ArticlesComponent } from './admin-home/articles/articles.component';
     TagsComponent,
     DashboardComponent,
     AdminSideHeader,AdminTopHeader, AdminFaqsComponent,AdminNewFaqsComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    ToolsLogComponent,
+    DatasetsLogsComponent,
+    ExperimentLogComponent
   ],
   imports: [
     CommonModule,FormsModule, FormsModule,ReactiveFormsModule,BrowserModule, 

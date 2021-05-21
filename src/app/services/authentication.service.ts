@@ -4,6 +4,7 @@ import { Observable, of } from "rxjs";
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { environment } from "../../environments/environment";
+import { post } from "jquery";
 
 export interface UserDetails {
     _id: string;
@@ -112,11 +113,13 @@ export class AuthenticationService {
         return request;
     }
 
-    public profile(): Observable<any> {
-        return this.http.get(this.url+`/account/profile`, {
-            headers: { Authorization: `${this.getToken()}` },
-        });
+    public getUserProfile(): Observable<any> {
+        return this.http.get(this.url+`/account/profile`);
     }
+    public updateUserProfile(data:any): Observable<any> {
+        return this.http.post(this.url+`/account/profile`,data);
+    }
+    
 
     public logout(): void {
         this.token = null;

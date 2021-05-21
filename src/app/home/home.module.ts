@@ -31,6 +31,7 @@ import { ContactUsComponent } from "./contact-us/contact-us.component";
 import { AboutSainComponent } from "./about-sain/about-sain.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {FrequentlyAskedQuestionsComponent} from "./frequently-asked-questions/frequently-asked-questions.component"
+import {SainTeamComponent} from "./pages/sain-team/sain-team.component"
 
 @NgModule({
     declarations: [

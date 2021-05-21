@@ -17,6 +17,7 @@ import { ArticlesDetailComponent} from "./articles/articles-detail/articles-deta
 import { ArticlesListComponent} from "./articles/articles-list/articles-list.component"
 import {FrequentlyAskedQuestionsComponent} from "./frequently-asked-questions/frequently-asked-questions.component"
 import {NewArticleComponent,EditArticleComponent} from "./articles/new-article/new-article.component"
+import {SainTeamComponent} from "./pages/sain-team/sain-team.component"
 
 const routes: Routes = [
     {
@@ -70,6 +71,7 @@ const routes: Routes = [
     { path: "faqs", component: FrequentlyAskedQuestionsComponent },
     { path: "articles/new", component: NewArticleComponent,canActivate: [AuthGuard]},
     { path: "articles/edit/:id", component: EditArticleComponent,canActivate: [AuthGuard]},
+    { path: "sainteam", component: SainTeamComponent,canActivate: [AuthGuard]},
 ];
 
 @NgModule({

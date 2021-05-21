@@ -1,21 +1,25 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { ToolService } from "../../../services/tool.service";
 import { ReteService } from "../../../services/rete.service";
+import { AuthenticationService } from "../../../services/authentication.service";
 import { DatasetService } from "../../../services/dataset.service";
 import { ModalService } from "../../../services/modal.service";
 import { RoutingService } from "../../../services/routing.service";
 import { ActivatedRoute } from "@angular/router";
 import { DataTableDirective } from "angular-datatables";
 import { DatatableUtil } from "../../../classes/DatatableUtil";
+import {UserDetails} from "../../../classes/user"
 @Component({
     selector: "app-profile",
     templateUrl: "./profile.component.html",
     styleUrls: ["./profile.scss"],
 })
 export class ProfileComponent implements OnInit {
-    constructor() {}
+    constructor(private auth:AuthenticationService) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+
+    }
 }
 @Component({
     selector: "app-accountinfo",
@@ -23,9 +27,24 @@ export class ProfileComponent implements OnInit {
     styleUrls: ["./profile.scss"],
 })
 export class AccountInfo implements OnInit {
-    constructor() {}
+    private editmode:Boolean=false;
+    user:UserDetails=new UserDetails();
+    constructor(private auth:AuthenticationService) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.auth.getUserProfile().subscribe((response)=>{
+            this.user.fromJson(response)
+        })
+    }
+    edit(){
+        var data=this.user.toFormData();
+        this.auth.updateUserProfile(data).subscribe((response)=>{
+            console.log(response)
+            this.user=new UserDetails()
+            this.user.fromJson(response)
+            this.editmode=false;
+        })
+    }
 }
 
 @Component({
