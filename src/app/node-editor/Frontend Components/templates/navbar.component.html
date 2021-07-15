@@ -17,6 +17,7 @@
                     <div class="dropdown-item " (click)="fileInput.click();" ><i class="fas fa-file-import pr-2 "></i>Import Experiment</div>
                     <div class="dropdown-item " (click)="exportToJson()"><i class="fas fa-file-export pr-2"></i>Export Experiment</div>
                     <div class="dropdown-item " (click)="modal.open(samples)"><i class="fas fa-file-export pr-2"></i>Sample Experiments</div>
+                    <div style='white-space: pre-wrap;' class="dropdown-item " (click)="modal.open(ready_to_run_samples)"><i class="fas fa-file-export pr-2"></i>Ready to Run Sample Experiments</div>
                     <div class="dropdown-item " (click)="ExitEditor(Exit);" ><i class="fas fa-file-import pr-2 "></i>Exit</div>
     
                 </div>
@@ -117,6 +118,41 @@
 </ng-template>
 <ng-template #docker>
     <app-docker-connector></app-docker-connector>
+</ng-template>
+
+<ng-template #ready_to_run_samples>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Ready to Run Experiments Samples</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body px-0 m-0">
+        <article class="class-body m-0 px-2">
+            <table datatable class="table border-dark border table-bordered table-striped table-sm w-100 p-0 m-0">
+                <thead>
+                    <tr scope="row " class="height-40">
+                        <th class="w-10">#</th>
+                        <th>Sample Name</th>
+                        <th class="w-20">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr scope="row" *ngFor="let item  of ready2runSamples; let j=index;">
+                        <td>{{j+1}}</td>
+                        <td class=" font-size-16">{{item.name}}</td>
+                        <td >
+                            <button class="btn  btn-dark shadow-on-hover w-90 float-right pointer font-single" (click)="loadReady2runSample(item)">
+                                <i class="fa fa-file-archive fa-lg text-green pr-3 "></i> Open
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </article>
+
+    </div>
 </ng-template>
 
 <ng-template #Exit>

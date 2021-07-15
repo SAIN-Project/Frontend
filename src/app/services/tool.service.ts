@@ -79,6 +79,11 @@ export class ToolService {
     getSamples() {
         return this.http.get(this.url + "/admin/samples/");
     }
+
+    getready2runSamples() {
+        return this.http.get(this.url + "/admin/ready2runsamples/");
+    }
+        
     //=========================================================//
 
     async getCategoryList() {

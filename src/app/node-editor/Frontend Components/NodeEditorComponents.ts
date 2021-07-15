@@ -190,6 +190,7 @@ export class NavbarComponent implements AfterViewInit ,OnInit {
     @Input() Editor:Editor
     
     private Samples:any=[]
+    private ready2runSamples:any=[];
     CurrentZoomIntensity=8;
 
     constructor(
@@ -202,6 +203,12 @@ export class NavbarComponent implements AfterViewInit ,OnInit {
     ngOnInit(){
         this.toolservice.getSamples().subscribe(response=>{
             this.Samples=response; 
+        },error=>{
+            console.log('error')
+        })
+
+        this.toolservice.getready2runSamples().subscribe(response=>{
+            this.ready2runSamples=response; 
         },error=>{
             console.log('error')
         })
@@ -295,6 +302,68 @@ export class NavbarComponent implements AfterViewInit ,OnInit {
         this.Editor.Editor.fromJSON(json)
         
     }
+
+    loadReady2runSample(item){    
+        this.modal.hide()
+        const json=JSON.parse(<string>item.contents)        
+
+        // Get filename and class path from backend
+        const filename = item.filename
+        
+        // Load the editor
+        this.Editor.Editor.fromJSON(json)
+
+        // Get all loaded nodes
+        let nodes = this.Editor.Editor.nodes
+
+        // Get all inputs
+        let inputs = item.inputs
+
+        // Load files into the node       
+        function loadNode(node, inputlist) { 
+            var inputname:any;
+            var filename:any;
+            var filenameBlob:any;
+            var file:any;
+
+            for (let i = 0; i < inputlist.length; i++) {
+                inputname = inputlist[i].inputname;
+                filename = inputlist[i].filename;
+
+                // Create file
+                filenameBlob = new Blob([filename], {
+                    type: "plain/text"
+                })
+                file = new File([filenameBlob], "sample_"+ filename);                
+                node.inputs.get(inputname).control["props"].Filename = filename
+                node.inputs.get(inputname).control["props"].value = file
+                node.data[inputname] = file 
+            }     
+        }
+
+        // Wait until array populated
+        var timeout = setInterval(function() {
+            if(nodes.length > 0) {
+                clearInterval(timeout); 
+
+                for (let i = 0; i < inputs.length; i++) {                    
+                    let nodename = inputs[i].nodename  
+                    let inputlist = inputs[i].inputlist
+                   
+                    // Find the node that needs to be modified
+                    for (let j = 0; j < nodes.length; j++) {                        
+                        if (nodes[j].name === nodename) {                            
+
+                            // Put placeholder file into the input (different for different nodes)    
+                            console.log(nodes[j].inputs);
+                            loadNode(nodes[j], inputlist);                            
+                        }
+                    }
+                }            
+            }
+        }, 100);
+    }
+
     setLocalServerConnection(template:any){
         if(this.http.ToolEnginesServer!='Local')
             this.modal.open(template)
