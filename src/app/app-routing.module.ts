@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule, Router } from "@angular/router";
+import { AboutSainComponent } from "./home/about-sain/about-sain.component";
 
 import {
     ComponentBuilderComponent,
@@ -10,6 +11,7 @@ import { AuthGuardService as AuthGuard } from "./services/auth-guard.service";
 
 const routes: Routes = [
     //-------------Home page ------------------------
+    { path: "aboutsain", component: AboutSainComponent },
     { path: "", redirectTo: "/aboutsain", pathMatch: "full" },
     {
         path: "componentbuilder/:id",
