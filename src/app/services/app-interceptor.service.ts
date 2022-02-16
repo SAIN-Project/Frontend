@@ -28,7 +28,6 @@ export class AppInterceptorService implements HttpInterceptor {
             
                 headers: req.headers.append("userid", currentUser._id),
             });
-            console.log(req.headers.getAll)
         }
         return next.handle(newReq).pipe(catchError(this.errorHandler));
     }
@@ -43,6 +42,9 @@ export class AppInterceptorService implements HttpInterceptor {
                         break;
                     case 403:
                         console.log("unauthorized");
+                    case 401:
+                        console.log("Unverified");
+                    
                 }
             }
         }
