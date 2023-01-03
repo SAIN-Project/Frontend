@@ -35,13 +35,13 @@ export class ComponentDatails implements OnInit {
     SourceCategories: Category[] = [];
 
     constructor(
-        private toolservice: ToolService,
-        private Activerouter: ActivatedRoute,
-        private router: RoutingService,
-        private downloader: FileDownloadUploadService,
-        private rete: ReteService,
-        private dataservice: DatasetService,
-        private renderer: RendererService
+        public toolservice: ToolService,
+        public Activerouter: ActivatedRoute,
+        public router: RoutingService,
+        public downloader: FileDownloadUploadService,
+        public rete: ReteService,
+        public dataservice: DatasetService,
+        public renderer: RendererService
     ) {}
     async ngOnInit() {
         this.Component_id = await this.Activerouter.snapshot.params["id"];

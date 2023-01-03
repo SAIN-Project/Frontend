@@ -27,10 +27,10 @@ export class AdminDatasetsComponent implements OnInit {
     Editmode = false;
     filter: filter = new filter();
     constructor(
-        private admin: AdminService,
-        private router: RoutingService,
-        private modal: ModalService,
-        private rete: ReteService
+        public admin: AdminService,
+        public router: RoutingService,
+        public modal: ModalService,
+        public rete: ReteService
     ) {}
 
     ngOnInit() {

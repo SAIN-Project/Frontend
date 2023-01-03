@@ -25,16 +25,16 @@ interface TokenResponse {
     
 export class AuthenticationService {
     url=environment.ApiUrl;
-    private token: string;
+    public token: string;
 
-    constructor(private http: HttpClient, private router: Router) {}
+    constructor(public http: HttpClient, public router: Router) {}
     
-    private saveToken(token: string): void {
+    public saveToken(token: string): void {
         localStorage.setItem("usertoken", token);
         this.token = token;
     }
 
-    private getToken(): string {
+    public getToken(): string {
         if (!this.token) {
             this.token = localStorage.getItem("usertoken");
         }

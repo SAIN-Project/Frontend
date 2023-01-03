@@ -8,12 +8,12 @@ import { environment } from "../../environments/environment";
     providedIn: "root",
 })
 export class ToolService {
-    private notify = new Subject<any>();
+    public notify = new Subject<any>();
     notifyObservable$ = this.notify.asObservable();
 
     Categories: any[] = [];
     url = environment.ApiUrl;
-    constructor(private http: HttpClient) {
+    constructor(public http: HttpClient) {
         this.geCategories();
     }
 

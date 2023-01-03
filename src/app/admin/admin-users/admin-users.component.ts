@@ -28,7 +28,7 @@ export class AdminUsersComponent implements OnInit {
     SelectedUser = null;
     Approved = null;
     Editmode = false;
-    constructor(private admin: AdminService, private modal: ModalService) {}
+    constructor(public admin: AdminService, public modal: ModalService) {}
 
     ngOnInit() {
         this.Dt = new DatatableUtil();

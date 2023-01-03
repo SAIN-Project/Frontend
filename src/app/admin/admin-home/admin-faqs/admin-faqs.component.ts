@@ -17,7 +17,7 @@ export class AdminFaqsComponent implements OnInit {
     Faq: Faq = new Faq();
     SelectedFaq = null;
     view = "faqs";
-    constructor(private admin: AdminService, private modal: ModalService) {}
+    constructor(public admin: AdminService, public modal: ModalService) {}
 
     ngOnInit() {
         this.getFaqs();
@@ -58,7 +58,7 @@ export class AdminFaqsComponent implements OnInit {
 })
 export class AdminNewFaqsComponent implements OnInit {
     @Input() Faq;
-    constructor(private admin: AdminService, private router: RoutingService) {}
+    constructor(public admin: AdminService, public router: RoutingService) {}
 
     ngOnInit() {}
     updateContent($event) {

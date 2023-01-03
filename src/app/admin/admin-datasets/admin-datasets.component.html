@@ -34,14 +34,14 @@
             <div class="card border h-100 " [hidden]="Editmode==true">
                 <header class="card-header title text-dark  py-1">
                     <h5 class="card-tittle d-inline">
-                      <i class="fa fa-database pr-2"></i> Sain Dataset                   
+                      <i class="fa fa-database pr-2"></i> SAIN Dataset                   
                     </h5>  
                     <button class="btn  download float-right pointer font-weight-normal font-size-18">
                         <a routerLink="/dataset/add"> <i class="fa fa-plus fa-lg  pr-2"></i>Add Dataset </a>
                     </button>         
                 </header>
                 <article class="class-body m-0 p-0 py-2">
-                    <table id="datasettable"  datatable   [dtOptions]="Dt.dtOptions" [dtTrigger]="Dt.dtTrigger" class="table border-dark border table-bordered  table-striped table-sm w-100 p-0 m-0">
+                    <table id="datasettable"  datatable    [dtTrigger]="Dt.dtTrigger" class="table border-dark border table-bordered  table-striped table-sm w-100 p-0 m-0">
                         <thead>
                             <tr scope="row" class="height-40">
                                 <th class="w-10">#</th>

@@ -7,13 +7,13 @@ import {ModalService} from '../../../services/modal.service'
   styleUrls: ['../../style.scss']
 })
 export class DatasetFiltersComponent implements OnInit {
-  private Categories:any=[]
-  private categoryname=''
-  private type='checkbox'
+  public Categories:any=[]
+  public categoryname=''
+  public type='checkbox'
   selctedCategory=null;
   constructor(
-    private admin:AdminService,
-    private modal:ModalService
+    public admin:AdminService,
+    public modal:ModalService
   ) { }
 
   ngOnInit() {

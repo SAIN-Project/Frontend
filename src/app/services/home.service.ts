@@ -16,7 +16,7 @@ export class HomeService {
     url = environment.ApiUrl;
 
 
-    constructor(private http: HttpClient) {}
+    constructor(public http: HttpClient) {}
     getArticles(): Observable<any> {
         return this.http.get(this.url + "/home/articles/");
     }

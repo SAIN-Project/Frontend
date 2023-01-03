@@ -12,13 +12,13 @@ export class SamplesExperimentsComponent implements OnInit {
     Dt: DatatableUtil = new DatatableUtil();
     @ViewChild(DataTableDirective, { static: false })
     dtElement: DataTableDirective;
-    private Samples: any = [];
+    public Samples: any = [];
     sample = {
         name: "",
         file: new File([""], "", { type: "" }),
         contents: "",
     };
-    constructor(private modal: ModalService, private admin: AdminService) {}
+    constructor(public modal: ModalService, public admin: AdminService) {}
 
     ngOnInit() {
         this.admin.getSamples().subscribe(

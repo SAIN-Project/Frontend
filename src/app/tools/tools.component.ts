@@ -21,8 +21,8 @@ export class ToolsComponent implements OnInit {
     @ViewChild("paginator", { static: false }) paginator: MatPaginator;
 
     constructor(
-        private toolservice: ToolService,
-        private downloader: FileDownloadUploadService
+        public toolservice: ToolService,
+        public downloader: FileDownloadUploadService
     ) {}
 
     ngOnInit() {

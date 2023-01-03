@@ -9,7 +9,7 @@ export class ToolItemComponent implements OnInit {
     @Input() Tool: any;
     @Input() index: number;
     @Output() contentUpdate = new EventEmitter();
-    constructor(private downloader: FileDownloadUploadService) {}
+    constructor(public downloader: FileDownloadUploadService) {}
 
     ngOnInit() {}
     setCategories() {
@@ -32,7 +32,7 @@ export class DatasetItemComponent implements OnInit {
     @Input() index: number;
     @Input() TargetTags: any[];
     @Output() contentUpdate = new EventEmitter();
-    constructor(private downloader: FileDownloadUploadService) {}
+    constructor(public downloader: FileDownloadUploadService) {}
 
     ngOnInit() {}
     setCategories() {
@@ -56,7 +56,7 @@ export class DatasetFilesDetails implements OnInit {
     @Input() TargetTags: any[];
     @Output() contentUpdate = new EventEmitter();
     @Output() SelectedDataset = new EventEmitter();
-    constructor(private downloader: FileDownloadUploadService) {}
+    constructor(public downloader: FileDownloadUploadService) {}
 
     ngOnInit() {}
     datasetSelected(item) {

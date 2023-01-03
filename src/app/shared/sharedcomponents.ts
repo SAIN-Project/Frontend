@@ -50,9 +50,9 @@ export class UploadFiles implements OnInit {
     SelectedFile = null;
     _id;
     constructor(
-        private modal: ModalService,
-        private Activerouter: ActivatedRoute,
-        private downloader: FileDownloadUploadService
+        public modal: ModalService,
+        public Activerouter: ActivatedRoute,
+        public downloader: FileDownloadUploadService
     ) {}
     async ngOnInit() {
         this._id = await this.Activerouter.snapshot.params["id"];
@@ -98,7 +98,7 @@ export class Categories implements OnInit {
     @Input() filters: string;
     @Output() contentUpdate = new EventEmitter();
     id = Math.round(Math.random() * 10000);
-    constructor(private toolservice: ToolService) {}
+    constructor(public toolservice: ToolService) {}
     ngOnInit() {}
     onChange(form: NgForm) {}
     onCheckboxChange(i, event) {

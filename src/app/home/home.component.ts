@@ -9,8 +9,8 @@ import { ReteHttpService } from "../services/rete-http.service";
 })
 export class HomeComponent implements OnInit {
     constructor(
-        private auth: AuthenticationService,
-        private retehttp: ReteHttpService
+        public auth: AuthenticationService,
+        public retehttp: ReteHttpService
     ) {}
 
     ngOnInit() {}

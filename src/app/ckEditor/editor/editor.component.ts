@@ -24,7 +24,7 @@ export class EditorComponent implements OnInit {
     @Output() contentUpdate = new EventEmitter();
     public Editor = ClassicEditor;
     public configurations = config;
-    constructor(private renderer: Renderer2) {}
+    constructor(public renderer: Renderer2) {}
 
     ngOnInit() {
         

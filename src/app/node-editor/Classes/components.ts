@@ -49,7 +49,7 @@ export class SocketManagment {
 }
 
 export class Validator {
-    constructor(private http: ReteHttpService) { }
+    constructor(public http: ReteHttpService) { }
     validate(node: Node) {
         this.Inputs(node);
         this.Controls(node);
@@ -227,7 +227,7 @@ export class FileUploader extends Component implements AngularComponent {
     data: AngularComponentData;
     path = ["Utilities"];
     ProcessStatus:ProcessStatus
-    constructor(private http: ReteHttpService) {
+    constructor(public http: ReteHttpService) {
         super("File Upload");
         this.data.render = "angular";
         this.data.component = MyNodeComponent;
@@ -275,8 +275,8 @@ export class FileUploader extends Component implements AngularComponent {
 export class ProjectFilePath extends Component implements AngularComponent {
     data: AngularComponentData;
     path = ["Utilities", "Projects"];
-    constructor(private http: ReteHttpService) {
-        super("Sain File Path");
+    constructor(public http: ReteHttpService) {
+        super("SAIN File Path");
         this.data.render = "angular";
         this.data.component = MyNodeComponent;
     }
@@ -302,7 +302,7 @@ export class GeneratedComponent extends Component implements AngularComponent {
     Files: String[] = [];
     Data: String[] = [];
     output: String;
-    constructor(name, component, private http: ReteHttpService) {
+    constructor(name, component, public http: ReteHttpService) {
         super(name);
         this.data.render = "angular";
         this.data.component = MyNodeComponent;

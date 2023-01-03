@@ -38,15 +38,15 @@ export class ComponentBuilderComponent implements OnInit {
     types = types.slice();
 
     Component: any = null;
-    @Input() private update: EventEmitter;
+    @Input() public update: EventEmitter;
     componet_id: string;
     constructor(
-        private builder: ComponentBuilderService,
-        private toolservice: ToolService,
-        private Activerouter: ActivatedRoute,
-        private router: RoutingService,
-        private downloader: FileDownloadUploadService,
-        private rete: ReteService
+        public builder: ComponentBuilderService,
+        public toolservice: ToolService,
+        public Activerouter: ActivatedRoute,
+        public router: RoutingService,
+        public downloader: FileDownloadUploadService,
+        public rete: ReteService
     ) {}
 
     async ngOnInit() {
@@ -115,16 +115,16 @@ export class EditComponentBuilder implements OnInit, AfterViewInit {
     Component: any;
     ComponentFiles: any[] = [];
     constructor(
-        private builder: ComponentBuilderService,
-        private toolservice: ToolService,
-        private router: RoutingService,
-        private Activerouter: ActivatedRoute,
-        private downloader: FileDownloadUploadService,
-        private rete: ReteService
+        public builder: ComponentBuilderService,
+        public toolservice: ToolService,
+        public router: RoutingService,
+        public Activerouter: ActivatedRoute,
+        public downloader: FileDownloadUploadService,
+        public rete: ReteService
     ) {}
     types = types.slice();
     isLinear = true;
-    @Input() private update: EventEmitter;
+    @Input() public update: EventEmitter;
     async ngOnInit() {
         this.builder.Component = new ReteComponent();
         this.Rete_id = this.Activerouter.snapshot.params["id"];
@@ -199,8 +199,8 @@ export class EditComponentBuilder implements OnInit, AfterViewInit {
 export class BasicInformation implements OnInit {
     ProgramingLanguages = ["java", "python", "g++", "other"];
     constructor(
-        private builder: ComponentBuilderService,
-        private modal: ModalService
+        public builder: ComponentBuilderService,
+        public modal: ModalService
     ) {}
     ngOnInit() {}
     onChange(form: NgForm) {
@@ -220,7 +220,7 @@ export class BasicInformation implements OnInit {
     styleUrls: ["./component-builder.component.css"],
 })
 export class ComponentCode implements OnInit {
-    constructor(private builder: ComponentBuilderService) {}
+    constructor(public builder: ComponentBuilderService) {}
     ngOnInit() {}
 }
 
@@ -231,7 +231,7 @@ export class ComponentCode implements OnInit {
 })
 export class OutputForm implements OnInit {
     @Input() item: OutputField;
-    constructor(private builder: ComponentBuilderService) {}
+    constructor(public builder: ComponentBuilderService) {}
     ngOnInit() {}
     delete() {
         this.builder.Component.deleteOutput(this.item);
@@ -250,7 +250,7 @@ export class OutputForm implements OnInit {
 })
 export class TextForm implements OnInit {
     @Input() item: TextControl;
-    constructor(private builder: ComponentBuilderService) {}
+    constructor(public builder: ComponentBuilderService) {}
     ngOnInit() {}
     delete() {
         this.builder.Component.delete(this.item);
@@ -269,7 +269,7 @@ export class TextForm implements OnInit {
 })
 export class CheckBoxForm implements OnInit {
     @Input() item: CheckBoxControl;
-    constructor(private builder: ComponentBuilderService) {}
+    constructor(public builder: ComponentBuilderService) {}
     ngOnInit() {}
     delete() {
         this.builder.Component.delete(this.item);
@@ -287,7 +287,7 @@ export class CheckBoxForm implements OnInit {
 })
 export class FileForm implements OnInit {
     @Input() item: FileControl;
-    constructor(private builder: ComponentBuilderService) {}
+    constructor(public builder: ComponentBuilderService) {}
 
     ngOnInit() {}
     delete() {
@@ -307,7 +307,7 @@ export class FileForm implements OnInit {
 })
 export class SliderForm implements OnInit {
     @Input() item: SliderControl;
-    constructor(private builder: ComponentBuilderService) {}
+    constructor(public builder: ComponentBuilderService) {}
     ngOnInit() {}
     delete() {
         this.builder.Component.delete(this.item);
@@ -326,7 +326,7 @@ export class SliderForm implements OnInit {
 })
 export class DropDownForm implements OnInit {
     @Input() item: DropDownControl;
-    constructor(private builder: ComponentBuilderService) {}
+    constructor(public builder: ComponentBuilderService) {}
     ngOnInit() {}
     delete() {
         this.builder.Component.delete(this.item);

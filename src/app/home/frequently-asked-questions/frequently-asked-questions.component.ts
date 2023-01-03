@@ -7,12 +7,11 @@ import {HomeService} from "../../services/home.service"
 })
 export class FrequentlyAskedQuestionsComponent implements OnInit {
     Faqs=[];
-    constructor( private HomeService:HomeService) {}
+    constructor( public HomeService:HomeService) {}
 
     ngOnInit(): void {
         this.HomeService.getFaqs().subscribe((response)=>{
             this.Faqs=response;
-            console.log(this.Faqs)
 
         })
     }

@@ -18,9 +18,9 @@ export class ResetPasswordComponent implements OnInit {
     waitingTime=10000;
     RoutingTime=0;
     constructor(
-        private auth: AuthenticationService,
-        private formBuilder: FormBuilder,
-        private router:Router
+        public auth: AuthenticationService,
+        public formBuilder: FormBuilder,
+        public router:Router
     ) {}
 
     ngOnInit(): void {
@@ -69,10 +69,10 @@ export class NewPasswordComponent implements OnInit {
     waitingTime=10000;
     RoutingTime=0;
     constructor(
-        private auth: AuthenticationService,
-        private formBuilder: FormBuilder,
-        private router:Router,
-        private Activerouter: ActivatedRoute,
+        public auth: AuthenticationService,
+        public formBuilder: FormBuilder,
+        public router:Router,
+        public Activerouter: ActivatedRoute,
     ) {}
 
     async ngOnInit() {

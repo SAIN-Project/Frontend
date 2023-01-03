@@ -13,9 +13,9 @@ export class ArticlesDetailComponent implements OnInit {
     Article: any = null;
     @ViewChild("el", { static: true }) el: ElementRef;
     constructor(
-        private home: HomeService,
-        private Activerouter: ActivatedRoute,
-        private renderer: RendererService
+        public home: HomeService,
+        public Activerouter: ActivatedRoute,
+        public renderer: RendererService
     ) {}
 
     async ngOnInit() {

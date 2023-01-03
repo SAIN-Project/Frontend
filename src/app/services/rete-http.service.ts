@@ -7,6 +7,7 @@ import {
     HttpRequest,
     HttpResponse,
 } from "@angular/common/http";
+
 import {RoutingService} from './routing.service'
 import { Observable, of } from "rxjs";
 import { tap } from "rxjs/operators";
@@ -22,8 +23,7 @@ import { SocketDirective } from "rete-angular-render-plugin/socket.directive";
     providedIn: "root",
 })
 export class ReteHttpService {
-    //url=environment.ApiUrl;
-
+    
     LocalServer={
         url:"http://localhost:",
         port:3000,
@@ -41,15 +41,15 @@ export class ReteHttpService {
     TerminalStreamingMode:boolean=true;
 
     constructor(
-        private http: HttpClient,
-        private router: Router,
-        private routerservice:RoutingService
+        public http: HttpClient,
+        public router: Router,
+        public routerservice:RoutingService
     ) {
         this.setupSocketConnection();
     }
     async setupSocketConnection() {
         await this.socketDisconnect()
-        this.socket = await io(this.url);
+        this.socket =  io(this.url)
         this.socket.on("connect", () => {
             this.socketid = this.socket.id;
         });

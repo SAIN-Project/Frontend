@@ -1,3 +1,4 @@
+@use 'sass:math'
 $node-color:#ffd92c
 $node-color-selected: #ffd92c
 $socket-size: 24px
@@ -69,7 +70,7 @@ $context-menu-round: 7px
     vertical-align: middle
     display: inline-block
   .control
-    padding: $socket-margin $socket-size/2 + $socket-margin
+    padding: $socket-margin  $socket-size/2 + $socket-margin
   .connection path
     fill: none
     stroke: #eee
@@ -81,7 +82,7 @@ $context-menu-round: 7px
     display: inline-block
     cursor: pointer
     border: 2px solid white
-    border-radius: $socket-size/2.0
+    border-radius:  $socket-size/2
     width: $socket-size
     height: $socket-size
     margin: $socket-margin !important
@@ -97,11 +98,11 @@ $context-menu-round: 7px
       position: absolute
       width: 0
       height: 0
-      top: $socket-size/4-1px
+      top:  $socket-size/4-1px
       left: $socket-size
       display: inline-block
       border-style: solid
-      border-width: $socket-size/4 0 $socket-size/4 $socket-size/6
+      border-width:  $socket-size/4 0  $socket-size/4  $socket-size/6
       border-color: transparent transparent transparent white
     &:hover
       border: 2px solid #777

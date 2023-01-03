@@ -7,7 +7,7 @@ import { environment } from "../../environments/environment";
 })
 export class AdminService {
     url = environment.ApiUrl;
-    constructor(private http: HttpClient) {}
+    constructor(public http: HttpClient) {}
     getUsers(): Observable<any> {
         return this.http.get(this.url + "/admin/users");
     }
@@ -82,6 +82,10 @@ export class AdminService {
     }
     deleteSample(id: any): Observable<any> {
         return this.http.delete(this.url + "/admin/samples/delete/" + id);
+    }
+
+    addReady2runSample(data: any): Observable<any> {
+        return this.http.post(this.url + "/admin/ready2runsamples/", data);
     }
 
     getDatasetFilters() {

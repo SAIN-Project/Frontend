@@ -15,8 +15,8 @@ class Article {
 export class NewArticleComponent implements OnInit {
     Article:Article=new Article();
     constructor(
-        private HomeService:HomeService,
-        private Router:RoutingService
+        public HomeService:HomeService,
+        public Router:RoutingService
     ) {}
 
     ngOnInit(): void {}
@@ -40,9 +40,9 @@ export class EditArticleComponent implements OnInit {
     Article:Article=new Article();
     _id:string=null;
     constructor(
-        private HomeService:HomeService, 
-        private Router:RoutingService,
-        private Activeroute:ActivatedRoute  
+        public HomeService:HomeService, 
+        public Router:RoutingService,
+        public Activeroute:ActivatedRoute  
     ) {}
 
     async ngOnInit(){

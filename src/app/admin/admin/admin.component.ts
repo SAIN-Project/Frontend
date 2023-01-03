@@ -7,7 +7,7 @@ declare var $: any;
     styleUrls: ["./admin.component.scss"],
 })
 export class AdminComponent implements OnInit {
-    constructor(private auth: AuthenticationService) {}
+    constructor(public auth: AuthenticationService) {}
 
     ngOnInit() {
         $(document).ready(function () {

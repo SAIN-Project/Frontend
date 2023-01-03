@@ -20,11 +20,11 @@ export class ComponentGeneratorComponent implements OnInit, AfterViewInit {
     @Input() data: any;
     Editor: Editor = new Editor(this.http);
     position = null;
-    private subscription: Subscription;
+    public subscription: Subscription;
     @ViewChild("nodeEditor", { static: true }) nodeElement: ElementRef;
     constructor(
-        private http: ReteHttpService,
-        private builder: ComponentBuilderService
+        public http: ReteHttpService,
+        public builder: ComponentBuilderService
     ) {}
 
     ngOnInit() {}

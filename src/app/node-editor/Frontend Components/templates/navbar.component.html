@@ -18,6 +18,7 @@
                     <div class="dropdown-item " (click)="exportToJson()"><i class="fas fa-file-export pr-2"></i>Export Experiment</div>
                     <div class="dropdown-item " (click)="modal.open(samples)"><i class="fas fa-file-export pr-2"></i>Sample Experiments</div>
                     <div style='white-space: pre-wrap;' class="dropdown-item " (click)="modal.open(ready_to_run_samples)"><i class="fas fa-file-export pr-2"></i>Ready to Run Sample Experiments</div>
+                    <div style='white-space: pre-wrap;' class="dropdown-item " (click)="modal.open(save_ready_2_run_samples)"><i class="fas fa-file-export pr-2"></i>Save Ready to Run Sample Experiments</div>
                     <div class="dropdown-item " (click)="ExitEditor(Exit);" ><i class="fas fa-file-import pr-2 "></i>Exit</div>
     
                 </div>
@@ -152,6 +153,21 @@
             </table>
         </article>
 
+    </div>
+</ng-template>
+
+<ng-template #save_ready_2_run_samples>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Save this Workflow as Ready to Run Sample</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">        
+        <div class="d-flex py-5">
+            <input type="text" [(ngModel)]="sample.name" class="form-control m-auto" placeholder="Enter Sample Name">
+        </div>
+        <button type="button" class="btn btn-block btn-primary-dark-w" (click)="uploadReady2runSubmit()">Submit</button>
     </div>
 </ng-template>
 

@@ -8,7 +8,7 @@ import { HomeService } from "../../../services/home.service";
 export class ArticlesListComponent implements OnInit {
     Articles=[];
     SearchTerm:string="";
-    constructor(private HomeService: HomeService) {}
+    constructor(public HomeService: HomeService) {}
 
     ngOnInit(): void {
         this.HomeService.getArticles().subscribe((response)=>{

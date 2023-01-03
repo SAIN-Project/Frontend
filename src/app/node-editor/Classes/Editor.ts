@@ -5,8 +5,6 @@ import ConnectionPlugin from 'rete-connection-plugin';
 import { AngularRenderPlugin } from 'rete-angular-render-plugin';
 import ContextMenuPlugin from 'rete-context-menu-plugin'
 import {ReteHttpService} from '../../services/rete-http.service'
-import { Time } from '@angular/common';
-import { stringify } from '@angular/compiler/src/util';
 
 export class Editor{
     components=[]
@@ -17,7 +15,7 @@ export class Editor{
     ExecutionTime:string="00:00:00";
     DefaultZoom=8;
 
-    constructor(private http:ReteHttpService){
+    constructor(public http:ReteHttpService){
 
     }
     
@@ -80,8 +78,9 @@ export class Editor{
             console.log(result)
         });
         editor.on('zoom', (e) => {
-            return e.source !== 'dblclick';
+            return e.source!=='wheel' && e.source!=='dblclick'
         });
+
         editor.view.resize();
         editor.view.container.addEventListener('dragover', e => {
             e.preventDefault()
@@ -116,12 +115,12 @@ export class Editor{
             if(i==Math.abs(x)) clearInterval(interval)
             zoom(sign/10)
         }, 10);
-        var zoom=function(x){
+        var zoom=function(x:number){
             const { area } = editor.view; // read from Vue component data;
             const rect = area.el.getBoundingClientRect();
             const ox = (rect.left - window.innerWidth / 2) * x;
             const oy = (rect.top - window.innerHeight / 2) * x;         
-            area.zoom(area.transform.k + x, ox, oy,'touch');
+            area.zoom(area.transform.k + x, ox, oy,'touch' );
         }
     }
 }

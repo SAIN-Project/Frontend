@@ -8,7 +8,7 @@ export class ModalService {
     modalRef: BsModalRef;
     modalservice: BsModalService;
 
-    constructor(private modalService: BsModalService) {
+    constructor(public modalService: BsModalService) {
         this.modalservice = modalService;
     }
     open(template: any, classes = "modal-lg") {

@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    ApiUrl: "http://129.21.128.6:3000",
+    ApiUrl: "https://www.sain.info:3000",
     //ApiUrl: "http://sainbackend.ngrok.io",
     // ApiUrl:"http://localhost:3000"
 };

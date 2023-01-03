@@ -20,7 +20,7 @@ export class DirectoryBrowserComponent implements OnInit {
 
     @Input() Files: any;
     @Output() contentUpdate = new EventEmitter();
-    constructor(private file: FileDownloadUploadService) {}
+    constructor(public file: FileDownloadUploadService) {}
 
     SelectedPath = "";
     ngOnInit() {

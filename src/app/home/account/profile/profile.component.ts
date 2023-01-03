@@ -15,7 +15,7 @@ import {UserDetails} from "../../../classes/user"
     styleUrls: ["./profile.scss"],
 })
 export class ProfileComponent implements OnInit {
-    constructor(private auth:AuthenticationService) {}
+    constructor(public auth:AuthenticationService) {}
 
     ngOnInit() {
 
@@ -27,9 +27,9 @@ export class ProfileComponent implements OnInit {
     styleUrls: ["./profile.scss"],
 })
 export class AccountInfo implements OnInit {
-    private editmode:Boolean=false;
+    public editmode:Boolean=false;
     user:UserDetails=new UserDetails();
-    constructor(private auth:AuthenticationService) {}
+    constructor(public auth:AuthenticationService) {}
 
     ngOnInit() {
         this.auth.getUserProfile().subscribe((response)=>{
@@ -61,10 +61,10 @@ export class ToolsComponentsList implements OnInit {
     MyComponents: any[] = [];
     SelectedComponent = null;
     constructor(
-        private toolservice: ToolService,
-        private modal: ModalService,
-        private router: RoutingService,
-        private ActiveRoute: ActivatedRoute
+        public toolservice: ToolService,
+        public modal: ModalService,
+        public router: RoutingService,
+        public ActiveRoute: ActivatedRoute
     ) {}
 
     ngOnInit() {
@@ -106,11 +106,11 @@ export class ComponentRete implements OnInit {
     Component_id = null;
     SelectedItem = null;
     constructor(
-        private toolservice: ToolService,
-        private router: RoutingService,
-        private modal: ModalService,
-        private ActiveRoute: ActivatedRoute,
-        private rete: ReteService
+        public toolservice: ToolService,
+        public router: RoutingService,
+        public modal: ModalService,
+        public ActiveRoute: ActivatedRoute,
+        public rete: ReteService
     ) {}
 
     async ngOnInit() {
@@ -154,9 +154,9 @@ export class MyDatasetsComponent implements OnInit {
     MyDatasets: any[] = [];
     SelectedDataset = null;
     constructor(
-        private dataservice: DatasetService,
-        private modal: ModalService,
-        private router: RoutingService
+        public dataservice: DatasetService,
+        public modal: ModalService,
+        public router: RoutingService
     ) {}
 
     ngOnInit() {

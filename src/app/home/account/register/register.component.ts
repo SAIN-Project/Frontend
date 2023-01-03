@@ -15,15 +15,15 @@ import { ActivatedRoute } from "@angular/router";
 export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     submitted = false;
-    private error: string;
+    public error: string;
     isLoading = false;
     success:string;
     ConfirmationSuccess=null;
     ConfirmationError=null;
     constructor(
-        private auth: AuthenticationService,
-        private router: Router,
-        private formBuilder: FormBuilder
+        public auth: AuthenticationService,
+        public router: Router,
+        public formBuilder: FormBuilder
     ) {}
 
     ngOnInit() {
@@ -106,9 +106,9 @@ export class AcountVerificationComponent implements OnInit {
     waitingTime=10000;
     RoutingTime=0;
     constructor(
-        private auth: AuthenticationService,
-        private router:Router,
-        private Activerouter: ActivatedRoute,
+        public auth: AuthenticationService,
+        public router:Router,
+        public Activerouter: ActivatedRoute,
     ) {}
 
     async ngOnInit() {

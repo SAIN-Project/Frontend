@@ -66,7 +66,6 @@ import { DirectoryBrowserComponent } from "./directory-browser/directory-browser
         DatasetItemComponent,
         DirectoryBrowserComponent,
         DatasetFilesDetails,
-    ],
-    entryComponents: [DirectoryBrowserComponent],
+    ]
 })
 export class SharedModule {}

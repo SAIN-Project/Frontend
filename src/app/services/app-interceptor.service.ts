@@ -15,7 +15,7 @@ import { AuthenticationService } from "./authentication.service";
     providedIn: "root",
 })
 export class AppInterceptorService implements HttpInterceptor {
-    constructor(private auth: AuthenticationService) {}
+    constructor(public auth: AuthenticationService) {}
     intercept(req: HttpRequest<any>, next: HttpHandler) {
         var newReq = req.clone();
         window.scrollTo(0, 0);

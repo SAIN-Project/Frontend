@@ -15,8 +15,8 @@ export class NewComponentComponent implements OnInit {
     progress = 0;
     isUploading = false;
     constructor(
-        private toolservice: ToolService,
-        private router: RoutingService
+        public toolservice: ToolService,
+        public router: RoutingService
     ) {
         this.Component = new ToolComponent();
     }
@@ -87,9 +87,9 @@ export class EditComponent implements OnInit {
     isUploading = false;
     Component: ToolComponent = new ToolComponent();
     constructor(
-        private toolservice: ToolService,
-        private Activerouter: ActivatedRoute,
-        private router: RoutingService
+        public toolservice: ToolService,
+        public Activerouter: ActivatedRoute,
+        public router: RoutingService
     ) {}
     ngOnInit() {
         this.toolservice.geCategories();

@@ -65,16 +65,6 @@ import { ComponentDependency } from "./component-generator/component-dependency"
         NodeRoutingModule,
         DataTablesModule,
         DatasetModule,
-    ],
-    entryComponents: [
-        MyNodeComponent,
-        MyNodeDependencyComponent,
-        JointComponent,
-        TextInputComponent,
-        FileInputComponent,
-        SliderInputComponent,
-        DropDownInputComponent,
-        SingleCheckboxComponent,
-    ],
+    ]
 })
 export class NodeEditorModule {}

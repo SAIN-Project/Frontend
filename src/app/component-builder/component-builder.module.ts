@@ -55,21 +55,11 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
         CheckBoxForm,
         OutputForm,
     ],
-    entryComponents: [
-        ComponentBuilderComponent,
-        BasicInformation,
-        TextForm,
-        FileForm,
-        SliderForm,
-        DropDownForm,
-        CheckBoxForm,
-        OutputForm,
-    ],
     providers: [
         {
             provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
             useValue: { appearance: "fill" },
         },
-    ],
+    ]
 })
 export class ComponentBuilderModule {}

@@ -18,9 +18,9 @@ export class ArticlesComponent implements OnInit {
     SelectedArticle = null;
     view = "Articles";
     constructor(
-        private admin: AdminService, 
-        private modal: ModalService,
-        private router:RoutingService
+        public admin: AdminService, 
+        public modal: ModalService,
+        public router:RoutingService
     ) {}
 
     ngOnInit() {

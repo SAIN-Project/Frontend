@@ -29,7 +29,7 @@ export class ComponentDependency implements OnInit, AfterViewInit {
     defaultzoom = 10;
     CurrentZoomIntensity = 10;
     @ViewChild("nodeEditor", { static: true }) nodeElement: ElementRef;
-    constructor(private http: ReteHttpService, private rete: ReteService) {}
+    constructor(public http: ReteHttpService, public rete: ReteService) {}
 
     ngOnInit() {}
 

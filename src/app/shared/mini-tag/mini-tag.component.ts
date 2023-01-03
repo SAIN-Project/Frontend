@@ -86,7 +86,7 @@ export class MiniTagComponent implements OnInit {
         }
         this.tagInput.nativeElement.value = "";
     }
-    private _filter(value: string): string[] {
+    public _filter(value: string): string[] {
         const filterValue = value.toLowerCase();
         return this.SourceTags.filter(
             (tag) => tag.toLowerCase().indexOf(filterValue) === 0

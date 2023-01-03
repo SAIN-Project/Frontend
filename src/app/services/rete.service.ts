@@ -8,7 +8,7 @@ import { environment } from "../../environments/environment";
 })
 export class ReteService {
     url = environment.ApiUrl;
-    constructor(private http: HttpClient) {}
+    constructor(public http: HttpClient) {}
     //=========================================================//
     async getRetes() {
         return await this.http.get<any>(this.url + "/rete/retes/").toPromise();

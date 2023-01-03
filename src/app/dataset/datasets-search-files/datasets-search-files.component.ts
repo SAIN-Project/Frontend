@@ -38,9 +38,9 @@ export class DatasetsSearchFiles implements OnInit {
     @ViewChild("paginator", { static: false }) paginator: MatPaginator;
 
     constructor(
-        private dataservice: DatasetService,
-        private router: RoutingService,
-        private downloader: FileDownloadUploadService
+        public dataservice: DatasetService,
+        public router: RoutingService,
+        public downloader: FileDownloadUploadService
     ) {}
     ngOnInit() {
         this.filter();

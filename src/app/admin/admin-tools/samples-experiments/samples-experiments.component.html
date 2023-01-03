@@ -3,14 +3,14 @@
     <div class="card bg-light h-100">
         <header class="card-header  title bg-light py-1">
             <h5 class="card-tittle d-inline">
-                    <i class="fa fa-list pr-2"></i>Sain Sample Experiments
+                    <i class="fa fa-list pr-2"></i>SAIN Sample Experiments
             </h5>
             <button class="btn  download float-right pointer font-weight-normal font-size-18" (click)="modal.open(template,'modal-md')">
                 <i class="fa fa-plus fa-lg  pr-2"></i>New Expirement 
             </button> 
         </header>
         <article class="class-body m-0 p-0 py-2 bg-white">
-            <table  datatable   [dtOptions]="dtOptions" [dtTrigger]="Dt.dtTrigger" class="table border-dark border table-bordered table-striped table-sm w-100 p-0 m-0">
+            <table  datatable   [dtTrigger]="Dt.dtTrigger" class="table border-dark border table-bordered table-striped table-sm w-100 p-0 m-0">
                 <thead>
                     <tr scope="row" >
                         <th class="w-10">#</th>

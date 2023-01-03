@@ -29,14 +29,15 @@ export class AdminToolsComponent implements OnInit {
     SelectedRete = null;
     error: any = null;
     Approved = null;
+    dtOptions: DataTables.Settings = {};
     view = "components";
     filter: filter = new filter();
     constructor(
-        private admin: AdminService,
-        private router: RoutingService,
-        private modal: ModalService,
-        private rete: ReteService,
-        private toolservice: ToolService
+        public admin: AdminService,
+        public router: RoutingService,
+        public modal: ModalService,
+        public rete: ReteService,
+        public toolservice: ToolService
     ) {}
 
     ngOnInit() {

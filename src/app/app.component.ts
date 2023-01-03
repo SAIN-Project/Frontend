@@ -7,10 +7,10 @@ import { RoutingService } from "./services/routing.service";
     styleUrls: [],
 })
 export class AppComponent implements OnInit {
-    title = "Sain";
+    title = "SAIN";
     constructor(
-        private auth: AuthenticationService,
-        private router: RoutingService
+        public auth: AuthenticationService,
+        public router: RoutingService
     ) {}
     ngOnInit() {}
 }

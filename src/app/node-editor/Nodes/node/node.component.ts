@@ -32,11 +32,11 @@ export class MyNodeComponent extends NodeComponent {
   constructor(
     protected service: NodeService,
     protected cdr: ChangeDetectorRef,
-    private modal: ModalService,
-    private router: RoutingService,
-    private toolservice: ToolService,
-    private rete: ReteService,
-    private http: ReteHttpService
+    public modal: ModalService,
+    public router: RoutingService,
+    public toolservice: ToolService,
+    public rete: ReteService,
+    public http: ReteHttpService
   ) {
     super(service, cdr);
     
@@ -113,7 +113,7 @@ export class DetailsDependencycomponent implements OnInit{
   Component: ToolComponent = new ToolComponent();
   ReteComponent:any;
   uploaded: boolean = false;
-  constructor(private toolservice: ToolService, private rete: ReteService) {}
+  constructor(public toolservice: ToolService, public rete: ReteService) {}
   ngOnInit() {
     this.getReteComponent();
   }

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
     providedIn: "root",
 })
 export class RoutingService {
-    constructor(private Activerouter: ActivatedRoute, private router: Router) {}
+    constructor(public Activerouter: ActivatedRoute, public router: Router) {}
     getRouteParameter(parameter: string) {
         this.Activerouter.params.subscribe((params) => {
             var result = params["id"];

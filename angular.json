@@ -31,12 +31,8 @@
                 "glob": "favicon.ico",
                 "input": "/src",
                 "output": "/"
-              },
-              {
-                "glob": "**/*",
-                "input": "./node_modules/mxgraph/javascript/src",
-                "output": "/assets/mxgraph"
               }
+              
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",

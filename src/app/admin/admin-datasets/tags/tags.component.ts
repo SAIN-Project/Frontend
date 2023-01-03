@@ -14,10 +14,10 @@ export class TagsComponent implements OnInit {
     @ViewChild(DataTableDirective, { static: false })
     dtElement: DataTableDirective;
     DatasetTags: any[] = [];
-    private Tagname = "";
+    public Tagname = "";
 
     selctedTag = null;
-    constructor(private admin: AdminService, private modal: ModalService) {}
+    constructor(public admin: AdminService, public modal: ModalService) {}
 
     ngOnInit() {
         var component = this;

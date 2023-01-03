@@ -9,7 +9,7 @@ import {
     providedIn: "root",
 })
 export class RendererService {
-    private renderer: Renderer2;
+    public renderer: Renderer2;
     constructor(rendererFactory: RendererFactory2) {
         this.renderer = rendererFactory.createRenderer(null, null);
     }

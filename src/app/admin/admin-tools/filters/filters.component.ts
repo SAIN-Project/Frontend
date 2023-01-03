@@ -8,11 +8,11 @@ import { ModalService } from "../../../services/modal.service";
     styleUrls: ["../../style.scss"],
 })
 export class FiltersComponent implements OnInit {
-    private Categories: any = [];
-    private categoryname = "";
+    public Categories: any = [];
+    public categoryname = "";
     selctedCategory = null;
 
-    constructor(private admin: AdminService, private modal: ModalService) {}
+    constructor(public admin: AdminService, public modal: ModalService) {}
     ngOnInit() {
         this.admin.getToolFilters().subscribe(
             (res) => {

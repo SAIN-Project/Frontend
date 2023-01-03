@@ -17,7 +17,7 @@ export class FileInputComponent implements OnInit {
     @Input() mounted!: Function;
     FileSource = "";
     TargetTags: string[] = [];
-    constructor(private modal: ModalService) {}
+    constructor(public modal: ModalService) {}
     ngOnInit() {
         this.mounted();
         if (this.value) {

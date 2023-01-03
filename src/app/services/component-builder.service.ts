@@ -23,11 +23,11 @@ export class ComponentBuilderService {
     SourceTags: any[] = [];
     SourceSockets: any[] = [];
     ComponentFiles: any[] = [];
-    private notify = new Subject<any>();
+    public notify = new Subject<any>();
     notifyObservable$ = this.notify.asObservable();
     Component: ReteComponent = new ReteComponent();
 
-    constructor(private http: HttpClient, private admin: AdminService) {}
+    constructor(public http: HttpClient, public admin: AdminService) {}
     public notifyOther(data: any) {
         if (data) {
             this.notify.next(data);

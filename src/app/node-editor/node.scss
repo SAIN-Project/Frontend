@@ -212,14 +212,14 @@ a {
                     background: lighten($bg-color, 8%);
                     border-top: 0px;
                     border-radius: 0px 0px 5px 5px;
-                    width: 198px !important;
+                    min-width: 398px !important;
                     color: darken(#fff, 10%);
                     box-shadow: 4px 5px 9px rgba(0, 0, 0, 0.5);
                     border: 2px solid rgba(255, 255, 255, 0.1);
 
                     .dropdown-item {
                         color: white;
-
+                        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
                         &:hover {
                             background: lighten($bg-color, 20%);
                         }

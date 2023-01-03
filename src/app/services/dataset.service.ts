@@ -9,7 +9,7 @@ import { environment } from "../../environments/environment";
 export class DatasetService {
     url = environment.ApiUrl;
     Categories: any = null;
-    constructor(private http: HttpClient) {}
+    constructor(public http: HttpClient) {}
 
     geCategories() {
         this.http.get(this.url + "/admin/datasetfilters/").subscribe(

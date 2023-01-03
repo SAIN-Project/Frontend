@@ -17,8 +17,8 @@ export class NewDatasetComponent implements OnInit {
     Db_Tags: any = null;
     Dataset_id: string = null;
     constructor(
-        private dataservice: DatasetService,
-        private router: RoutingService
+        public dataservice: DatasetService,
+        public router: RoutingService
     ) {}
     ngOnInit() {
         this.dataservice.geCategories();
@@ -90,9 +90,9 @@ export class EditDatasetComponent implements OnInit {
     Db_Tags: any = null;
     Dataset_id = null;
     constructor(
-        private dataservice: DatasetService,
-        private router: RoutingService,
-        private Activerouter: ActivatedRoute
+        public dataservice: DatasetService,
+        public router: RoutingService,
+        public Activerouter: ActivatedRoute
     ) {}
     async ngOnInit() {
         this.dataservice.geCategories();

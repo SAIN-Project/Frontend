@@ -18,9 +18,9 @@ export class LoginComponent implements OnInit {
     ConfirmationError=null;
     isLoading = false;
     constructor(
-        private auth: AuthenticationService,
-        private router: Router,
-        private formBuilder: FormBuilder
+        public auth: AuthenticationService,
+        public router: Router,
+        public formBuilder: FormBuilder
     ) {}
 
     ngOnInit() {

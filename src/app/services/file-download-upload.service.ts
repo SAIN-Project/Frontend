@@ -8,9 +8,9 @@ import { Subject, Observable } from "rxjs";
 })
 export class FileDownloadUploadService {
   url=environment.ApiUrl;
-  private notify = new Subject<any>();
+  public notify = new Subject<any>();
   notifyObservable$ = this.notify.asObservable();
-  constructor(private http:HttpClient) { }
+  constructor(public http:HttpClient) { }
   public notifyOther(data: any) {
     if (data) {
       this.notify.next(data);

@@ -82,11 +82,11 @@
                     <ng-template matStepLabel>Command</ng-template>
                     <app-code-form></app-code-form>
                 </mat-step>
-                <mat-step [stepControl]="forth"  [completed]="builder.Component.isValid()"  >
+                <mat-step   [completed]="builder.Component.isValid()"  >
                     <ng-template matStepLabel>Review</ng-template>
                     <app-component-generator  [data]="builder.Component"></app-component-generator>
                 </mat-step>
-                <mat-step [stepControl]="Fifth" [completed]="builder.Component.isValid()" class="border-radius-top-right">
+                <mat-step  [completed]="builder.Component.isValid()" class="border-radius-top-right">
                     <ng-template matStepLabel >Save & Submit</ng-template>
                     <div  class="d-flex  align-middle justify-content-around w-100 min-height-170 ">
                         <button class="btn btn-dark width-134  my-auto pointer font-weight-lighter" mat-button matStepperPrevious>&laquo; Back</button>

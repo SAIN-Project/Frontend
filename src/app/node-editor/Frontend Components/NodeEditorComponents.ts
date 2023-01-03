@@ -10,6 +10,7 @@ import {ModalService} from '../../services/modal.service'
 import {Editor} from '../Classes/Editor'
 import{saveAs} from'file-saver'
 import {RoutingService} from '../../services/routing.service'
+import { AdminService } from '../../services/admin.service';
 declare var $:any
 
 @Component({
@@ -28,11 +29,11 @@ export class EditorComponent implements AfterViewInit ,OnInit {
     DatabaseReteComponents:any[]=[];
     @ViewChild('nodeEditor', { static: true }) el: ElementRef;
     constructor(
-        private toolservice:ToolService,
-        private http:ReteHttpService,
-        private renderer: Renderer2,
-        private modal :ModalService,
-        private rete:ReteService
+        public toolservice:ToolService,
+        public http:ReteHttpService,
+        public renderer: Renderer2,
+        public modal :ModalService,
+        public rete:ReteService
     ){}
 
     ngOnInit(){
@@ -87,8 +88,8 @@ export class ListComponent implements AfterViewInit ,OnInit {
     searchComponents=[];
     SearchTerm=''  
     constructor(
-        private toolservice:ToolService,
-        private http:ReteHttpService,
+        public toolservice:ToolService,
+        public http:ReteHttpService,
     ){}
     
     async ngOnInit(){
@@ -123,10 +124,10 @@ export class TerminalComponent implements AfterViewInit ,OnInit {
     mode:boolean=true;
     counter=0;
     constructor(
-        private toolservice:ToolService,
-        private http:ReteHttpService,
-        private renderer: Renderer2,
-        private modal :ModalService,
+        public toolservice:ToolService,
+        public http:ReteHttpService,
+        public renderer: Renderer2,
+        public modal :ModalService,
     ){}
     @ViewChild('term', { static: true }) terminal: ElementRef;
     ngOnInit(){
@@ -147,9 +148,9 @@ export class TerminalComponent implements AfterViewInit ,OnInit {
 })
 export class OutputBlackboardComponent implements AfterViewInit ,OnInit {
     constructor(
-        private toolservice:ToolService,
-        private http:ReteHttpService,
-        private modal :ModalService,
+        public toolservice:ToolService,
+        public http:ReteHttpService,
+        public modal :ModalService,
     ){}
     
     ngOnInit(){
@@ -188,16 +189,23 @@ export class OutputBlackboardComponent implements AfterViewInit ,OnInit {
 })
 export class NavbarComponent implements AfterViewInit ,OnInit {
     @Input() Editor:Editor
+
+    sample = {
+        name: "",
+        file: new File([""], "", { type: "" }),
+        contents: "",        
+    };
     
-    private Samples:any=[]
-    private ready2runSamples:any=[];
+    public Samples:any=[]
+    public ready2runSamples:any=[];
     CurrentZoomIntensity=8;
 
     constructor(
-        private toolservice:ToolService,
-        private http:ReteHttpService,
-        private modal :ModalService,
-        private router:RoutingService
+        public toolservice:ToolService,
+        public http:ReteHttpService,
+        public modal :ModalService,
+        public router:RoutingService,
+        public admin: AdminService
     ){}
     
     ngOnInit(){
@@ -299,69 +307,49 @@ export class NavbarComponent implements AfterViewInit ,OnInit {
     loadSample(item){
         this.modal.hide()
         const json=JSON.parse(<string>item.contents)        
-        this.Editor.Editor.fromJSON(json)
-        
+        this.Editor.Editor.fromJSON(json)        
     }
 
-    loadReady2runSample(item){    
+    loadReady2runSample(item){
         this.modal.hide()
-        const json=JSON.parse(<string>item.contents)        
-
-        // Get filename and class path from backend
-        const filename = item.filename
-        
-        // Load the editor
+        const json=JSON.parse(<string>item.contents)          
         this.Editor.Editor.fromJSON(json)
+    }
 
-        // Get all loaded nodes
-        let nodes = this.Editor.Editor.nodes
+    uploadReady2runSubmit() {
+        var data = new FormData();
+        data.append("name", this.sample.name); 
 
-        // Get all inputs
-        let inputs = item.inputs
+        var jsonExport=this.Editor.Editor.toJSON()
+        var stringjsonExport = JSON.stringify(jsonExport)        
+        data.append("contents", stringjsonExport);
 
-        // Load files into the node       
-        function loadNode(node, inputlist) { 
-            var inputname:any;
-            var filename:any;
-            var filenameBlob:any;
-            var file:any;
-
-            for (let i = 0; i < inputlist.length; i++) {
-                inputname = inputlist[i].inputname;
-                filename = inputlist[i].filename;
-
-                // Create file
-                filenameBlob = new Blob([filename], {
-                    type: "plain/text"
-                })
-                file = new File([filenameBlob], "sample_"+ filename);                
-                node.inputs.get(inputname).control["props"].Filename = filename
-                node.inputs.get(inputname).control["props"].value = file
-                node.data[inputname] = file 
-            }     
-        }
-
-        // Wait until array populated
-        var timeout = setInterval(function() {
-            if(nodes.length > 0) {
-                clearInterval(timeout); 
-
-                for (let i = 0; i < inputs.length; i++) {                    
-                    let nodename = inputs[i].nodename  
-                    let inputlist = inputs[i].inputlist
-                   
-                    // Find the node that needs to be modified
-                    for (let j = 0; j < nodes.length; j++) {                        
-                        if (nodes[j].name === nodename) {                            
-
-                            // Put placeholder file into the input (different for different nodes)    
-                            console.log(nodes[j].inputs);
-                            loadNode(nodes[j], inputlist);                            
-                        }
-                    }
-                }            
+        this.admin.addReady2runSample(data).subscribe(
+            (res) => {
+                this.ready2runSamples = res;
+                this.sample.name = "";
+                this.sample.file = new File([""], "", { type: "" });
+                this.modal.hide();  
+            },
+            (err) => {
+                console.log(err);
+                alert(err.error.message);                
             }
-        }, 100);
+        );
+    }
+
+    onFileSelected(event) {
+        if (event.target.files.length > 0) {
+            this.sample.file = <File>event.target.files[0];
+            const fileReader = new FileReader();
+            fileReader.readAsText(this.sample.file, "UTF-8");
+            fileReader.onloadend = () => {
+                this.sample.contents = <string>fileReader.result;
+            };
+            fileReader.onerror = (error) => {
+                console.log(error);
+            };
+        }
     }
 
     setLocalServerConnection(template:any){
@@ -393,9 +381,9 @@ export class DockerConnecter implements OnInit {
     error=null;
 
     constructor(
-        private http:ReteHttpService,
-        private modal:ModalService,
-        private router:RoutingService
+        public http:ReteHttpService,
+        public modal:ModalService,
+        public router:RoutingService
     ){
 
     }

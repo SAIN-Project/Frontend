@@ -11,8 +11,8 @@ export class ExperimentLogComponent implements OnInit {
   Dt: DatatableUtil = new DatatableUtil();
   @ViewChild(DataTableDirective, { static: false })
   dtElement: DataTableDirective;
-  private logs: any = [];
-  constructor(private admin: AdminService) {}
+  public logs: any = [];
+  constructor(public admin: AdminService) {}
 
   ngOnInit(): void {
       this.admin.getExperimentslog().subscribe(

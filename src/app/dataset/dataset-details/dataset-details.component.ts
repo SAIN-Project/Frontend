@@ -20,10 +20,10 @@ export class DatasetDetailsComponent implements OnInit {
     Datasets: any[] = [];
 
     constructor(
-        private dataservice: DatasetService,
-        private Activerouter: ActivatedRoute,
-        private downloader: FileDownloadUploadService,
-        private router: RoutingService
+        public dataservice: DatasetService,
+        public Activerouter: ActivatedRoute,
+        public downloader: FileDownloadUploadService,
+        public router: RoutingService
     ) {}
 
     async ngOnInit() {
